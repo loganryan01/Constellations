@@ -10,9 +10,35 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions playerInput;
     private CharacterController controller;
 
+    [Header("Movement")]
+    [SerializeField]
+    public float moveSpeed = 5.0f;
+
     private Vector3 rawInputMovement;
+
+    [Header("Gravity/Ground Settings")]
+    [SerializeField]
+    public float gravity = -9.81f;
+    [SerializeField]
+    public Transform groundCheck;
+    [SerializeField]
+    public LayerMask groundMask;
+    [SerializeField]
+    public float groundDistance = 0.4f;
+
+    private Vector3 velocity;
+    private bool isGrounded = true;
+
+    [Header("Looking Around")]
+    [SerializeField]
+    public float lookSensitivity = 60.0f;
+    [SerializeField]
+    public float minViewAngle = -40.0f;
+    [SerializeField]
+    public float maxViewAngle = 50.0f;
+
     private Vector2 rawInputLook;
-    private float xRotation = 0f;
+    private float xRotation = 0.0f;
 
     private void Start()
     {
@@ -38,6 +64,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2.0f;
+        }
+
         PlayerMovement();
         PlayerLook();
         PlayerInteract();
@@ -69,18 +102,22 @@ public class PlayerController : MonoBehaviour
         float movementZ = rawInputMovement.z;
 
         Vector3 move = transform.right * movementX + transform.forward * movementZ;
-        controller.Move(move * 5.0f * Time.deltaTime);
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
 
         Debug.Log("Move");
     }
 
     private void PlayerLook()
     {
-        float mouseX = rawInputLook.x * 60f * Time.deltaTime;
-        float mouseY = rawInputLook.y * 60f * Time.deltaTime;
+        float mouseX = rawInputLook.x * lookSensitivity * Time.deltaTime;
+        float mouseY = rawInputLook.y * lookSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -50f, 50f);
+        xRotation = Mathf.Clamp(xRotation, minViewAngle, maxViewAngle);
 
         mainCam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
