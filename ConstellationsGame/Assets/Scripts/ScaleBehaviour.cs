@@ -17,13 +17,42 @@ public class ScaleBehaviour : MonoBehaviour
     [HideInInspector]
     public float rightWeight;
 
+    public bool startOnLeft = false;
+    public bool startOnRight = false;
+
     private bool leftMoving = false;
     private bool rightMoving = false;
+
+    private Vector3 heavyLeftPosition;
+    private Vector3 heavyRightPosition;
+
+    private Vector3 middleLeftPosition;
+    private Vector3 middleRightPosition;
+
+    private Vector3 lightLeftPosition;
+    private Vector3 lightRightPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
+        heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
+
+        lightLeftPosition = leftScale.transform.position + leftScalePositions[0];
+        lightRightPosition = rightScale.transform.position + rightScalePositions[0];
+
+        if (startOnLeft)
+        {
+            leftScale.transform.position = heavyLeftPosition;
+            rightScale.transform.position = lightRightPosition;
+            arm.transform.rotation = Quaternion.Euler(armRotations[0]);
+        }
+        else if (startOnRight)
+        {
+            leftScale.transform.position = lightLeftPosition;
+            rightScale.transform.position = heavyRightPosition;
+            arm.transform.rotation = Quaternion.Euler(armRotations[2]);
+        }
     }
 
     // Update is called once per frame
@@ -31,9 +60,8 @@ public class ScaleBehaviour : MonoBehaviour
     {
         if (leftWeight > rightWeight && !leftMoving)
         {
-            Debug.Log("Left is moving");
-            StartCoroutine(LerpPosition(leftScalePositions[2], 5, leftScale));
-            StartCoroutine(LerpPosition(rightScalePositions[0], 5, rightScale));
+            StartCoroutine(LerpPosition(heavyLeftPosition, 5, leftScale));
+            StartCoroutine(LerpPosition(lightRightPosition, 5, rightScale));
             StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[0]), 5, arm));
 
             leftMoving = true;
@@ -42,21 +70,19 @@ public class ScaleBehaviour : MonoBehaviour
         else if (leftWeight == rightWeight && leftMoving ||
             leftWeight == rightWeight && rightMoving)
         {
-            Debug.Log("Scale is balanced");
-
             if (leftMoving)
             {
-                leftScalePositions[1] -= leftScalePositions[2];
-                rightScalePositions[1] -= rightScalePositions[0];
+                middleLeftPosition = leftScale.transform.position - leftScalePositions[2];
+                middleRightPosition = rightScale.transform.position - rightScalePositions[0];
             }
             else if (rightMoving)
             {
-                leftScalePositions[1] -= leftScalePositions[0];
-                rightScalePositions[1] -= rightScalePositions[2];
+                middleLeftPosition = leftScale.transform.position - leftScalePositions[0];
+                middleRightPosition = rightScale.transform.position - rightScalePositions[2];
             }
 
-            StartCoroutine(LerpPosition(leftScalePositions[1], 5, leftScale));
-            StartCoroutine(LerpPosition(rightScalePositions[1], 5, rightScale));
+            StartCoroutine(LerpPosition(middleLeftPosition, 5, leftScale));
+            StartCoroutine(LerpPosition(middleRightPosition, 5, rightScale));
             StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[1]), 5, arm));
 
             leftMoving = false;
@@ -64,9 +90,8 @@ public class ScaleBehaviour : MonoBehaviour
         }
         else if (leftWeight < rightWeight && !rightMoving)
         {
-            Debug.Log("Right is moving");
-            StartCoroutine(LerpPosition(leftScalePositions[0], 5, leftScale));
-            StartCoroutine(LerpPosition(rightScalePositions[2], 5, rightScale));
+            StartCoroutine(LerpPosition(lightLeftPosition, 5, leftScale));
+            StartCoroutine(LerpPosition(heavyRightPosition, 5, rightScale));
             StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[2]), 5, arm));
 
             leftMoving = false;
@@ -78,16 +103,15 @@ public class ScaleBehaviour : MonoBehaviour
     {
         float time = 0;
         Vector3 startPosition = hand.transform.position;
-        Vector3 endPosition = hand.transform.position + targetPosition;
 
         while (time < duration)
         {
-            hand.transform.position = Vector3.Lerp(startPosition, endPosition, time / duration);
+            hand.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
 
-        hand.transform.position = endPosition;
+        hand.transform.position = targetPosition;
     }
 
     IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject arm)
@@ -101,6 +125,7 @@ public class ScaleBehaviour : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
         arm.transform.rotation = endValue;
     }
 }
