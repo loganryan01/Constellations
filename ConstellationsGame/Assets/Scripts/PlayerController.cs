@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 rawInputLook;
     private float xRotation = 0.0f;
+
+    [Header("Interactions")]
+    [SerializeField]
+    private float interactDist = 4.0f;
+
+    private bool interactTriggered = false;
 
     private void Start()
     {
@@ -90,9 +97,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext value)
     {
-        if (value.started)
+        if (value.canceled)
         {
-            // Do Interactions
+            interactTriggered = true;
         }
     }
 
@@ -107,8 +114,6 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-
-        Debug.Log("Move");
     }
 
     private void PlayerLook()
@@ -121,12 +126,35 @@ public class PlayerController : MonoBehaviour
 
         mainCam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
-
-        Debug.Log("Look Around");
     }
 
     private void PlayerInteract()
     {
-        Debug.Log("Interact");
+        if (!interactTriggered)
+        {
+            return;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactDist))
+        {
+            GameObject hitObject = hit.transform.gameObject;
+
+            if (hitObject.GetComponent<MirrorBehaviour>())
+            {
+                hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
+                interactTriggered = false;
+            }
+
+            // EXAMPLES
+            //else if (hitObject.GetComponent<ScaleBehaviour>())
+            //{
+            //    // Interact with scale
+            //}
+            //else if (hitObject.GetComponent<MazeBehaviour>())
+            //{
+            //    // Interact with maze
+            //}
+        }
     }
 }
