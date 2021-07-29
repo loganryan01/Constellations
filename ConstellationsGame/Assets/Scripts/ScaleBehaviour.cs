@@ -7,10 +7,13 @@ public class ScaleBehaviour : MonoBehaviour
     public GameObject leftScale;
     public GameObject rightScale;
     public GameObject arm;
+    public GameObject leftDoor;
+    public GameObject rightDoor;
 
     public Vector3[] leftScalePositions;
     public Vector3[] rightScalePositions;
     public Vector3[] armRotations;
+    public Vector3[] doorRotations;
 
     [HideInInspector]
     public float leftWeight;
@@ -22,6 +25,7 @@ public class ScaleBehaviour : MonoBehaviour
 
     private bool leftMoving = false;
     private bool rightMoving = false;
+    private bool lockScale = false;
 
     private Vector3 heavyLeftPosition;
     private Vector3 heavyRightPosition;
@@ -58,44 +62,59 @@ public class ScaleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (leftWeight > rightWeight && !leftMoving)
+        if (!lockScale)
         {
-            StartCoroutine(LerpPosition(heavyLeftPosition, 5, leftScale));
-            StartCoroutine(LerpPosition(lightRightPosition, 5, rightScale));
-            StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[0]), 5, arm));
 
-            leftMoving = true;
-            rightMoving = false;
-        } 
-        else if (leftWeight == rightWeight && leftMoving ||
-            leftWeight == rightWeight && rightMoving)
-        {
-            if (leftMoving)
+            if (leftWeight > rightWeight && !leftMoving)
             {
-                middleLeftPosition = leftScale.transform.position - leftScalePositions[2];
-                middleRightPosition = rightScale.transform.position - rightScalePositions[0];
+                StartCoroutine(LerpPosition(heavyLeftPosition, 5, leftScale));
+                StartCoroutine(LerpPosition(lightRightPosition, 5, rightScale));
+                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[0]), 5, arm));
+
+                leftMoving = true;
+                rightMoving = false;
             }
-            else if (rightMoving)
+            else if (leftWeight == rightWeight && leftMoving ||
+                leftWeight == rightWeight && rightMoving)
             {
-                middleLeftPosition = leftScale.transform.position - leftScalePositions[0];
-                middleRightPosition = rightScale.transform.position - rightScalePositions[2];
+                if (leftMoving)
+                {
+                    middleLeftPosition = leftScale.transform.position - leftScalePositions[2];
+                    middleRightPosition = rightScale.transform.position - rightScalePositions[0];
+                }
+                else if (rightMoving)
+                {
+                    middleLeftPosition = leftScale.transform.position - leftScalePositions[0];
+                    middleRightPosition = rightScale.transform.position - rightScalePositions[2];
+                }
+
+                StartCoroutine(LerpPosition(middleLeftPosition, 5, leftScale));
+                StartCoroutine(LerpPosition(middleRightPosition, 5, rightScale));
+                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[1]), 5, arm));
+
+                leftMoving = false;
+                rightMoving = false;
+
+                lockScale = true;
             }
+            else if (leftWeight < rightWeight && !rightMoving)
+            {
+                StartCoroutine(LerpPosition(lightLeftPosition, 5, leftScale));
+                StartCoroutine(LerpPosition(heavyRightPosition, 5, rightScale));
+                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[2]), 5, arm));
 
-            StartCoroutine(LerpPosition(middleLeftPosition, 5, leftScale));
-            StartCoroutine(LerpPosition(middleRightPosition, 5, rightScale));
-            StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[1]), 5, arm));
-
-            leftMoving = false;
-            rightMoving = false;
+                leftMoving = false;
+                rightMoving = true;
+            }
         }
-        else if (leftWeight < rightWeight && !rightMoving)
-        {
-            StartCoroutine(LerpPosition(lightLeftPosition, 5, leftScale));
-            StartCoroutine(LerpPosition(heavyRightPosition, 5, rightScale));
-            StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[2]), 5, arm));
 
-            leftMoving = false;
-            rightMoving = true;
+        if (leftScale.transform.position == middleLeftPosition &&
+                   rightScale.transform.position == middleRightPosition)
+        {
+            //Debug.Log("Opening Doors");
+
+            StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
+            StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
         }
     }
 
