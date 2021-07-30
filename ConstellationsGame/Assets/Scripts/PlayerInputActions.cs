@@ -122,6 +122,71 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ScalePuzzle"",
+            ""id"": ""14d1cd27-83bd-4f52-a465-2a3cc02f23e3"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e9c8387-51f1-4f24-bf76-03db0dfe8eeb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Deselect"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff563810-32c6-44db-98bd-29c45d85b0d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e76f579-0e56-45f9-bdf9-ebbe1888da82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3bb60902-5d49-4b92-ba6c-99b0f9abf168"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8da398b-d31a-45c3-8852-99deabe0507b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Deselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ed9fa11-2922-4584-8ec3-e39e987d7d78"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -159,6 +224,11 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerController_Movement = m_PlayerController.FindAction("Movement", throwIfNotFound: true);
         m_PlayerController_Look = m_PlayerController.FindAction("Look", throwIfNotFound: true);
         m_PlayerController_Interact = m_PlayerController.FindAction("Interact", throwIfNotFound: true);
+        // ScalePuzzle
+        m_ScalePuzzle = asset.FindActionMap("ScalePuzzle", throwIfNotFound: true);
+        m_ScalePuzzle_Select = m_ScalePuzzle.FindAction("Select", throwIfNotFound: true);
+        m_ScalePuzzle_Deselect = m_ScalePuzzle.FindAction("Deselect", throwIfNotFound: true);
+        m_ScalePuzzle_Reset = m_ScalePuzzle.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -253,6 +323,55 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerControllerActions @PlayerController => new PlayerControllerActions(this);
+
+    // ScalePuzzle
+    private readonly InputActionMap m_ScalePuzzle;
+    private IScalePuzzleActions m_ScalePuzzleActionsCallbackInterface;
+    private readonly InputAction m_ScalePuzzle_Select;
+    private readonly InputAction m_ScalePuzzle_Deselect;
+    private readonly InputAction m_ScalePuzzle_Reset;
+    public struct ScalePuzzleActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public ScalePuzzleActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_ScalePuzzle_Select;
+        public InputAction @Deselect => m_Wrapper.m_ScalePuzzle_Deselect;
+        public InputAction @Reset => m_Wrapper.m_ScalePuzzle_Reset;
+        public InputActionMap Get() { return m_Wrapper.m_ScalePuzzle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ScalePuzzleActions set) { return set.Get(); }
+        public void SetCallbacks(IScalePuzzleActions instance)
+        {
+            if (m_Wrapper.m_ScalePuzzleActionsCallbackInterface != null)
+            {
+                @Select.started -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnSelect;
+                @Deselect.started -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnDeselect;
+                @Deselect.performed -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnDeselect;
+                @Deselect.canceled -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnDeselect;
+                @Reset.started -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
+            }
+            m_Wrapper.m_ScalePuzzleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Deselect.started += instance.OnDeselect;
+                @Deselect.performed += instance.OnDeselect;
+                @Deselect.canceled += instance.OnDeselect;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
+            }
+        }
+    }
+    public ScalePuzzleActions @ScalePuzzle => new ScalePuzzleActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -276,5 +395,11 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IScalePuzzleActions
+    {
+        void OnSelect(InputAction.CallbackContext context);
+        void OnDeselect(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

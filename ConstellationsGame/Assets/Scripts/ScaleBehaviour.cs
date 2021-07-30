@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ScaleBehaviour : MonoBehaviour
 {
+    [Header("Interact Text")]
+    [SerializeField]
+    public GameObject buttonText;
+
+    [Header("Scale Settings")]
+
     public GameObject leftScale;
     public GameObject rightScale;
     public GameObject arm;
@@ -15,9 +22,9 @@ public class ScaleBehaviour : MonoBehaviour
     public Vector3[] armRotations;
     public Vector3[] doorRotations;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float leftWeight;
-    [HideInInspector]
+    //[HideInInspector]
     public float rightWeight;
 
     public bool startOnLeft = false;
@@ -36,9 +43,17 @@ public class ScaleBehaviour : MonoBehaviour
     private Vector3 lightLeftPosition;
     private Vector3 lightRightPosition;
 
+    private Camera mainCam;
+    private Camera scaleCamera;
+
     // Start is called before the first frame update
     void Start()
     {
+        buttonText.SetActive(false);
+        scaleCamera = this.gameObject.transform.Find("ScaleCamera").GetComponent<Camera>();
+        scaleCamera.enabled = false;
+        mainCam = Camera.main;
+
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
         heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
 
@@ -64,7 +79,6 @@ public class ScaleBehaviour : MonoBehaviour
     {
         if (!lockScale)
         {
-
             if (leftWeight > rightWeight && !leftMoving)
             {
                 StartCoroutine(LerpPosition(heavyLeftPosition, 5, leftScale));
@@ -113,6 +127,8 @@ public class ScaleBehaviour : MonoBehaviour
         {
             //Debug.Log("Opening Doors");
 
+            ChangeToMainCamera(true);
+
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
         }
@@ -146,5 +162,38 @@ public class ScaleBehaviour : MonoBehaviour
         }
 
         arm.transform.rotation = endValue;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        buttonText.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        buttonText.SetActive(false);
+    }
+
+    public void ChangeToMainCamera(bool enableMainCam)
+    {
+        if (!enableMainCam)
+        {
+            mainCam.enabled = false;
+            scaleCamera.enabled = true;
+        }
+        else
+        {
+            mainCam.enabled = true;
+            scaleCamera.enabled = false;
+        }
+    }
+
+    public void ScaleGame()
+    {
+        // Turn off player controller
+        // run in update
+
+        // select and drag items 
+
     }
 }
