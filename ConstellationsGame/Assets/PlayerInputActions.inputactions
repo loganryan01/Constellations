@@ -109,6 +109,71 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ScalePuzzle",
+            "id": "14d1cd27-83bd-4f52-a465-2a3cc02f23e3",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "7e9c8387-51f1-4f24-bf76-03db0dfe8eeb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Deselect",
+                    "type": "Button",
+                    "id": "ff563810-32c6-44db-98bd-29c45d85b0d2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "7e76f579-0e56-45f9-bdf9-ebbe1888da82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3bb60902-5d49-4b92-ba6c-99b0f9abf168",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8da398b-d31a-45c3-8852-99deabe0507b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ed9fa11-2922-4584-8ec3-e39e987d7d78",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

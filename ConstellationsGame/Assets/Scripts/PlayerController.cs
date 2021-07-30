@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     private Transform mainCam;
-    private PlayerInputActions playerInput;
+    public PlayerInputActions playerInput;
     private CharacterController controller;
 
     [Header("Movement")]
@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (value.canceled)
         {
             interactTriggered = true;
+            Debug.Log("Interact");
         }
     }
 
@@ -136,7 +137,9 @@ public class PlayerController : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactDist))
+        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, interactDist);
+
+        if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
 
@@ -145,16 +148,17 @@ public class PlayerController : MonoBehaviour
                 hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
                 interactTriggered = false;
             }
-
-            // EXAMPLES
-            //else if (hitObject.GetComponent<ScaleBehaviour>())
-            //{
-            //    // Interact with scale
-            //}
+            else if (hitObject.GetComponent<ScaleBehaviour>())
+            {
+                hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
+                interactTriggered = false;
+            }
             //else if (hitObject.GetComponent<MazeBehaviour>())
             //{
             //    // Interact with maze
             //}
         }
+
+        interactTriggered = false;
     }
 }

@@ -288,7 +288,7 @@ MonoBehaviour:
   lookSensitivity: 60
   minViewAngle: -40
   maxViewAngle: 50
-  interactDist: 3
+  interactDist: 10
 --- !u!114 &3950982640837493411
 MonoBehaviour:
   m_ObjectHideFlags: 0
