@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Transform mainCam;
     public PlayerInputActions playerInput;
     private CharacterController controller;
+    private PlayerInput playerInputComponenet;
 
     [Header("Movement")]
     [SerializeField]
@@ -62,11 +63,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         playerInput.PlayerController.Enable();
+        playerInput.ScalePuzzle.Enable();
     }
 
     private void OnDisable()
     {
         playerInput.PlayerController.Disable();
+        playerInput.ScalePuzzle.Disable();
     }
 
     private void Update()
@@ -152,6 +155,9 @@ public class PlayerController : MonoBehaviour
             {
                 hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
                 interactTriggered = false;
+
+                playerInputComponenet.SwitchCurrentActionMap("Scale Puzzle");
+                Debug.Log(playerInputComponenet.currentActionMap);
             }
             //else if (hitObject.GetComponent<MazeBehaviour>())
             //{
