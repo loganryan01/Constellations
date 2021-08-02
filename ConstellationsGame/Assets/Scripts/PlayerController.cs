@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
+        playerInputComponenet = GetComponent<PlayerInput>();
     }
 
     private void Awake()
@@ -107,6 +108,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnClick(InputAction.CallbackContext value)
+    {
+        Camera scaleCamera = GameObject.Find("ScaleCamera").GetComponent<Camera>();
+
+        Vector3 pos = Mouse.current.position.ReadValue();
+
+        Ray ray = scaleCamera.ScreenPointToRay(pos);
+        Debug.DrawLine(ray.origin, ray.direction);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 25))
+        {
+            if (/*hit.collider.gameObject.layer == 6 &&*/ hit.collider != null)
+            {
+                Debug.Log(hit.transform.name);
+
+            }
+        }
+    }
+
     private void PlayerMovement()
     {
         float movementX = rawInputMovement.x;
@@ -156,8 +178,8 @@ public class PlayerController : MonoBehaviour
                 hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
                 interactTriggered = false;
 
-                playerInputComponenet.SwitchCurrentActionMap("Scale Puzzle");
-                Debug.Log(playerInputComponenet.currentActionMap);
+                playerInputComponenet.SwitchCurrentActionMap("ScalePuzzle");
+                //Debug.Log(playerInputComponenet.currentActionMap);
             }
             //else if (hitObject.GetComponent<MazeBehaviour>())
             //{
