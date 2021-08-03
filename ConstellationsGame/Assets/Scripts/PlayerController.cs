@@ -10,7 +10,13 @@ public class PlayerController : MonoBehaviour
     private Transform mainCam;
     public PlayerInputActions playerInput;
     private CharacterController controller;
+
+    // Variables needed for the scale puzzle to work
     private PlayerInput playerInputComponenet;
+    private GameObject rockGameObject;
+    private ScaleBehaviour scaleBehaviour;
+    public BoxCollider scaleBoxCollider;
+    private Vector3 scaleOriginalPosition;
 
     [Header("Movement")]
     [SerializeField]
@@ -85,6 +91,12 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         PlayerLook();
         PlayerInteract();
+
+        if (scaleBehaviour != null)
+        {
+            ScaleGame();
+        }
+        
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -115,17 +127,29 @@ public class PlayerController : MonoBehaviour
         Vector3 pos = Mouse.current.position.ReadValue();
 
         Ray ray = scaleCamera.ScreenPointToRay(pos);
-        Debug.DrawLine(ray.origin, ray.direction);
 
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 25))
         {
-            if (/*hit.collider.gameObject.layer == 6 &&*/ hit.collider != null)
+            if (hit.collider != null)
             {
-                Debug.Log(hit.transform.name);
-
+                Debug.Log(hit.collider.gameObject.transform.name);
+                
+                if (hit.collider.CompareTag("Rock"))
+                {
+                    rockGameObject = hit.collider.gameObject;
+                }
             }
+        }
+    }
+
+    public void OnDeselect(InputAction.CallbackContext value)
+    {
+        if (rockGameObject != null)
+        {
+            rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+            rockGameObject = null;
         }
     }
 
@@ -175,11 +199,16 @@ public class PlayerController : MonoBehaviour
             }
             else if (hitObject.GetComponent<ScaleBehaviour>())
             {
+                scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
+                
                 hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
                 interactTriggered = false;
 
                 playerInputComponenet.SwitchCurrentActionMap("ScalePuzzle");
-                //Debug.Log(playerInputComponenet.currentActionMap);
+
+                scaleBoxCollider.enabled = false;
+                scaleOriginalPosition = transform.position;
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
             }
             //else if (hitObject.GetComponent<MazeBehaviour>())
             //{
@@ -188,5 +217,38 @@ public class PlayerController : MonoBehaviour
         }
 
         interactTriggered = false;
+    }
+
+    public void ScaleGame()
+    {
+        // When the scale puzzle is completed, switch back to player controller
+        if (scaleBehaviour.lockScale)
+        {
+            scaleBehaviour = null;
+
+            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+
+            Cursor.lockState = CursorLockMode.Locked;
+
+            scaleBoxCollider.enabled = true;
+            transform.position = scaleOriginalPosition;
+        }
+        
+        // When the player clicks the rock, make the rock follow the mouse
+        if (rockGameObject != null)
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+            Camera scaleCamera = GameObject.Find("ScaleCamera").GetComponent<Camera>();
+
+            // Screen Position
+            Vector3 mousePosition = Mouse.current.position.ReadValue();
+
+            // World Position
+            Vector3 rockPosition = scaleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 8));
+
+            rockGameObject.transform.position = rockPosition;
+            rockGameObject.GetComponent<Rigidbody>().isKinematic = true; 
+        }
     }
 }

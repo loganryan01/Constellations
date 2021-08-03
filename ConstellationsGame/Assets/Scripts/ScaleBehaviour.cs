@@ -29,10 +29,11 @@ public class ScaleBehaviour : MonoBehaviour
 
     public bool startOnLeft = false;
     public bool startOnRight = false;
+    [HideInInspector]
+    public bool lockScale = false;
 
     private bool leftMoving = false;
     private bool rightMoving = false;
-    private bool lockScale = false;
 
     private Vector3 heavyLeftPosition;
     private Vector3 heavyRightPosition;
@@ -188,12 +189,5 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
-    public void ScaleGame()
-    {
-        // Turn off player controller
-        // run in update
-
-        // select and drag items 
-
-    }
+    
 }
