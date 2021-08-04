@@ -17,6 +17,8 @@ public class RightHandBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Rock"))
         {
             scaleBehaviour.rightWeight += other.gameObject.GetComponent<Rigidbody>().mass;
+
+            other.gameObject.transform.parent = transform;
         }
     }
 
@@ -25,6 +27,8 @@ public class RightHandBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Rock"))
         {
             scaleBehaviour.rightWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
+
+            other.gameObject.transform.parent = null;
         }
     }
 }

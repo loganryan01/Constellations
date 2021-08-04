@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInputComponenet;
     private GameObject rockGameObject;
     private ScaleBehaviour scaleBehaviour;
-    public BoxCollider scaleBoxCollider;
+    private BoxCollider[] scaleBoxColliders;
     private Vector3 scaleOriginalPosition;
 
     [Header("Movement")]
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         playerInputComponenet = GetComponent<PlayerInput>();
+        scaleBoxColliders = GameObject.Find("SM_Scales").GetComponents<BoxCollider>();
     }
 
     private void Awake()
@@ -206,9 +207,12 @@ public class PlayerController : MonoBehaviour
 
                 playerInputComponenet.SwitchCurrentActionMap("ScalePuzzle");
 
-                scaleBoxCollider.enabled = false;
+                scaleBoxColliders[0].enabled = false;
+                scaleBoxColliders[1].enabled = false;
                 scaleOriginalPosition = transform.position;
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
+
+                Cursor.lockState = CursorLockMode.None;
             }
             //else if (hitObject.GetComponent<MazeBehaviour>())
             //{
@@ -230,7 +234,8 @@ public class PlayerController : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
 
-            scaleBoxCollider.enabled = true;
+            scaleBoxColliders[0].enabled = true;
+            scaleBoxColliders[1].enabled = true;
             transform.position = scaleOriginalPosition;
         }
         
