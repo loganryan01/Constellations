@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rock
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Ignore Laser
   - 
   - 
   - 
