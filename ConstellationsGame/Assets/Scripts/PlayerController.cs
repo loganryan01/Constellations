@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private ScaleBehaviour scaleBehaviour;
     private BoxCollider[] scaleBoxColliders;
     private Vector3 scaleOriginalPosition;
+    private bool scalePuzzleCompleted;
 
     [Header("Movement")]
     [SerializeField]
@@ -97,7 +98,10 @@ public class PlayerController : MonoBehaviour
         {
             ScaleGame();
         }
-        
+        else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        {
+            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+        }
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -135,7 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.gameObject.transform.name);
+                //Debug.Log(hit.collider.gameObject.transform.name);
                 
                 if (hit.collider.CompareTag("Rock"))
                 {
@@ -230,13 +234,14 @@ public class PlayerController : MonoBehaviour
         {
             scaleBehaviour = null;
 
-            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
-
             Cursor.lockState = CursorLockMode.Locked;
 
             scaleBoxColliders[0].enabled = true;
             scaleBoxColliders[1].enabled = true;
+
             transform.position = scaleOriginalPosition;
+
+            scalePuzzleCompleted = true;
         }
         
         // When the player clicks the rock, make the rock follow the mouse
