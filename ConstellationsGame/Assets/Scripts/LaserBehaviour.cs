@@ -51,13 +51,7 @@ public class LaserBehaviour : MonoBehaviour
             RaycastHit hit;
             lr.SetVertexCount(verti);
 
-            //int layerMask = 7 << 8;
-
-            Physics.Raycast(curpos, currot, out hit, Mathf.Infinity, 7);
-
-            Debug.Log(hit.collider.name);
-
-            if (hit.collider.CompareTag("Mirror"))
+            if (Physics.Raycast(curpos, currot, out hit, distance, 7))
             {
                 //verti++;
                 curpos = hit.point;
