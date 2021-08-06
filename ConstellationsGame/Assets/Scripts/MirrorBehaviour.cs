@@ -14,6 +14,8 @@ public class MirrorBehaviour : MonoBehaviour
     [SerializeField]
     public GameObject buttonText;
 
+    private bool playingRotation = false;
+
     private void Start()
     {
         buttonText.SetActive(false);
@@ -32,9 +34,32 @@ public class MirrorBehaviour : MonoBehaviour
     public void RotateMirror()
     {
         GameObject mirror = this.gameObject.transform.Find("Mirror").gameObject;
-        Quaternion currentRot = mirror.transform.rotation;
-        Quaternion newRot = Quaternion.Euler(0, currentRot.eulerAngles.y + rotateAmount, 0);
 
-        mirror.transform.rotation = Quaternion.RotateTowards(currentRot, newRot, Time.time * rotateSpeed);
+        Quaternion newRot = Quaternion.Euler(0, mirror.transform.rotation.eulerAngles.y + rotateAmount, 0);
+
+        if (playingRotation == false)
+        {
+            StartCoroutine(LerpRotation(newRot, rotateSpeed, mirror));
+        }
+        
+    }
+
+    IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)
+    {
+        playingRotation = true;
+        
+        float time = 0;
+        Quaternion startValue = mirror.transform.rotation;
+
+        while (time < duration)
+        {
+            mirror.transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        mirror.transform.rotation = endValue;
+
+        playingRotation = false;
     }
 }
