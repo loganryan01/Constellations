@@ -41,8 +41,8 @@ public class MazeBehaviour : MonoBehaviour
 
     private void Rotate()
     {
-        Vector3 rotate = transform.forward * movementX + transform.right * movementZ;
-        transform.Rotate(rotate * rotateSpeed * Time.deltaTime);
+        Vector3 rotate = gameObject.transform.forward * movementX + gameObject.transform.right * movementZ;
+        gameObject.transform.Rotate(rotate * rotateSpeed * Time.deltaTime);
     }
 
     public void ChangeToMainCamera(bool enableMainCam)
