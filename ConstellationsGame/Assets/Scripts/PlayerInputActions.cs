@@ -187,6 +187,77 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MazePuzzle"",
+            ""id"": ""fc0e3ed0-17f9-415e-ad20-9a341e91878d"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""1f9bfcc4-e28c-4c2b-90d8-95bb1cafc6a6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD Keys"",
+                    ""id"": ""f3c589bd-c199-4c71-9d9b-cae27be4c80c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6bca4b40-0e25-41c2-83dd-ca0356a97c50"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d00496cf-98ed-4cef-8e53-f2374aa07c5a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e8b85067-d956-4f0d-8f9c-361dd9bf9c30"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""087cc621-023b-46a6-bcde-d48a914d0e70"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -229,6 +300,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_ScalePuzzle_Select = m_ScalePuzzle.FindAction("Select", throwIfNotFound: true);
         m_ScalePuzzle_Deselect = m_ScalePuzzle.FindAction("Deselect", throwIfNotFound: true);
         m_ScalePuzzle_Reset = m_ScalePuzzle.FindAction("Reset", throwIfNotFound: true);
+        // MazePuzzle
+        m_MazePuzzle = asset.FindActionMap("MazePuzzle", throwIfNotFound: true);
+        m_MazePuzzle_Movement = m_MazePuzzle.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +446,39 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public ScalePuzzleActions @ScalePuzzle => new ScalePuzzleActions(this);
+
+    // MazePuzzle
+    private readonly InputActionMap m_MazePuzzle;
+    private IMazePuzzleActions m_MazePuzzleActionsCallbackInterface;
+    private readonly InputAction m_MazePuzzle_Movement;
+    public struct MazePuzzleActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MazePuzzleActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_MazePuzzle_Movement;
+        public InputActionMap Get() { return m_Wrapper.m_MazePuzzle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MazePuzzleActions set) { return set.Get(); }
+        public void SetCallbacks(IMazePuzzleActions instance)
+        {
+            if (m_Wrapper.m_MazePuzzleActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
+            }
+            m_Wrapper.m_MazePuzzleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+            }
+        }
+    }
+    public MazePuzzleActions @MazePuzzle => new MazePuzzleActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -401,5 +508,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnDeselect(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+    }
+    public interface IMazePuzzleActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
     }
 }

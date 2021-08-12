@@ -61,6 +61,11 @@ public class LaserBehaviour : MonoBehaviour
                 {
                     iactive = false;
                 }
+
+                if (hit.transform.gameObject.tag == winTag)
+                {
+                    Debug.Log("Hit End point");
+                }
             }
             else
             {

@@ -218,10 +218,12 @@ public class PlayerController : MonoBehaviour
 
                 Cursor.lockState = CursorLockMode.None;
             }
-            //else if (hitObject.GetComponent<MazeBehaviour>())
-            //{
-            //    // Interact with maze
-            //}
+            else if (hitObject.GetComponent<MazeBehaviour>())
+            {
+                // Interact with maze
+                playerInputComponenet.SwitchCurrentActionMap("MazePuzzle");
+                hitObject.GetComponent<MazeBehaviour>().ChangeToMainCamera(false);
+            }
         }
 
         interactTriggered = false;
