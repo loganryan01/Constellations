@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 scaleOriginalPosition;
     private bool scalePuzzleCompleted;
 
+    // Variables needed for the maze puzzle to work
+    private MazeBehaviour mazeBehaviour;
+
     [Header("Movement")]
     [SerializeField]
     public float moveSpeed = 5.0f;
@@ -98,6 +101,10 @@ public class PlayerController : MonoBehaviour
         {
             ScaleGame();
         }
+        else if (Camera.main != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        {
+            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+        }
         else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
@@ -138,9 +145,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 25))
         {
             if (hit.collider != null)
-            {
-                //Debug.Log(hit.collider.gameObject.transform.name);
-                
+            {                
                 if (hit.collider.CompareTag("Rock"))
                 {
                     rockGameObject = hit.collider.gameObject;
@@ -220,6 +225,8 @@ public class PlayerController : MonoBehaviour
             }
             else if (hitObject.GetComponent<MazeBehaviour>())
             {
+                mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
+                
                 // Interact with maze
                 playerInputComponenet.SwitchCurrentActionMap("MazePuzzle");
                 hitObject.GetComponent<MazeBehaviour>().ChangeToMainCamera(false);

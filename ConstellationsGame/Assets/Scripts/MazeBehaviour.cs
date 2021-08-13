@@ -9,6 +9,10 @@ public class MazeBehaviour : MonoBehaviour
     public Camera mainCam;
     public Camera mazeCamera;
     public Rigidbody ballRigidbody;
+    public MazeBallBehaviour mazeBallBehaviour;
+
+    [HideInInspector]
+    public bool mazeCompleted;
 
     private float movementX;
     private float movementZ;
@@ -24,10 +28,14 @@ public class MazeBehaviour : MonoBehaviour
     {
         Rotate();
 
-        //ballRigidbody.AddForce(ballRigidbody.velocity.normalized * 3.0f);
         if (ballRigidbody.IsSleeping())
         {
             ballRigidbody.WakeUp();
+        }
+
+        if (mazeBallBehaviour.touchedEnd)
+        {
+            mazeCompleted = true;
         }
     }
 

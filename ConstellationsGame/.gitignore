@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Extra Removals
+ConstellationsGame/UserSettings/EditorUserSettings.asset
+

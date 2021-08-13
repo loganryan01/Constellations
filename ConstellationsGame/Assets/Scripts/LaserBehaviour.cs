@@ -64,7 +64,7 @@ public class LaserBehaviour : MonoBehaviour
 
                 if (hit.transform.gameObject.tag == winTag)
                 {
-                    Debug.Log("Hit End point");
+                    WinFunction();
                 }
             }
             else
@@ -81,4 +81,9 @@ public class LaserBehaviour : MonoBehaviour
             }
         }
     } 
+
+    void WinFunction()
+    {
+        Debug.Log("Hit End point");
+    }
 }
