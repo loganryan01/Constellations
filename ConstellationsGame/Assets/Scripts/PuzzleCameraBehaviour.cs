@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleCameraBehaviour : MonoBehaviour
 {
     public Transform mazePuzzleTransform;
+    public Transform scalePuzzleTransform;
     private Transform originalTransform;
 
     public ScaleBehaviour scaleBehaviour;
@@ -12,9 +13,6 @@ public class PuzzleCameraBehaviour : MonoBehaviour
 
     private bool cameraInPuzzlePosition = false;
     private bool cameraInPlayerPosition = true;
-
-    private bool lerpPositionActive = false;
-    private bool lerpRotationActive = false;
     
     // Start is called before the first frame update
     void Start()
@@ -26,43 +24,55 @@ public class PuzzleCameraBehaviour : MonoBehaviour
     void Update()
     {
         // If player has not interacted with a puzzle yet, the camera should just follow the player position
-        if (Camera.main == null && cameraInPlayerPosition && !lerpPositionActive && !lerpRotationActive)
+        if (Camera.main != null && cameraInPlayerPosition && !cameraInPuzzlePosition)
         {
+            originalTransform = Camera.main.transform;
             transform.position = Camera.main.transform.position;
             transform.rotation = Camera.main.transform.rotation;
-            originalTransform = transform;
         }
         
         // When player interacts with maze puzzle, move the camera from player's position to maze puzzle camera position
         if (Camera.main == null && cameraInPlayerPosition && !mazeBehaviour.mazeCompleted)
         {
-            cameraInPlayerPosition = false;
-            
-            StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5));
-            StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5));
-
-            cameraInPuzzlePosition = true;
+            StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5, 0));
+            StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5, 0));
         }
         else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted)
         {
-            cameraInPuzzlePosition = false;
-
-            StartCoroutine(LerpPosition(originalTransform.position, 5));
-            StartCoroutine(LerpRotation(originalTransform.rotation, 5));
-
-            cameraInPlayerPosition = true;
+            StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
+            StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
         }
 
-        // Change priority of main camera until the lerp is complete
-        if (!lerpPositionActive && !lerpRotationActive && mazeBehaviour.mazeCompleted)
+        // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
+        if (Camera.main == null && cameraInPlayerPosition && !scaleBehaviour.lockScale)
+        {
+            StartCoroutine(LerpPosition(scalePuzzleTransform.position, 5, 0));
+            StartCoroutine(LerpRotation(scalePuzzleTransform.rotation, 5, 0));
+        }
+        else if (Camera.main == null && cameraInPuzzlePosition && scaleBehaviour.lockScale)
+        {
+            StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
+            StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
+        }
+
+        // Change to main camera when the lerp has finished
+        if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted)
         {
             mazeBehaviour.ChangeToMainCamera(true);
         }
     }
 
-    IEnumerator LerpPosition(Vector3 targetPosition, float duration)
+    IEnumerator LerpPosition(Vector3 targetPosition, float duration, int puzzleCase)
     {
-        lerpPositionActive = true;
+        // Case 0 = Move to puzzle position
+        if (puzzleCase == 0)
+        {
+            cameraInPlayerPosition = false;
+        }
+        else if (puzzleCase == 1)
+        {
+            cameraInPuzzlePosition = false;
+        }
 
         float time = 0;
         Vector3 startPosition = transform.position;
@@ -76,12 +86,27 @@ public class PuzzleCameraBehaviour : MonoBehaviour
 
         transform.position = targetPosition;
 
-        lerpPositionActive = false;
+        if (puzzleCase == 0)
+        {
+            cameraInPuzzlePosition = true;
+        }
+        else if (puzzleCase == 1)
+        {
+            cameraInPlayerPosition = true;
+        }
     }
 
-    IEnumerator LerpRotation(Quaternion endValue, float duration)
+    IEnumerator LerpRotation(Quaternion endValue, float duration, int puzzleCase)
     {
-        lerpRotationActive = true;
+        // Case 0 = Move to puzzle position
+        if (puzzleCase == 0)
+        {
+            cameraInPlayerPosition = false;
+        }
+        else if (puzzleCase == 1)
+        {
+            cameraInPuzzlePosition = false;
+        }
         
         float time = 0;
         Quaternion startValue = transform.rotation;
@@ -95,6 +120,13 @@ public class PuzzleCameraBehaviour : MonoBehaviour
 
         transform.rotation = endValue;
 
-        lerpRotationActive = false;
+        if (puzzleCase == 0)
+        {
+            cameraInPuzzlePosition = true;
+        }
+        else if (puzzleCase == 1)
+        {
+            cameraInPlayerPosition = true;
+        }
     }
 }
