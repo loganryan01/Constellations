@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class WaterBehaviour : MonoBehaviour
 {
@@ -10,14 +10,14 @@ public class WaterBehaviour : MonoBehaviour
     [SerializeField]
     private float rotateSpeed = 5.0f;
     [SerializeField]
-    public float correctRotation = 0.0f;
+    public int[] correctRotations = { 0 };
 
     [Header("Interact Text")]
     [SerializeField]
     public GameObject buttonText;
 
-    private bool playingRotation = false;
-    private bool isDone = false;
+    private bool _playingRotation = false;
+    private bool _isDone = false;
 
     private void Start()
     {
@@ -36,31 +36,49 @@ public class WaterBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.transform.rotation.eulerAngles.y == correctRotation)
+        if (_isDone)
         {
-            isDone = true;
-            Debug.Log(gameObject.name + " is done");
+            return;
         }
+
+        float yRot = this.transform.rotation.eulerAngles.y;
+        foreach (float rot in correctRotations)
+        {
+            if (Mathf.RoundToInt(yRot) == rot)
+            {
+                _isDone = true;
+            }
+        }
+    }
+
+    public bool CheckCorrectRotation()
+    {
+        if (this._isDone)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void RotateWaterChannel()
     {
-        if (isDone == true)
+        if (this._isDone == true)
         {
             return;
         }
 
         Quaternion newRot = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + rotateAmount, 0);
 
-        if (playingRotation == false)
+        if (this._playingRotation == false)
         {
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
         }
     }
 
-    IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject channel)
+    private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject channel)
     {
-        playingRotation = true;
+        _playingRotation = true;
 
         float time = 0;
         Quaternion startValue = channel.transform.rotation;
@@ -74,6 +92,6 @@ public class WaterBehaviour : MonoBehaviour
 
         channel.transform.rotation = endValue;
 
-        playingRotation = false;
+        _playingRotation = false;
     }
 }
