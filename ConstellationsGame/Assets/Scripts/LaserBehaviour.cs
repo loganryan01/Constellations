@@ -42,14 +42,16 @@ public class LaserBehaviour : MonoBehaviour
         iactive = true;
         currot = transform.forward;
         curpos = transform.position;
-        lr.SetVertexCount(1);
+        //lr.SetVertexCount(1);
+        lr.positionCount = 1;
         lr.SetPosition(0, transform.position);
 
         while (iactive)
         {
             verti++;
             RaycastHit hit;
-            lr.SetVertexCount(verti);
+            //lr.SetVertexCount(verti);
+            lr.positionCount = verti;
 
             if (Physics.Raycast(curpos, currot, out hit, distance, 7))
             {
