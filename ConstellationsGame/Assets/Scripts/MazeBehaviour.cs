@@ -17,6 +17,8 @@ public class MazeBehaviour : MonoBehaviour
 
     private float movementX;
     private float movementZ;
+    private float angleX;
+    private float angleZ;
 
     // Start is called before the first frame update
     void Start()
@@ -29,27 +31,17 @@ public class MazeBehaviour : MonoBehaviour
     {
         Rotate();
 
-        if (transform.rotation.eulerAngles.x > maxRotation)
+        if (transform.rotation.eulerAngles.x < maxRotation || transform.rotation.eulerAngles.x > 360 - maxRotation)
         {
-            Debug.Log("X is greater than max rotation");
-            //transform.rotation = Quaternion.Euler(maxRotation, transform.rotation.y, transform.rotation.z);
+            angleX = transform.rotation.eulerAngles.x;
         }
 
-        if (transform.rotation.eulerAngles.x < -maxRotation)
+        if (transform.rotation.eulerAngles.z < maxRotation || transform.rotation.eulerAngles.z > 360 - maxRotation)
         {
-            Debug.Log("X is less than max rotation");
-            //transform.rotation = Quaternion.Euler(-maxRotation, transform.rotation.y, transform.rotation.z);
+            angleZ = transform.rotation.eulerAngles.z;
         }
 
-        //if (transform.rotation.eulerAngles.z > maxRotation)
-        //{
-        //    transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, maxRotation);
-        //}
-
-        //if (transform.rotation.eulerAngles.z < -maxRotation)
-        //{
-        //    //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -maxRotation);
-        //}
+        gameObject.transform.eulerAngles = new Vector3(angleX, 0, angleZ);
 
         if (ballRigidbody.IsSleeping())
         {

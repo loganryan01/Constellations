@@ -33,7 +33,8 @@ public class MirrorBehaviour : MonoBehaviour
 
     public void RotateMirror()
     {
-        GameObject mirror = this.gameObject.transform.Find("Mirror").gameObject;
+        //GameObject mirror = this.gameObject.transform.Find("Mirror").gameObject;
+        GameObject mirror = gameObject;
 
         Quaternion newRot = Quaternion.Euler(0, mirror.transform.rotation.eulerAngles.y + rotateAmount, 0);
 
