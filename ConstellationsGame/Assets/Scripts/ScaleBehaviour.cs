@@ -51,7 +51,7 @@ public class ScaleBehaviour : MonoBehaviour
     void Start()
     {
         buttonText.SetActive(false);
-        scaleCamera = this.gameObject.transform.Find("ScaleCamera").GetComponent<Camera>();
+        scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
         scaleCamera.enabled = false;
         mainCam = Camera.main;
 
