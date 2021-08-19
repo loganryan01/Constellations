@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             ScaleGame();
         }
-        else if (Camera.main != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
         }
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext value)
     {
-        Camera scaleCamera = GameObject.Find("ScaleCamera").GetComponent<Camera>();
+        Camera scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
 
         Vector3 pos = Mouse.current.position.ReadValue();
 
@@ -219,6 +219,7 @@ public class PlayerController : MonoBehaviour
                 scaleBoxColliders[0].enabled = false;
                 scaleBoxColliders[1].enabled = false;
                 scaleOriginalPosition = transform.position;
+                
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
 
                 Cursor.lockState = CursorLockMode.None;
@@ -253,6 +254,7 @@ public class PlayerController : MonoBehaviour
             scaleBoxColliders[0].enabled = true;
             scaleBoxColliders[1].enabled = true;
 
+            Debug.Log(scaleOriginalPosition);
             transform.position = scaleOriginalPosition;
 
             scalePuzzleCompleted = true;
@@ -263,13 +265,13 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
 
-            Camera scaleCamera = GameObject.Find("ScaleCamera").GetComponent<Camera>();
+            Camera scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
 
             // Screen Position
             Vector3 mousePosition = Mouse.current.position.ReadValue();
 
             // World Position
-            Vector3 rockPosition = scaleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 8));
+            Vector3 rockPosition = scaleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 5));
 
             rockGameObject.transform.position = rockPosition;
             rockGameObject.GetComponent<Rigidbody>().isKinematic = true; 

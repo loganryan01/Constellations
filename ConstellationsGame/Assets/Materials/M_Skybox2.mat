@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Scales 1
-  m_Shader: {fileID: -6465566751694194690, guid: 01b31324e0798dc4da5bae34f0f591a2, type: 3}
+  m_Name: M_Skybox2
+  m_Shader: {fileID: -6465566751694194690, guid: 89efeba7351805449b3a4dfe80385dc2, type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -169,6 +169,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_58f1660f29514b2dae41d21b3b9e2ac5: 0
+    - GalaxyDissolve: 2
     - Vector1_4201b9666b1a42978ac2b8cc6fb61c6e: 1.52
     - Vector1_a05c4655dfa74ff3abec4721f1b9d398: 0.1
     - Vector1_c24d5e1c2c7941a9af527a70e2369d71: 0.07

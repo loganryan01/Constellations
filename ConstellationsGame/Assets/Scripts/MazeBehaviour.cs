@@ -10,6 +10,7 @@ public class MazeBehaviour : MonoBehaviour
     public Camera mazeCamera;
     public Rigidbody ballRigidbody;
     public MazeBallBehaviour mazeBallBehaviour;
+    public float maxRotation;
 
     [HideInInspector]
     public bool mazeCompleted;
@@ -27,6 +28,28 @@ public class MazeBehaviour : MonoBehaviour
     void Update()
     {
         Rotate();
+
+        if (transform.rotation.eulerAngles.x > maxRotation)
+        {
+            Debug.Log("X is greater than max rotation");
+            //transform.rotation = Quaternion.Euler(maxRotation, transform.rotation.y, transform.rotation.z);
+        }
+
+        if (transform.rotation.eulerAngles.x < -maxRotation)
+        {
+            Debug.Log("X is less than max rotation");
+            //transform.rotation = Quaternion.Euler(-maxRotation, transform.rotation.y, transform.rotation.z);
+        }
+
+        //if (transform.rotation.eulerAngles.z > maxRotation)
+        //{
+        //    transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, maxRotation);
+        //}
+
+        //if (transform.rotation.eulerAngles.z < -maxRotation)
+        //{
+        //    //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -maxRotation);
+        //}
 
         if (ballRigidbody.IsSleeping())
         {
