@@ -21,14 +21,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Test_Water
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 69724f132d9d7f04e8a47ac922303856, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -112,7 +111,7 @@ Material:
     - Vector1_EA7FA48F: 1
     - Vector1_EC7FE742: 0.46
     - Vector1_EEC26D1F: 7.87
-    - Vector1_F6CB75DC: 10
+    - Vector1_F6CB75DC: 0.3
     - Vector1_FF745530: 0.1
     - _AlphaClip: 0
     - _Blend: 0
