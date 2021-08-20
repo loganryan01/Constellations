@@ -101,13 +101,20 @@ public class PlayerController : MonoBehaviour
         {
             ScaleGame();
         }
-        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
+            mazeBehaviour.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
         }
         else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+        }
+
+        // Enable Mouse controls while dialogue is going
+        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !mazeBehaviour.dialogueEnded)
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

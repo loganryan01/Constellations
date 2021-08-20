@@ -11,46 +11,54 @@ public class MazeBehaviour : MonoBehaviour
     public Rigidbody ballRigidbody;
     public MazeBallBehaviour mazeBallBehaviour;
     public float maxRotation;
+    public GameObject buttonText;
 
     [HideInInspector]
     public bool mazeCompleted;
+    [HideInInspector]
+    public bool dialogueEnded;
 
     private float movementX;
     private float movementZ;
     private float angleX;
     private float angleZ;
+    private DialogueTrigger dialogueTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Rotate();
-
-        if (transform.rotation.eulerAngles.x < maxRotation || transform.rotation.eulerAngles.x > 360 - maxRotation)
+        if (!mazeBallBehaviour.touchedEnd)
         {
-            angleX = transform.rotation.eulerAngles.x;
+            Rotate();
+
+            if (transform.rotation.eulerAngles.x < maxRotation || transform.rotation.eulerAngles.x > 360 - maxRotation)
+            {
+                angleX = transform.rotation.eulerAngles.x;
+            }
+
+            if (transform.rotation.eulerAngles.z < maxRotation || transform.rotation.eulerAngles.z > 360 - maxRotation)
+            {
+                angleZ = transform.rotation.eulerAngles.z;
+            }
+
+            gameObject.transform.eulerAngles = new Vector3(angleX, 0, angleZ);
+
+            if (ballRigidbody.IsSleeping())
+            {
+                ballRigidbody.WakeUp();
+            }
         }
 
-        if (transform.rotation.eulerAngles.z < maxRotation || transform.rotation.eulerAngles.z > 360 - maxRotation)
-        {
-            angleZ = transform.rotation.eulerAngles.z;
-        }
-
-        gameObject.transform.eulerAngles = new Vector3(angleX, 0, angleZ);
-
-        if (ballRigidbody.IsSleeping())
-        {
-            ballRigidbody.WakeUp();
-        }
-
-        if (mazeBallBehaviour.touchedEnd)
+        if (mazeBallBehaviour.touchedEnd && !mazeCompleted)
         {
             mazeCompleted = true;
+            dialogueTrigger.TriggerDialogue();
         }
     }
 
@@ -80,5 +88,15 @@ public class MazeBehaviour : MonoBehaviour
             mainCam.enabled = true;
             mazeCamera.enabled = false;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        buttonText.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        buttonText.SetActive(false);
     }
 }
