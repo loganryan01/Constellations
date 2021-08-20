@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(DialogueBehaviour dialogue)
+    public void StartDialogue(Dialogue dialogue)
     {
         mazeBehaviour.dialogueEnded = false;
 

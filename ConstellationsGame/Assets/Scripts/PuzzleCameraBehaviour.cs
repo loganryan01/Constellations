@@ -40,14 +40,15 @@ public class PuzzleCameraBehaviour : MonoBehaviour
                 StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5, 0));
                 StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5, 0));
             }
-            else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted)
+            else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted && mazeBehaviour.dialogueEnded)
             {
+                Debug.Log("Camera moving to player position");
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
                 StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
             }
 
             // Change to main camera when the lerp has finished
-            if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted)
+            if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted && mazeBehaviour.dialogueEnded)
             {
                 mazeBehaviour.ChangeToMainCamera(true);
             }
