@@ -15,8 +15,6 @@ public class MazeBehaviour : MonoBehaviour
 
     [HideInInspector]
     public bool mazeCompleted;
-    [HideInInspector]
-    public bool dialogueEnded;
 
     private float movementX;
     private float movementZ;

@@ -10,6 +10,7 @@ public class PuzzleCameraBehaviour : MonoBehaviour
 
     public ScaleBehaviour scaleBehaviour;
     public MazeBehaviour mazeBehaviour;
+    public DialogueManager dialogueManager;
 
     private bool cameraInPuzzlePosition = false;
     private bool cameraInPlayerPosition = true;
@@ -40,7 +41,7 @@ public class PuzzleCameraBehaviour : MonoBehaviour
                 StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5, 0));
                 StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5, 0));
             }
-            else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted && mazeBehaviour.dialogueEnded)
+            else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
             {
                 Debug.Log("Camera moving to player position");
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
@@ -48,7 +49,7 @@ public class PuzzleCameraBehaviour : MonoBehaviour
             }
 
             // Change to main camera when the lerp has finished
-            if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted && mazeBehaviour.dialogueEnded)
+            if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
             {
                 mazeBehaviour.ChangeToMainCamera(true);
             }

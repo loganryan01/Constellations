@@ -19,15 +19,22 @@ public class LaserBehaviour : MonoBehaviour
     [Tooltip("Max reflections")]
     public int limit = 100;
 
+    // Dialogue Controls
+    [HideInInspector]
+    public bool dialogueStarted = false;
+
     private int verti = 1; //segment handler don't touch.
     private bool iactive;
     private Vector3 currot;
     private Vector3 curpos;
+    private DialogueTrigger dialogueTrigger;
+    private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        dialogueTrigger = GetComponent<DialogueTrigger>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -42,7 +49,6 @@ public class LaserBehaviour : MonoBehaviour
         iactive = true;
         currot = transform.forward;
         curpos = transform.position;
-        //lr.SetVertexCount(1);
         lr.positionCount = 1;
         lr.SetPosition(0, transform.position);
 
@@ -50,7 +56,6 @@ public class LaserBehaviour : MonoBehaviour
         {
             verti++;
             RaycastHit hit;
-            //lr.SetVertexCount(verti);
             lr.positionCount = verti;
 
             if (Physics.Raycast(curpos, currot, out hit, distance, 7))
@@ -64,7 +69,7 @@ public class LaserBehaviour : MonoBehaviour
                     iactive = false;
                 }
 
-                if (hit.transform.gameObject.tag == winTag)
+                if (hit.transform.gameObject.tag == winTag && !dialogueStarted)
                 {
                     WinFunction();
                 }
@@ -82,10 +87,23 @@ public class LaserBehaviour : MonoBehaviour
                 iactive = false;
             }
         }
+
+        //Debug.Log(dialogueStarted);
+        if (Cursor.lockState == CursorLockMode.None)
+        {
+            playerController.lookSensitivity = 0;
+        }
+        else
+        {
+            playerController.lookSensitivity = 60;
+        }
+
     } 
 
     void WinFunction()
     {
         Debug.Log("Hit End point");
+        dialogueStarted = true;
+        dialogueTrigger.TriggerDialogue();
     }
 }

@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInput;
     private CharacterController controller;
 
+    // Variables needed for dialogue to work
+    public DialogueManager dialogueManager;
+
     // Variables needed for the scale puzzle to work
-    private PlayerInput playerInputComponenet;
+    [HideInInspector]
+    public PlayerInput playerInputComponenet;
     private GameObject rockGameObject;
     private ScaleBehaviour scaleBehaviour;
     private BoxCollider[] scaleBoxColliders;
@@ -21,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
     // Variables needed for the maze puzzle to work
     private MazeBehaviour mazeBehaviour;
+
+    // Variables need for the laser puzzle to work
+    public LaserBehaviour laserBehaviour;
 
     [Header("Movement")]
     [SerializeField]
@@ -102,7 +109,7 @@ public class PlayerController : MonoBehaviour
             ScaleGame();
         }
         else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
-            mazeBehaviour.dialogueEnded)
+            dialogueManager.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
         }
@@ -112,9 +119,14 @@ public class PlayerController : MonoBehaviour
         }
 
         // Enable Mouse controls while dialogue is going
-        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !mazeBehaviour.dialogueEnded)
+        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !dialogueManager.dialogueEnded ||
+            laserBehaviour != null && laserBehaviour.dialogueStarted && !dialogueManager.dialogueEnded)
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
