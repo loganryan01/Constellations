@@ -18,15 +18,18 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public PlayerInput playerInputComponenet;
     private GameObject rockGameObject;
-    private ScaleBehaviour scaleBehaviour;
+    [HideInInspector]
+    public ScaleBehaviour scaleBehaviour;
     private BoxCollider[] scaleBoxColliders;
     private Vector3 scaleOriginalPosition;
     private bool scalePuzzleCompleted;
 
     // Variables needed for the maze puzzle to work
-    private MazeBehaviour mazeBehaviour;
+    [HideInInspector]
+    public MazeBehaviour mazeBehaviour;
 
     // Variables need for the laser puzzle to work
+    [HideInInspector]
     public LaserBehaviour laserBehaviour;
 
     [Header("Movement")]
@@ -112,12 +115,14 @@ public class PlayerController : MonoBehaviour
         {
             //playerInputComponenet.SwitchCurrentActionMap("PlayerController");
             Cursor.lockState = CursorLockMode.Locked;
+            laserBehaviour = null;
         }
         else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
             Cursor.lockState = CursorLockMode.Locked;
+            
         }
         else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
@@ -227,6 +232,8 @@ public class PlayerController : MonoBehaviour
 
             if (hitObject.GetComponent<MirrorBehaviour>())
             {
+                laserBehaviour = FindObjectOfType<LaserBehaviour>();
+                
                 hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
                 interactTriggered = false;
             }
@@ -268,8 +275,6 @@ public class PlayerController : MonoBehaviour
         // When the scale puzzle is completed, switch back to player controller
         if (scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
         {
-            scaleBehaviour = null;
-
             Cursor.lockState = CursorLockMode.Locked;
 
             scaleBoxColliders[0].enabled = true;

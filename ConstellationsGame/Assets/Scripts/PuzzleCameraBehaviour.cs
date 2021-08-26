@@ -8,8 +8,7 @@ public class PuzzleCameraBehaviour : MonoBehaviour
     public Transform scalePuzzleTransform;
     private Transform originalTransform;
 
-    public ScaleBehaviour scaleBehaviour;
-    public MazeBehaviour mazeBehaviour;
+    public PlayerController playerController;
     public DialogueManager dialogueManager;
 
     private bool cameraInPuzzlePosition = false;
@@ -32,45 +31,48 @@ public class PuzzleCameraBehaviour : MonoBehaviour
             transform.rotation = Camera.main.transform.rotation;
         }
 
-        if (scaleBehaviour != null)
+        if (playerController.scaleBehaviour != null)
         {
             // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
-            if (Camera.main == null && cameraInPlayerPosition && !scaleBehaviour.lockScale)
+            if (Camera.main == null && cameraInPlayerPosition && !playerController.scaleBehaviour.lockScale)
             {
                 StartCoroutine(LerpPosition(scalePuzzleTransform.position, 5, 0));
                 StartCoroutine(LerpRotation(scalePuzzleTransform.rotation, 5, 0));
             }
-            else if (Camera.main == null && cameraInPuzzlePosition && scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
+            else if (Camera.main == null && cameraInPuzzlePosition && playerController.scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
             {
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
                 StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
             }
 
-            if (cameraInPlayerPosition && scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
+            if (cameraInPlayerPosition && playerController.scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
             {
-                scaleBehaviour.ChangeToMainCamera(true);
+                playerController.scaleBehaviour.ChangeToMainCamera(true);
+                playerController.scaleBehaviour = null;
+
             }
         }
 
         // If the maze does exist
-        if (mazeBehaviour != null)
+        if (playerController.mazeBehaviour != null)
         {
             // When player interacts with maze puzzle, move the camera from player's position to maze puzzle camera position
-            if (Camera.main == null && cameraInPlayerPosition && !mazeBehaviour.mazeCompleted)
+            if (Camera.main == null && cameraInPlayerPosition && !playerController.mazeBehaviour.mazeCompleted)
             {
                 StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5, 0));
                 StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5, 0));
             }
-            else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
+            else if (Camera.main == null && cameraInPuzzlePosition && playerController.mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
             {
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
                 StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
             }
 
             // Change to main camera when the lerp has finished
-            if (cameraInPlayerPosition && mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
+            if (cameraInPlayerPosition && playerController.mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
             {
-                mazeBehaviour.ChangeToMainCamera(true);
+                playerController.mazeBehaviour.ChangeToMainCamera(true);
+                playerController.mazeBehaviour = null;
             }
         }
     }
