@@ -133,10 +133,6 @@ public class ScaleBehaviour : MonoBehaviour
 
         if (Camera.main == null && dialogueManager.dialogueEnded)
         {
-            Debug.Log("Opening Doors");
-
-            //ChangeToMainCamera(true);
-
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
         }

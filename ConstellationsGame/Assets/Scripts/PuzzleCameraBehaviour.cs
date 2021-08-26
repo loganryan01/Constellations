@@ -34,25 +34,21 @@ public class PuzzleCameraBehaviour : MonoBehaviour
 
         if (scaleBehaviour != null)
         {
-            Debug.Log(Camera.main == null);
-            
             // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
             if (Camera.main == null && cameraInPlayerPosition && !scaleBehaviour.lockScale)
             {
-                Debug.Log("Camera moving to scale position");
                 StartCoroutine(LerpPosition(scalePuzzleTransform.position, 5, 0));
                 StartCoroutine(LerpRotation(scalePuzzleTransform.rotation, 5, 0));
             }
             else if (Camera.main == null && cameraInPuzzlePosition && scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
             {
-                Debug.Log("Camera moving to player position");
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
                 StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
             }
 
             if (cameraInPlayerPosition && scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
             {
-                mazeBehaviour.ChangeToMainCamera(true);
+                scaleBehaviour.ChangeToMainCamera(true);
             }
         }
 
@@ -67,7 +63,6 @@ public class PuzzleCameraBehaviour : MonoBehaviour
             }
             else if (Camera.main == null && cameraInPuzzlePosition && mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
             {
-                //Debug.Log("Camera moving to player position");
                 StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
                 StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
             }
@@ -78,8 +73,6 @@ public class PuzzleCameraBehaviour : MonoBehaviour
                 mazeBehaviour.ChangeToMainCamera(true);
             }
         }
-
-        
     }
 
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, int puzzleCase)

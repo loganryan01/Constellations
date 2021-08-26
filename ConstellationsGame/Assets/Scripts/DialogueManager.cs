@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    public MazeBehaviour mazeBehaviour;
     public bool dialogueEnded;
 
     private Queue<string> sentences;

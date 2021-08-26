@@ -88,7 +88,6 @@ public class LaserBehaviour : MonoBehaviour
             }
         }
 
-        //Debug.Log(dialogueStarted);
         if (Cursor.lockState == CursorLockMode.None)
         {
             playerController.lookSensitivity = 0;

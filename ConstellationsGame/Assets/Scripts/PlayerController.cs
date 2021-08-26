@@ -108,13 +108,19 @@ public class PlayerController : MonoBehaviour
         {
             ScaleGame();
         }
+        else if (Camera.main != null && laserBehaviour != null && laserBehaviour.dialogueStarted && dialogueManager.dialogueEnded)
+        {
+            //playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
             Cursor.lockState = CursorLockMode.Locked;
         }
-        else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
+            dialogueManager.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
             Cursor.lockState = CursorLockMode.Locked;
@@ -126,12 +132,6 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
-
-        //GameObject puzzleCamera = GameObject.Find("PuzzleCamera");
-        //Vector3 pos = new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, 25);
-        //Vector3 screenPos = puzzleCamera.GetComponent<Camera>().ScreenToWorldPoint(pos);
-
-        //Debug.DrawLine(puzzleCamera.transform.position, screenPos, Color.red);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -167,7 +167,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 25))
         {
-            //Debug.Log(hit.collider.name);
             if (hit.collider != null)
             {                
                 if (hit.collider.CompareTag("Rock"))
@@ -243,8 +242,6 @@ public class PlayerController : MonoBehaviour
                 scaleBoxColliders[0].enabled = false;
                 scaleBoxColliders[1].enabled = false;
                 scaleOriginalPosition = transform.position;
-                
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
 
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -278,7 +275,6 @@ public class PlayerController : MonoBehaviour
             scaleBoxColliders[0].enabled = true;
             scaleBoxColliders[1].enabled = true;
 
-            Debug.Log(scaleOriginalPosition);
             transform.position = scaleOriginalPosition;
 
             scalePuzzleCompleted = true;
