@@ -253,9 +253,9 @@ public class PlayerController : MonoBehaviour
                 playerInputComponenet.SwitchCurrentActionMap("MazePuzzle");
                 hitObject.GetComponent<MazeBehaviour>().ChangeToMainCamera(false);
             }
-            else if (hitObject.GetComponent<WaterBehaviour>())
+            else if (hitObject.GetComponent<ChannelBehaviour>())
             {
-                hitObject.GetComponent<WaterBehaviour>().RotateWaterChannel();
+                hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
                 interactTriggered = false;
             }
         }

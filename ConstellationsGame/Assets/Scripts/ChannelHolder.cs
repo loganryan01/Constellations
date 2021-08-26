@@ -6,18 +6,33 @@ using UnityEngine.Rendering;
 
 public class ChannelHolder : MonoBehaviour
 {
+    [Header("Water")]
     [SerializeField]
     private GameObject startPool;
     [SerializeField]
     private GameObject endPool;
     [SerializeField]
-    private bool allowWater = false;
-    [SerializeField]
     private float waterDuration = 2.0f;
-
-    private List<WaterBehaviour> _channels = new List<WaterBehaviour>();
+    
+    [Header("Fish")]
+    [SerializeField]
+    private GameObject fish;
+    [SerializeField]
+    private GameObject fishWaypoint = null;
+    [SerializeField]
+    private float fishSpeed = 1.1f;
+    [SerializeField]
+    private float fishDelayTime = 2.2f;
+    
+    // All channels within the channel section
+    private List<ChannelBehaviour> _channels = new List<ChannelBehaviour>();
+    
+    // Scale calculated for water to expand to
     private Vector3 _scaleWaterTo;
-    private bool _hasWaterPlayed = false;
+    
+    private bool _allowWater = false; // Whether water is allowed to be scaled
+    private bool _hasWaterPlayed = false; // Whether water scaling has finished
+    private bool _hasFishMoved = false; // Whether fish have moved 
 
     private void Start()
     {
@@ -25,13 +40,17 @@ public class ChannelHolder : MonoBehaviour
         
         foreach (Transform child in transform)
         {
-            _channels.Add(child.gameObject.GetComponent<WaterBehaviour>());
+            _channels.Add(child.gameObject.GetComponent<ChannelBehaviour>());
         }
     }
 
     private void Update()
     {
         ChannelsCheck();
+        if (_allowWater && !_hasFishMoved)
+        {
+            MoveFish();   
+        }
     }
 
     private Vector3 CalculateWaterScale(GameObject start, GameObject end)
@@ -49,13 +68,13 @@ public class ChannelHolder : MonoBehaviour
 
     private void ChannelsCheck()
     {
-        if (allowWater)
+        if (_allowWater)
         {
             return;
         }
 
         int channelsFinished = 0;
-        foreach (WaterBehaviour channel in _channels)
+        foreach (ChannelBehaviour channel in _channels)
         {
             if (channel.CheckCorrectRotation() == true)
             {
@@ -65,7 +84,7 @@ public class ChannelHolder : MonoBehaviour
 
         if (channelsFinished == _channels.Count)
         {
-            allowWater = true;
+            _allowWater = true;
             DrawWater();
         }
     }
@@ -79,6 +98,11 @@ public class ChannelHolder : MonoBehaviour
         
         GameObject startPoint = startPool.transform.Find("WaterPivotPoint").gameObject;
         StartCoroutine(LerpWater(startPoint, _scaleWaterTo, waterDuration));
+    }
+    
+    private void MoveFish()
+    {
+        StartCoroutine(FishMovement(fishDelayTime));
     }
 
     private IEnumerator LerpWater(GameObject waterToScale, Vector3 scaleTo, float duration)
@@ -95,5 +119,21 @@ public class ChannelHolder : MonoBehaviour
         
         waterToScale.transform.localScale = scaleTo;
         _hasWaterPlayed = true;
+    }
+    
+    private IEnumerator FishMovement(float delayTime)
+    {
+        yield return new WaitForSecondsRealtime(delayTime);
+        
+        Vector3 waypoint = fishWaypoint.transform.position;
+        Vector3 fishPosition = fish.transform.position;
+        Vector3 endPos = new Vector3(waypoint.x, fishPosition.y, waypoint.z);
+        
+        this.fish.transform.position = Vector3.MoveTowards(fishPosition, endPos, fishSpeed * Time.deltaTime);
+
+        if (fish.transform.position == endPos)
+        {
+            _hasFishMoved = true;
+        }
     }
 }

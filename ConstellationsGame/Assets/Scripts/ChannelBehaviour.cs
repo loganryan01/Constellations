@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
-public class WaterBehaviour : MonoBehaviour
+public class ChannelBehaviour : MonoBehaviour
 {
     [Header("Channel Rotations")]
     [SerializeField]
