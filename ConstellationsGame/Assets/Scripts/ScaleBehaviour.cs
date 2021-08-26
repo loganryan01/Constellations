@@ -22,6 +22,9 @@ public class ScaleBehaviour : MonoBehaviour
     public Vector3[] armRotations;
     public Vector3[] doorRotations;
 
+    [Header("Dialogue Settings")]
+    public DialogueManager dialogueManager;
+
     //[HideInInspector]
     public float leftWeight;
     //[HideInInspector]
@@ -46,6 +49,8 @@ public class ScaleBehaviour : MonoBehaviour
 
     private Camera mainCam;
     private Camera scaleCamera;
+
+    private DialogueTrigger dialogueTrigger;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +78,8 @@ public class ScaleBehaviour : MonoBehaviour
             rightScale.transform.position = heavyRightPosition;
             arm.transform.rotation = Quaternion.Euler(armRotations[2]);
         }
+
+        dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
     // Update is called once per frame
@@ -111,6 +118,7 @@ public class ScaleBehaviour : MonoBehaviour
                 rightMoving = false;
 
                 lockScale = true;
+                dialogueTrigger.TriggerDialogue();
             }
             else if (leftWeight < rightWeight && !rightMoving)
             {
@@ -123,12 +131,11 @@ public class ScaleBehaviour : MonoBehaviour
             }
         }
 
-        if (leftScale.transform.position == middleLeftPosition &&
-                   rightScale.transform.position == middleRightPosition)
+        if (Camera.main == null && dialogueManager.dialogueEnded)
         {
-            //Debug.Log("Opening Doors");
+            Debug.Log("Opening Doors");
 
-            ChangeToMainCamera(true);
+            //ChangeToMainCamera(true);
 
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
             StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));

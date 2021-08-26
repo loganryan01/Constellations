@@ -112,10 +112,12 @@ public class PlayerController : MonoBehaviour
             dialogueManager.dialogueEnded)
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
         {
             playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         // Enable Mouse controls while dialogue is going
@@ -124,10 +126,12 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+
+        //GameObject puzzleCamera = GameObject.Find("PuzzleCamera");
+        //Vector3 pos = new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, 25);
+        //Vector3 screenPos = puzzleCamera.GetComponent<Camera>().ScreenToWorldPoint(pos);
+
+        //Debug.DrawLine(puzzleCamera.transform.position, screenPos, Color.red);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -163,6 +167,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 25))
         {
+            //Debug.Log(hit.collider.name);
             if (hit.collider != null)
             {                
                 if (hit.collider.CompareTag("Rock"))
@@ -264,7 +269,7 @@ public class PlayerController : MonoBehaviour
     public void ScaleGame()
     {
         // When the scale puzzle is completed, switch back to player controller
-        if (scaleBehaviour.lockScale)
+        if (scaleBehaviour.lockScale && dialogueManager.dialogueEnded)
         {
             scaleBehaviour = null;
 
