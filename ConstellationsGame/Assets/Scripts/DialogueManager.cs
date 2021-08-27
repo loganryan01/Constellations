@@ -10,7 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    public bool dialogueEnded;
+    [HideInInspector]
+    public bool dialogueEnded = true;
 
     private Queue<string> sentences;
     
