@@ -1368,7 +1368,7 @@ PrefabInstance:
     - target: {fileID: 3630952214358183655, guid: bddbd9f71a18d1045a3d8d6b92398cc0, type: 3}
       propertyPath: m_MaterialTemplate
       value: 
-      objectReference: {fileID: 2100000, guid: 22ff8771d87ef27429e670136399094b, type: 2}
+      objectReference: {fileID: 2100000, guid: df1e1e6538d72fd42ab8e9b69e860551, type: 2}
     - target: {fileID: 3684828483177046105, guid: bddbd9f71a18d1045a3d8d6b92398cc0, type: 3}
       propertyPath: m_Name
       value: EnvironmentPrefab

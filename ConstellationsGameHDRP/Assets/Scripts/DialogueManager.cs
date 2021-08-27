@@ -10,7 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    public MazeBehaviour mazeBehaviour;
+    [HideInInspector]
+    public bool dialogueEnded = true;
 
     private Queue<string> sentences;
     
@@ -22,7 +23,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        mazeBehaviour.dialogueEnded = false;
+        dialogueEnded = false;
 
         animator.SetBool("IsOpen", true);
         
@@ -65,6 +66,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
-        mazeBehaviour.dialogueEnded = true;
+        dialogueEnded = true;
     }
 }

@@ -16,33 +16,30 @@ public class MirrorBehaviour : MonoBehaviour
 
     private bool playingRotation = false;
 
-    private void Start()
-    {
-        buttonText.SetActive(false);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        buttonText.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            buttonText.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        buttonText.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            buttonText.SetActive(false);
+        }
     }
 
     public void RotateMirror()
     {
-        //GameObject mirror = this.gameObject.transform.Find("Mirror").gameObject;
-        GameObject mirror = gameObject;
-
-        Quaternion newRot = Quaternion.Euler(0, mirror.transform.rotation.eulerAngles.y + rotateAmount, 0);
+        Quaternion newRot = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + rotateAmount, 0);
 
         if (playingRotation == false)
         {
-            StartCoroutine(LerpRotation(newRot, rotateSpeed, mirror));
+            StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
         }
-        
     }
 
     IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)

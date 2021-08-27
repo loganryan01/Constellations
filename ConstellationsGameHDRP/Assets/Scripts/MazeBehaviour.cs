@@ -5,18 +5,23 @@ using UnityEngine.InputSystem;
 
 public class MazeBehaviour : MonoBehaviour
 {
+    [Header("Rotation Controls")]
     public float rotateSpeed;
+    public float maxRotation;
+
+    [Header("Cameras")]
     public Camera mainCam;
     public Camera mazeCamera;
+
+    [Header("Ball controls")]
     public Rigidbody ballRigidbody;
     public MazeBallBehaviour mazeBallBehaviour;
-    public float maxRotation;
+    
+    [Header("Button Text")]
     public GameObject buttonText;
 
     [HideInInspector]
     public bool mazeCompleted;
-    [HideInInspector]
-    public bool dialogueEnded;
 
     private float movementX;
     private float movementZ;
@@ -92,11 +97,17 @@ public class MazeBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        buttonText.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            buttonText.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        buttonText.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            buttonText.SetActive(false);
+        }
     }
 }
