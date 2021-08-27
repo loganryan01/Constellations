@@ -14,7 +14,7 @@ public class LeftHandBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Rock"))
+        if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 

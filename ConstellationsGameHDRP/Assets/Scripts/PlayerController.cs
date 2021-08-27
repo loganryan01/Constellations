@@ -11,16 +11,22 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInput;
     private CharacterController controller;
 
+    // Variables needed for dialogue to work
+    public DialogueManager dialogueManager;
+
     // Variables needed for the scale puzzle to work
-    private PlayerInput playerInputComponenet;
-    private GameObject rockGameObject;
-    private ScaleBehaviour scaleBehaviour;
-    private BoxCollider[] scaleBoxColliders;
-    private Vector3 scaleOriginalPosition;
-    private bool scalePuzzleCompleted;
+    [HideInInspector]
+    public PlayerInput playerInputComponent;
+    [HideInInspector]
+    public ScaleBehaviour scaleBehaviour;
 
     // Variables needed for the maze puzzle to work
-    private MazeBehaviour mazeBehaviour;
+    [HideInInspector]
+    public MazeBehaviour mazeBehaviour;
+
+    // Variables need for the laser puzzle to work
+    [HideInInspector]
+    public LaserBehaviour laserBehaviour;
 
     [Header("Movement")]
     [SerializeField]
@@ -62,8 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
-        playerInputComponenet = GetComponent<PlayerInput>();
-        scaleBoxColliders = GameObject.Find("SM_Scales").GetComponents<BoxCollider>();
+        playerInputComponent = GetComponent<PlayerInput>();
     }
 
     private void Awake()
@@ -97,24 +102,42 @@ public class PlayerController : MonoBehaviour
         PlayerLook();
         PlayerInteract();
 
-        if (scaleBehaviour != null)
+        if (Camera.main != null && laserBehaviour != null && laserBehaviour.dialogueStarted && dialogueManager.dialogueEnded)
         {
-            ScaleGame();
+            Cursor.lockState = CursorLockMode.Locked;
+            laserBehaviour = null;
         }
-        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController") &&
-            mazeBehaviour.dialogueEnded)
+        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
+            dialogueManager.dialogueEnded)
         {
-            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+            playerInputComponent.SwitchCurrentActionMap("PlayerController");
+            Cursor.lockState = CursorLockMode.Locked;
+            mazeBehaviour = null;
         }
-        else if (Camera.main != null && scalePuzzleCompleted && playerInputComponenet.currentActionMap != playerInputComponenet.actions.FindActionMap("PlayerController"))
+        else if (Camera.main != null && scaleBehaviour != null && scaleBehaviour.scalePuzzleCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
+            dialogueManager.dialogueEnded)
         {
-            playerInputComponenet.SwitchCurrentActionMap("PlayerController");
+            Debug.Log("Changing back to Player");
+            playerInputComponent.SwitchCurrentActionMap("PlayerController");
+            Cursor.lockState = CursorLockMode.Locked;
+            scaleBehaviour = null;
         }
 
-        // Enable Mouse controls while dialogue is going
-        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !mazeBehaviour.dialogueEnded)
+        // Enable Mouse controls while dialogue is active
+        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !dialogueManager.dialogueEnded ||
+            laserBehaviour != null && laserBehaviour.dialogueStarted && !dialogueManager.dialogueEnded)
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        // While the dialogue is playing, enable mouse controls
+        if (!dialogueManager.dialogueEnded)
+        {
+            lookSensitivity = 0;
+        }
+        else
+        {
+            lookSensitivity = 60;
         }
     }
 
@@ -136,37 +159,6 @@ public class PlayerController : MonoBehaviour
         {
             interactTriggered = true;
             Debug.Log("Interact");
-        }
-    }
-
-    public void OnClick(InputAction.CallbackContext value)
-    {
-        Camera scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
-
-        Vector3 pos = Mouse.current.position.ReadValue();
-
-        Ray ray = scaleCamera.ScreenPointToRay(pos);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 25))
-        {
-            if (hit.collider != null)
-            {                
-                if (hit.collider.CompareTag("Rock"))
-                {
-                    rockGameObject = hit.collider.gameObject;
-                }
-            }
-        }
-    }
-
-    public void OnDeselect(InputAction.CallbackContext value)
-    {
-        if (rockGameObject != null)
-        {
-            rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
-            rockGameObject = null;
         }
     }
 
@@ -211,6 +203,8 @@ public class PlayerController : MonoBehaviour
 
             if (hitObject.GetComponent<MirrorBehaviour>())
             {
+                laserBehaviour = FindObjectOfType<LaserBehaviour>();
+                
                 hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
                 interactTriggered = false;
             }
@@ -221,13 +215,9 @@ public class PlayerController : MonoBehaviour
                 hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
                 interactTriggered = false;
 
-                playerInputComponenet.SwitchCurrentActionMap("ScalePuzzle");
+                playerInputComponent.SwitchCurrentActionMap("ScalePuzzle");
 
-                scaleBoxColliders[0].enabled = false;
-                scaleBoxColliders[1].enabled = false;
-                scaleOriginalPosition = transform.position;
-                
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
+                hitObject.layer = 2;
 
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -236,52 +226,16 @@ public class PlayerController : MonoBehaviour
                 mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
                 
                 // Interact with maze
-                playerInputComponenet.SwitchCurrentActionMap("MazePuzzle");
+                playerInputComponent.SwitchCurrentActionMap("MazePuzzle");
                 hitObject.GetComponent<MazeBehaviour>().ChangeToMainCamera(false);
             }
-            else if (hitObject.GetComponent<WaterBehaviour>())
+            else if (hitObject.GetComponent<ChannelBehaviour>())
             {
-                hitObject.GetComponent<WaterBehaviour>().RotateWaterChannel();
+                hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
                 interactTriggered = false;
             }
         }
 
         interactTriggered = false;
-    }
-
-    public void ScaleGame()
-    {
-        // When the scale puzzle is completed, switch back to player controller
-        if (scaleBehaviour.lockScale)
-        {
-            scaleBehaviour = null;
-
-            Cursor.lockState = CursorLockMode.Locked;
-
-            scaleBoxColliders[0].enabled = true;
-            scaleBoxColliders[1].enabled = true;
-
-            Debug.Log(scaleOriginalPosition);
-            transform.position = scaleOriginalPosition;
-
-            scalePuzzleCompleted = true;
-        }
-        
-        // When the player clicks the rock, make the rock follow the mouse
-        if (rockGameObject != null)
-        {
-            Cursor.lockState = CursorLockMode.None;
-
-            Camera scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
-
-            // Screen Position
-            Vector3 mousePosition = Mouse.current.position.ReadValue();
-
-            // World Position
-            Vector3 rockPosition = scaleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 5));
-
-            rockGameObject.transform.position = rockPosition;
-            rockGameObject.GetComponent<Rigidbody>().isKinematic = true; 
-        }
     }
 }
