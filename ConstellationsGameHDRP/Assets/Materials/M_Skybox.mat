@@ -233,9 +233,9 @@ Material:
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 0
     - _WorkflowMode: 1
-    - _ZTestDepthEqualForOpaque: 0
+    - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
-    - _ZTestTransparent: 0
+    - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
     - Color_363ae1c54c8a484aa50651fad8252014: {r: 1, g: 1, b: 1, a: 0}
