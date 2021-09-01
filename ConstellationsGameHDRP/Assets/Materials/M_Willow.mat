@@ -227,7 +227,7 @@ Material:
     - _EnergyConservingSpecularColor: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 1
     - _GlossyReflections: 1
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
@@ -309,7 +309,7 @@ Material:
     - _UseEmissiveMap: 0
     - _UseMetallicMap: 1
     - _UseNormalMap: 1
-    - _UseRoughnessMap: 1
+    - _UseRoughnessMap: 0
     - _UseShadowThreshold: 0
     - _WindQuality: 0
     - _WorkflowMode: 1
