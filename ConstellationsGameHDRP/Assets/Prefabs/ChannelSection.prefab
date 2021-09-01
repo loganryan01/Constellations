@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4794543361210567156}
   - component: {fileID: 5975147405123536212}
-  - component: {fileID: 5576645051726774033}
+  - component: {fileID: 2574926624900079313}
   m_Layer: 0
   m_Name: WaterChannel (3)
   m_TagString: Untagged
@@ -47,7 +47,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5576645051726774033
+--- !u!114 &2574926624900079313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4140873866373303493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c373cb490e04e4494d293c181f81f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ca86b15c45075db48967844bcf7a0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: 45
@@ -643,7 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8878603934444888786}
   - component: {fileID: 8878603934444888784}
-  - component: {fileID: 8878603934444888787}
+  - component: {fileID: 1363877698018471930}
   m_Layer: 0
   m_Name: WaterChannel
   m_TagString: Untagged
@@ -680,7 +680,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8878603934444888787
+--- !u!114 &1363877698018471930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8878603934444888785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c373cb490e04e4494d293c181f81f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ca86b15c45075db48967844bcf7a0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: 45
@@ -706,7 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8878603934676607545}
   - component: {fileID: 8878603934676607551}
-  - component: {fileID: 8878603934676607550}
+  - component: {fileID: 681858869990462003}
   m_Layer: 0
   m_Name: WaterChannel (1)
   m_TagString: Untagged
@@ -743,7 +743,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8878603934676607550
+--- !u!114 &681858869990462003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8878603934676607548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c373cb490e04e4494d293c181f81f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ca86b15c45075db48967844bcf7a0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: 45
@@ -769,7 +769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8878603934894474311}
   - component: {fileID: 8878603934894474309}
-  - component: {fileID: 8878603934894474308}
+  - component: {fileID: 7895784353164123262}
   m_Layer: 0
   m_Name: WaterChannel (2)
   m_TagString: Untagged
@@ -806,7 +806,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8878603934894474308
+--- !u!114 &7895784353164123262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8878603934894474298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c373cb490e04e4494d293c181f81f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ca86b15c45075db48967844bcf7a0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: 45
@@ -1061,5 +1061,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPool: {fileID: 0}
   endPool: {fileID: 0}
-  allowWater: 0
   waterDuration: 5
+  fish: {fileID: 0}
+  fishWaypoint: {fileID: 0}
+  fishSpeed: 1.1
+  fishDelayTime: 2.2
