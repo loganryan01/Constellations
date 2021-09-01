@@ -41,6 +41,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd5d474c-d112-437e-990a-bbd8e1564740"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -118,6 +126,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76dda53e-5c6c-4c0d-abf5-b8c1265c2dab"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -295,6 +314,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerController_Movement = m_PlayerController.FindAction("Movement", throwIfNotFound: true);
         m_PlayerController_Look = m_PlayerController.FindAction("Look", throwIfNotFound: true);
         m_PlayerController_Interact = m_PlayerController.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerController_Pause = m_PlayerController.FindAction("Pause", throwIfNotFound: true);
         // ScalePuzzle
         m_ScalePuzzle = asset.FindActionMap("ScalePuzzle", throwIfNotFound: true);
         m_ScalePuzzle_Select = m_ScalePuzzle.FindAction("Select", throwIfNotFound: true);
@@ -355,6 +375,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerController_Movement;
     private readonly InputAction m_PlayerController_Look;
     private readonly InputAction m_PlayerController_Interact;
+    private readonly InputAction m_PlayerController_Pause;
     public struct PlayerControllerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -362,6 +383,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerController_Movement;
         public InputAction @Look => m_Wrapper.m_PlayerController_Look;
         public InputAction @Interact => m_Wrapper.m_PlayerController_Interact;
+        public InputAction @Pause => m_Wrapper.m_PlayerController_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +402,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnInteract;
+                @Pause.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -393,6 +418,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -502,6 +530,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IScalePuzzleActions
     {
