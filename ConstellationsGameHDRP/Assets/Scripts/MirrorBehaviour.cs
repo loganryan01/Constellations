@@ -5,16 +5,13 @@ using UnityEngine;
 public class MirrorBehaviour : MonoBehaviour
 {
     [Header("Mirror Rotations")]
-    [SerializeField]
-    public float rotateAmount = 45.0f;
-    [SerializeField]
-    public float rotateSpeed = 5.0f;
+    [SerializeField] public float rotateAmount = 45.0f;
+    [SerializeField] public float rotateDuration = 2.0f;
 
     [Header("Interact Text")]
-    [SerializeField]
-    public GameObject buttonText;
+    [SerializeField] public GameObject buttonText;
 
-    private bool playingRotation = false;
+    private bool _playingRotation = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,17 +31,17 @@ public class MirrorBehaviour : MonoBehaviour
 
     public void RotateMirror()
     {
-        Quaternion newRot = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + rotateAmount, 0);
+        Quaternion newRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotateAmount, 0);
 
-        if (playingRotation == false)
+        if (_playingRotation == false)
         {
-            StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
+            StartCoroutine(LerpRotation(newRot, rotateDuration, gameObject));
         }
     }
 
-    IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)
+    private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)
     {
-        playingRotation = true;
+        _playingRotation = true;
         
         float time = 0;
         Quaternion startValue = mirror.transform.rotation;
@@ -58,6 +55,6 @@ public class MirrorBehaviour : MonoBehaviour
 
         mirror.transform.rotation = endValue;
 
-        playingRotation = false;
+        _playingRotation = false;
     }
 }

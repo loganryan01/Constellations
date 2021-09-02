@@ -14,12 +14,16 @@ public class LaserBehaviour : MonoBehaviour
     [Tooltip("Max reflections")]
     public int limit = 100;
 
+    public float laserPower = 1.0f;
+
     [Header("Tag controls")]
     [Tooltip("If laser touches this tag, something will happen")]
     public string winTag;
 
     [Tooltip("If laser touches this tag, reflect")]
     public string refTag;
+
+    public LayerMask layerMask;
 
     // Dialogue Controls
     [HideInInspector]
@@ -59,10 +63,10 @@ public class LaserBehaviour : MonoBehaviour
             RaycastHit hit;
             lr.positionCount = verti;
 
-            if (Physics.Raycast(curpos, currot, out hit, distance, 7))
+            if (Physics.Raycast(curpos, currot, out hit, distance, layerMask))
             {
                 curpos = hit.point;
-                currot = Vector3.Reflect(currot, hit.normal);
+                currot = Vector3.Reflect(currot, hit.normal * laserPower);
                 lr.SetPosition(verti - 1, hit.point);
                 if (hit.transform.gameObject.tag != refTag)
                 {
