@@ -26,17 +26,19 @@ public class PauseController : MonoBehaviour
             Time.timeScale = 0;
             pauseCanvas.SetActive(true);
             blurEffect.customPasses[0].enabled = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             Time.timeScale = 1.0f;
             pauseCanvas.SetActive(false);
             blurEffect.customPasses[0].enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
     public void Quit()
     {
-        Debug.Log("Returning to main menu or Quitting game");
+        Application.Quit();
     }
 }

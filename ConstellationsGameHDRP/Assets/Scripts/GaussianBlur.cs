@@ -24,9 +24,9 @@ public class GaussianBlur : CustomPass
     protected override void Execute(CustomPassContext ctx)
     {
         // Specifies the radius for the blur in pixels. This example uses an 8 pixel radius.
-        float radius = 8.0f;
+        float radius = 1.0f;
         // Specifies the precision of the blur. This also affects the resource intensity of the blue. A value of 9 is good for real-time applications.
-        int sampleCount = 9;
+        int sampleCount = 1;
 
         // In cases where you have multiple cameras with different resolutions, this makes the blur coherent across these cameras.
         radius *= ctx.cameraColorBuffer.rtHandleProperties.rtHandleScale.x;
