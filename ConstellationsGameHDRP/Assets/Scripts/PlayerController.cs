@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         playerInput = new PlayerInputActions();
+        //ScreenCapture.CaptureScreenshot("SomeLevel");
     }
 
     private void OnEnable()
