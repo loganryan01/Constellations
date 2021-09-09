@@ -18,7 +18,7 @@ public class ChannelHolder : MonoBehaviour
     [SerializeField] private GameObject fishWaypoint = null; // Attached fish's destination
     [SerializeField] private float fishSpeed = 1.1f; // Movement speed of fish
     [SerializeField] private float fishDelayTime = 2.2f; // Delay time of fish's start
-    
+
     // All channels within the channel section
     private List<ChannelBehaviour> _channels = new List<ChannelBehaviour>();
 
@@ -64,6 +64,12 @@ public class ChannelHolder : MonoBehaviour
         Vector3 scale = start.transform.Find("WaterPivotPoint").localScale;
         Vector3 waterScale = new Vector3(xScale, scale.y, scale.z);
         return waterScale;
+    }
+    
+    // Returns boolean on the status of the channel (Checks whether fish has moved yet)
+    public bool IsCompleted()
+    {
+        return _hasFishMoved;
     }
 
     // Checks each channel in section to determine whether to draw water 
