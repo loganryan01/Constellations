@@ -29,17 +29,12 @@ public class LaserBehaviour : MonoBehaviour
     [HideInInspector]
     public bool dialogueStarted = false;
 
+    [SerializeField] private DialogueTrigger dialogueTrigger;
+    
     private int verti = 1; //segment handler don't touch.
     private bool iactive;
     private Vector3 currot;
     private Vector3 curpos;
-    private DialogueTrigger dialogueTrigger;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        dialogueTrigger = GetComponent<DialogueTrigger>();
-    }
 
     // Update is called once per frame
     void Update()
