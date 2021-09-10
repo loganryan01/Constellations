@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73831401928662433}
   m_Layer: 0
-  m_Name: Pisces
+  m_Name: PiscesStairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,15 +119,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8311653
+      value: 8.88681
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2790804
+      value: -1.5216999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.9158382
+      value: 9.627104
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
       propertyPath: m_LocalRotation.w
