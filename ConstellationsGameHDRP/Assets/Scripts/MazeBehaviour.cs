@@ -65,6 +65,8 @@ public class MazeBehaviour : MonoBehaviour
             mazeCompleted = true;
             dialogueTrigger.TriggerDialogue();
         }
+
+        
     }
 
     public void RotateMaze(InputAction.CallbackContext value)
@@ -78,6 +80,7 @@ public class MazeBehaviour : MonoBehaviour
     private void Rotate()
     {
         Vector3 rotate = gameObject.transform.forward * movementX + gameObject.transform.right * movementZ;
+
         gameObject.transform.Rotate(rotate * rotateSpeed * Time.deltaTime);
     }
 
