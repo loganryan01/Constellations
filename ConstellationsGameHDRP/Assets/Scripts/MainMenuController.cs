@@ -7,44 +7,67 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+    #region Fields
+    [Header("UI Screens")]
     public GameObject optionsCanvas;
     public GameObject mainMenuCanvas;
     
+    [Header("Audio controls")]
     public AudioMixer masterMixer;
+    #endregion
 
-    // Start is called before the first frame update
+    #region Functions
+    // Start function
     void Start()
     {
-        
+        // Enable the fullscreen
+        Screen.fullScreen = true;
+
+        // Change the resolution based on the users screen
+        if (Screen.width >= 1280 && Screen.width < 1920)
+        {
+            Screen.SetResolution(1280, 720, true);
+        }
+        else if (Screen.width >= 1920 && Screen.width < 2560)
+        {
+            Screen.SetResolution(1920, 1080, true);
+        }
+        else if (Screen.width >= 2560 && Screen.width < 3840)
+        {
+            Screen.SetResolution(2560, 1440, true);
+        }
+        else if (Screen.width >= 3840)
+        {
+            Screen.SetResolution(3840, 2160, true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Load the next scene in the build order
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // Go to the options screen
     public void SettingsCanvas()
     {
         optionsCanvas.SetActive(!optionsCanvas.activeSelf);
         mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
     }
 
+    // Change the volume of the sound of the game
     public void SetSound(float soundLevel)
     {
         masterMixer.SetFloat("musicVol", soundLevel);
     }
 
+    // Close the application
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    // Change the quality of the game
     public void ChangeQuality(Dropdown dropdown)
     {
         switch (dropdown.value)
@@ -61,6 +84,7 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    // Change the screen resolution
     public void ChangeScreenResolution(Dropdown dropdown)
     {
         switch (dropdown.value)
@@ -81,41 +105,21 @@ public class MainMenuController : MonoBehaviour
                 Screen.SetResolution(1280, 720, Screen.fullScreen);
                 break;
             case 5:
-                Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                Screen.SetResolution(1920, 1080, Screen.fullScreen); // FHD
                 break;
             case 6:
-                Screen.SetResolution(2560, 1440, Screen.fullScreen);
+                Screen.SetResolution(2560, 1440, Screen.fullScreen); // QHD
                 break;
             case 7:
-                Screen.SetResolution(3840, 2160, Screen.fullScreen);
+                Screen.SetResolution(3840, 2160, Screen.fullScreen); // 4K
                 break;
         }
     }
 
+    // Change from fullscreen to window and vice versa
     public void EnableFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
     }
-
-    //public void ValueReader(int value)
-    //{
-
-    //}
-
-    //void OnGUI()
-    //{
-    //    //This displays a Button on the screen at position (20,30), width 150 and height 50. The button’s text reads the last parameter. Press this for the SceneManager to load the Scene.
-    //    if (GUI.Button(new Rect(20, 30, 150, 30), "Other Scene Single"))
-    //    {
-    //        //The SceneManager loads your new Scene as a single Scene (not overlapping). This is Single mode.
-    //        SceneManager.LoadScene("main", LoadSceneMode.Single);
-    //    }
-
-    //    //Whereas pressing this Button loads the Additive Scene.
-    //    if (GUI.Button(new Rect(20, 60, 150, 30), "Other Scene Additive"))
-    //    {
-    //        //SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
-    //        SceneManager.LoadScene("main", LoadSceneMode.Additive);
-    //    }
-    //}
+    #endregion
 }

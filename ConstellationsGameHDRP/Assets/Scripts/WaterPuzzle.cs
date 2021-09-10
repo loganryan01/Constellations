@@ -20,10 +20,7 @@ public class WaterPuzzle : MonoBehaviour
     // Start function 
     private void Start()
     {
-        foreach (Transform child in transform)
-        {
-            _channelSections.Add(child.gameObject.GetComponent<ChannelHolder>());
-        }
+        _channelSections.AddRange(transform.gameObject.GetComponentsInChildren<ChannelHolder>());
     }
 
     // Update function - run every frame
