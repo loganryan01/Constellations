@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class LeftHandBehaviour : MonoBehaviour
 {
+    #region Fields
+    // The main scale script
     ScaleBehaviour scaleBehaviour;
+    #endregion
 
-    // Start is called before the first frame update
+    #region Functions
+    // Start function
     void Start()
     {
         scaleBehaviour = GetComponentInParent<ScaleBehaviour>();
@@ -14,6 +18,7 @@ public class LeftHandBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // If the rock has been placed on the left hand of the scale, add the weight to the left hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
@@ -24,6 +29,7 @@ public class LeftHandBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // If the rock has been remove from the left hand of the scale, remove the weight from the left hand
         if (other.gameObject.CompareTag("Rock"))
         {
             scaleBehaviour.leftWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
@@ -31,4 +37,5 @@ public class LeftHandBehaviour : MonoBehaviour
             other.gameObject.transform.parent = null;
         }
     }
+    #endregion
 }

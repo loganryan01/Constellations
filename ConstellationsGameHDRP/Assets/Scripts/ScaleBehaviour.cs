@@ -154,6 +154,13 @@ public class ScaleBehaviour : MonoBehaviour
 
                 // Play dialogue
                 dialogueTrigger.TriggerDialogue();
+
+                // Remove rock object from player's mouse
+                if (rockGameObject != null)
+                {
+                    rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                    rockGameObject = null;
+                }
             }
             // If the right side is the heaviest
             else if (leftWeight < rightWeight && !rightIsHeavy)

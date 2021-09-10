@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 rawInputLook;
     private float xRotation = 0.0f;
+    private float originalLookSensitivity;
 
     [Header("Interactions")]
     [SerializeField]
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         playerInputComponent = GetComponent<PlayerInput>();
+        originalLookSensitivity = lookSensitivity;
     }
 
     private void Awake()
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            lookSensitivity = 60;
+            lookSensitivity = originalLookSensitivity;
         }
 
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward) * interactDist, Color.red);

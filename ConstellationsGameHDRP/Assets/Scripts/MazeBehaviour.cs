@@ -5,43 +5,49 @@ using UnityEngine.InputSystem;
 
 public class MazeBehaviour : MonoBehaviour
 {
+    #region Fields
     [Header("Rotation Controls")]
-    public float rotateSpeed;
-    public float maxRotation;
+    public float rotateSpeed; // Speed of the rotation of the maze
+    public float maxRotation; // Max rotation of the maze
 
     [Header("Cameras")]
-    public Camera mainCam;
-    public Camera mazeCamera;
+    public Camera mainCam; // The main camera of the player
+    public Camera mazeCamera; // The camera for the puzzles
 
     [Header("Ball controls")]
-    public Rigidbody ballRigidbody;
-    public MazeBallBehaviour mazeBallBehaviour;
+    public Rigidbody ballRigidbody; // The rigidbody of the ball used for the maze
+    public MazeBallBehaviour mazeBallBehaviour; // The script to control the maze ball
     
     [Header("Button Text")]
-    public GameObject buttonText;
+    public GameObject buttonText; // Text that displays what button to push to interact with the object
 
     [HideInInspector]
-    public bool mazeCompleted;
+    public bool mazeCompleted; // Is the maze puzzle completed
 
-    private float movementX;
-    private float movementZ;
-    private float angleX;
-    private float angleZ;
-    private DialogueTrigger dialogueTrigger;
+    private float movementX; // The input from the 'a' and 'd' keys
+    private float movementZ; // The input from the 'w' and 's' keys
+    private float angleX; // Current x angle of the maze
+    private float angleZ; // Current z angle of the maze
+    private DialogueTrigger dialogueTrigger; // Dialogue for Taurus
+    #endregion
 
-    // Start is called before the first frame update
+    #region Functions
+    // Start function
     void Start()
     {
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
-    // Update is called once per frame
+    // Update function - run every frame
     void Update()
     {
+        // If the player hasn't reached the end of the maze,
         if (!mazeBallBehaviour.touchedEnd)
         {
+            // Get the player input and rotate the maze
             Rotate();
 
+            // If the maze does not exceed 
             if (transform.rotation.eulerAngles.x < maxRotation || transform.rotation.eulerAngles.x > 360 - maxRotation)
             {
                 angleX = transform.rotation.eulerAngles.x;
@@ -113,4 +119,5 @@ public class MazeBehaviour : MonoBehaviour
             buttonText.SetActive(false);
         }
     }
+    #endregion
 }
