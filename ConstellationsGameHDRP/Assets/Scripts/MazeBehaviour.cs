@@ -24,10 +24,7 @@ public class MazeBehaviour : MonoBehaviour
     [HideInInspector]
     public bool mazeCompleted; // Is the maze puzzle completed
 
-    private float movementX; // The input from the 'a' and 'd' keys
-    private float movementZ; // The input from the 'w' and 's' keys
-    private float angleX; // Current x angle of the maze
-    private float angleZ; // Current z angle of the maze
+    private Vector3 rotationDirection; // Direction of rotation
     private DialogueTrigger dialogueTrigger; // Dialogue for Taurus
     #endregion
 
@@ -44,21 +41,26 @@ public class MazeBehaviour : MonoBehaviour
         // If the player hasn't reached the end of the maze,
         if (!mazeBallBehaviour.touchedEnd)
         {
-            // Get the player input and rotate the maze
-            Rotate();
+            gameObject.transform.Rotate(rotationDirection * rotateSpeed * Time.deltaTime);
 
-            // If the maze does not exceed 
-            if (transform.rotation.eulerAngles.x < maxRotation || transform.rotation.eulerAngles.x > 360 - maxRotation)
+            // If the maze does not exceed the maximum rotation
+            if (transform.rotation.eulerAngles.x > maxRotation && transform.rotation.eulerAngles.x < 180)
             {
-                angleX = transform.rotation.eulerAngles.x;
+                transform.rotation = Quaternion.Euler(maxRotation, 0, transform.rotation.eulerAngles.z);
+            }
+            else if (transform.rotation.eulerAngles.x < 360 - maxRotation && transform.rotation.eulerAngles.x > 180)
+            {
+                transform.rotation = Quaternion.Euler(-maxRotation, 0, transform.rotation.eulerAngles.z);
             }
 
-            if (transform.rotation.eulerAngles.z < maxRotation || transform.rotation.eulerAngles.z > 360 - maxRotation)
+            if (transform.rotation.eulerAngles.z > maxRotation && transform.rotation.eulerAngles.z < 180)
             {
-                angleZ = transform.rotation.eulerAngles.z;
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, maxRotation);
             }
-
-            gameObject.transform.eulerAngles = new Vector3(angleX, 0, angleZ);
+            else if (transform.rotation.eulerAngles.z < 360 - maxRotation && transform.rotation.eulerAngles.z > 180)
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, -maxRotation);
+            }
 
             if (ballRigidbody.IsSleeping())
             {
@@ -71,23 +73,13 @@ public class MazeBehaviour : MonoBehaviour
             mazeCompleted = true;
             dialogueTrigger.TriggerDialogue();
         }
-
-        
     }
 
     public void RotateMaze(InputAction.CallbackContext value)
     {
         Vector2 inputVector = value.ReadValue<Vector2>();
 
-        movementX = -inputVector.x;
-        movementZ = inputVector.y;
-    }
-
-    private void Rotate()
-    {
-        Vector3 rotate = gameObject.transform.forward * movementX + gameObject.transform.right * movementZ;
-
-        gameObject.transform.Rotate(rotate * rotateSpeed * Time.deltaTime);
+        rotationDirection = gameObject.transform.forward * inputVector.y  + gameObject.transform.right * inputVector.x;
     }
 
     public void ChangeToMainCamera(bool enableMainCam)

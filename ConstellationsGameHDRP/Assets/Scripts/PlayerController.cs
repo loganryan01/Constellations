@@ -142,8 +142,6 @@ public class PlayerController : MonoBehaviour
         {
             lookSensitivity = originalLookSensitivity;
         }
-
-        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward) * interactDist, Color.red);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
