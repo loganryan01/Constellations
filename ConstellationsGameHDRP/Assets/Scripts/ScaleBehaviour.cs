@@ -10,54 +10,56 @@ public class ScaleBehaviour : MonoBehaviour
         Left,
         Right
     }
-    
+
+    #region Fields
     [Header("Interact Text")]
     [SerializeField]
-    public GameObject buttonText;
+    public GameObject buttonText; // Text that displays button to press to interact with puzzle
 
     [Header("Scale Settings")]
-    public GameObject leftScale;
-    public GameObject rightScale;
-    public GameObject arm;
-    public GameObject leftDoor;
-    public GameObject rightDoor;
+    public GameObject leftScale; // Left hand of the scale
+    public GameObject rightScale; // Right hand of the scale
+    public GameObject arm; // Fulcrum of the scale
+    public GameObject leftDoor; // Left door of the temple
+    public GameObject rightDoor; // Right door of the temple
 
-    public Vector3[] leftScalePositions;
-    public Vector3[] rightScalePositions;
-    public Vector3[] armRotations;
-    public Vector3[] doorRotations;
+    public Vector3[] leftScalePositions; // Positions of the left hand
+    public Vector3[] rightScalePositions; // Positions of the right hand
+    public Vector3[] armRotations; // Rotations of the arm
+    public Vector3[] doorRotations; // Rotations of the doors
 
     [Header("Dialogue Settings")]
-    public DialogueManager dialogueManager;
+    public DialogueManager dialogueManager; // Manager script of the dialogue
 
-    //[HideInInspector]
-    public float leftWeight;
-    //[HideInInspector]
-    public float rightWeight;
+    [HideInInspector]
+    public float leftWeight; // Weight of the left hand
+    [HideInInspector]
+    public float rightWeight; // Weight of the right hand
 
     [Header("Start settings")]
-    public Side startingSide;
+    public Side startingSide; // What side the scale is starting on
     [HideInInspector]
-    public bool scalePuzzleCompleted = false;
+    public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
-    private GameObject rockGameObject;
+    private GameObject rockGameObject; // The rock that the player is holding
 
-    private bool leftIsHeavy = false;
-    private bool rightIsHeavy = false;
+    private bool leftIsHeavy = false; // Is the left hand heavier than the right hand
+    private bool rightIsHeavy = false; // Is the right hand heavier than the left hand
 
-    private Vector3 heavyLeftPosition;
-    private Vector3 heavyRightPosition;
+    private Vector3 heavyLeftPosition; // The position where the left hand is the heaviest
+    private Vector3 heavyRightPosition; // The position where the right hand is the heaviest
 
-    private Vector3 middleLeftPosition;
-    private Vector3 middleRightPosition;
+    private Vector3 middleLeftPosition; // The position where the left hand is in the middle
+    private Vector3 middleRightPosition; // The position where the right hand is in the middle
 
-    private Vector3 lightLeftPosition;
-    private Vector3 lightRightPosition;
+    private Vector3 lightLeftPosition; // The position where the left hand is the lightest
+    private Vector3 lightRightPosition; // The position where the right hand is the lightest
 
-    private Camera mainCam;
-    private Camera scaleCamera;
+    private Camera mainCam; // The main camera of the scene
+    private Camera scaleCamera; // The camera for the puzzles
 
-    private DialogueTrigger dialogueTrigger;
+    private DialogueTrigger dialogueTrigger; // Dialogue for the puzzle
+    #endregion
 
     // Start is called before the first frame update
     void Start()

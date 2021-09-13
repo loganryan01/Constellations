@@ -43,9 +43,10 @@ public class MazeBehaviour : MonoBehaviour
         {
             gameObject.transform.Rotate(rotationDirection * rotateSpeed * Time.deltaTime);
 
-            // If the maze does not exceed the maximum rotation
+            // If the maze does exceedes the maximum rotation on the x axis,
             if (transform.rotation.eulerAngles.x > maxRotation && transform.rotation.eulerAngles.x < 180)
             {
+                // Set the x axis to the maximum rotation
                 transform.rotation = Quaternion.Euler(maxRotation, 0, transform.rotation.eulerAngles.z);
             }
             else if (transform.rotation.eulerAngles.x < 360 - maxRotation && transform.rotation.eulerAngles.x > 180)
@@ -53,8 +54,10 @@ public class MazeBehaviour : MonoBehaviour
                 transform.rotation = Quaternion.Euler(-maxRotation, 0, transform.rotation.eulerAngles.z);
             }
 
+            // If the maze does exceedes the maximum rotation on the z axis,
             if (transform.rotation.eulerAngles.z > maxRotation && transform.rotation.eulerAngles.z < 180)
             {
+                // Set the z axis to the maximum rotation
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, maxRotation);
             }
             else if (transform.rotation.eulerAngles.z < 360 - maxRotation && transform.rotation.eulerAngles.z > 180)
@@ -62,12 +65,14 @@ public class MazeBehaviour : MonoBehaviour
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, -maxRotation);
             }
 
+            // If the ball is sleeping, wake it up
             if (ballRigidbody.IsSleeping())
             {
                 ballRigidbody.WakeUp();
             }
         }
 
+        // If the maze ball reaches the end, play dialogue
         if (mazeBallBehaviour.touchedEnd && !mazeCompleted)
         {
             mazeCompleted = true;
@@ -75,6 +80,7 @@ public class MazeBehaviour : MonoBehaviour
         }
     }
 
+    // Get the input for the maze rotation
     public void RotateMaze(InputAction.CallbackContext value)
     {
         Vector2 inputVector = value.ReadValue<Vector2>();
@@ -82,6 +88,7 @@ public class MazeBehaviour : MonoBehaviour
         rotationDirection = gameObject.transform.forward * inputVector.y  + gameObject.transform.right * inputVector.x;
     }
 
+    // Change from the main camera to the puzzle camera and vice versa
     public void ChangeToMainCamera(bool enableMainCam)
     {
         if (!enableMainCam)
@@ -96,16 +103,20 @@ public class MazeBehaviour : MonoBehaviour
         }
     }
 
+    // When the Collider other enters the trigger,
     private void OnTriggerEnter(Collider other)
     {
+        // Display text when player is in range
         if (other.CompareTag("Player"))
         {
             buttonText.SetActive(true);
         }
     }
 
+    // When the Collider other has stopped touching the trigger
     private void OnTriggerExit(Collider other)
     {
+        // Hide text when player is out of range
         if (other.CompareTag("Player"))
         {
             buttonText.SetActive(false);
