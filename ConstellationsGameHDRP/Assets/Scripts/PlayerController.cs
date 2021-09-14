@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         playerInput = new PlayerInputActions();
-        //ScreenCapture.CaptureScreenshot("SomeLevel");
     }
 
     private void OnEnable()
@@ -120,7 +119,6 @@ public class PlayerController : MonoBehaviour
         else if (Camera.main != null && scaleBehaviour != null && scaleBehaviour.scalePuzzleCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
-            Debug.Log("Changing back to Player");
             playerInputComponent.SwitchCurrentActionMap("PlayerController");
             Cursor.lockState = CursorLockMode.Locked;
             scaleBehaviour = null;
@@ -133,7 +131,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        // While the dialogue is playing, enable mouse controls
+        // While the dialogue is playing, disable rotation
         if (!dialogueManager.dialogueEnded)
         {
             lookSensitivity = 0;

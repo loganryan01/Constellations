@@ -22,6 +22,7 @@ public class LeftHandBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
+            scaleBehaviour.UpdateScale();
 
             other.gameObject.transform.parent = transform;
         }
@@ -33,6 +34,7 @@ public class LeftHandBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Rock"))
         {
             scaleBehaviour.leftWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
+            scaleBehaviour.UpdateScale();
 
             other.gameObject.transform.parent = null;
         }
