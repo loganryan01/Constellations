@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LaserBehaviour : MonoBehaviour
@@ -28,13 +29,16 @@ public class LaserBehaviour : MonoBehaviour
     // Layer to reflect off
     public LayerMask layerMask;
 
-    // Dialogue Controls
-    [HideInInspector]
-    public bool dialogueStarted = false;
-
     [Header("Saggitarius Dialogue")]
     [SerializeField] private DialogueTrigger dialogueTrigger;
-    
+
+    // Dialogue Controls
+    [HideInInspector]
+    public bool laserPuzzleCompleted = false;
+
+    [Header("Puzzle Completion Function")]
+    public UnityEvent onComplete;
+
     private int verti = 1; //segment handler don't touch.
     private bool iactive; // Is the laser active
     private Vector3 currot; // Current rotation of the laser
@@ -94,9 +98,10 @@ public class LaserBehaviour : MonoBehaviour
                 }
 
                 // If the laser hits the object with the win tag, trigger event
-                if (hit.transform.gameObject.tag == winTag && !dialogueStarted)
+                if (hit.transform.gameObject.tag == winTag && !laserPuzzleCompleted)
                 {
-                    WinFunction();
+                    laserPuzzleCompleted = true;
+                    onComplete.Invoke();
                 }
             }
             else
@@ -106,7 +111,6 @@ public class LaserBehaviour : MonoBehaviour
 
                 // Set the position of the latest vertex to the end of the laser
                 lr.SetPosition(verti - 1, curpos + 100 * currot);
-
             }
 
             // If the laser has reflected off the max amount of reflections, turn off the laser
@@ -117,12 +121,16 @@ public class LaserBehaviour : MonoBehaviour
         }
     } 
 
-    // An event that gets triggered when the laser hits the goal
-    void WinFunction()
+    public void LockCursor(bool lockCursor)
     {
-        // Start the Sagittarius dialogue
-        dialogueStarted = true;
-        dialogueTrigger.TriggerDialogue();
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     #endregion
 }

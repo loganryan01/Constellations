@@ -12,8 +12,8 @@ public class ScaleBehaviour : MonoBehaviour
     }
 
     #region Fields
-    [Header("Interact Text")]
-    public GameObject buttonText; // Text that displays button to press to interact with puzzle
+    //[Header("Interact Text")]
+    //public GameObject buttonText; // Text that displays button to press to interact with puzzle
 
     [Header("Scale Settings")]
     public Camera mainCamera; // The main camera of the scene
@@ -65,7 +65,7 @@ public class ScaleBehaviour : MonoBehaviour
     void Start()
     {
         // Hide text that displays what button to push to interact with scale
-        buttonText.SetActive(false);
+        //buttonText.SetActive(false);
 
         // Calculate the position when the hand is the heaviest
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
@@ -236,22 +236,22 @@ public class ScaleBehaviour : MonoBehaviour
     }
 
     // When the collider other enters the trigger
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            buttonText.SetActive(true);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        buttonText.SetActive(true);
+    //    }
+    //}
 
     // When the collider other has stopped touching the trigger
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            buttonText.SetActive(false);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        buttonText.SetActive(false);
+    //    }
+    //}
 
     // Change Cameras
     public void ChangeToMainCamera(bool enableMainCam)

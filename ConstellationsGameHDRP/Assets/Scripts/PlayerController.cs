@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float interactDist = 4.0f;
 
+    [Header("Interact Text")]
+    public GameObject buttonText; // Text that displays button to press to interact with puzzle
+
     private bool interactTriggered = false;
 
     private void Start()
@@ -103,11 +106,11 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         PlayerLook();
         PlayerInteract();
+        CanThePlayerInteract();
 
         // When the puzzles are completed
-        if (Camera.main != null && laserBehaviour != null && laserBehaviour.dialogueStarted && dialogueManager.dialogueEnded)
+        if (Camera.main != null && laserBehaviour != null && laserBehaviour.laserPuzzleCompleted && dialogueManager.dialogueEnded)
         {
-            Cursor.lockState = CursorLockMode.Locked;
             laserBehaviour = null;
         }
         else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
@@ -124,21 +127,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // Enable Mouse controls while dialogue is active
-        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !dialogueManager.dialogueEnded ||
-            laserBehaviour != null && laserBehaviour.dialogueStarted && !dialogueManager.dialogueEnded)
+        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !dialogueManager.dialogueEnded)
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
 
-        // While the dialogue is playing, disable rotation (For Saggitarius)
-        if (!dialogueManager.dialogueEnded)
-        {
-            lookSensitivity = 0;
-        }
-        else
-        {
-            lookSensitivity = originalLookSensitivity;
-        }
+    public void ChangeLookSensitivity(float newLookSensitivity)
+    {
+        lookSensitivity = newLookSensitivity;
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -195,7 +192,7 @@ public class PlayerController : MonoBehaviour
         }
 
         RaycastHit hit;
-        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, interactDist);
+        Physics.Raycast(mainCam.position, mainCam.TransformDirection(Vector3.forward), out hit, interactDist);
 
         if (hit.collider != null)
         {
@@ -212,8 +209,8 @@ public class PlayerController : MonoBehaviour
             {
                 //===== On Interaction =====
                 scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
-                
-                hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);
+
+                scaleBehaviour.ChangeToMainCamera(false);
                 interactTriggered = false;
 
                 playerInputComponent.SwitchCurrentActionMap("ScalePuzzle");
@@ -238,5 +235,26 @@ public class PlayerController : MonoBehaviour
         }
 
         interactTriggered = false;
+    }
+
+    private void CanThePlayerInteract()
+    {
+        RaycastHit hit;
+        Physics.Raycast(mainCam.position, mainCam.TransformDirection(Vector3.forward), out hit, interactDist);
+
+        if (hit.collider != null)
+        {
+            GameObject hitObject = hit.transform.gameObject;
+
+            if (hitObject.GetComponent<ScaleBehaviour>() || 
+                hitObject.GetComponent<MirrorBehaviour>())
+            {
+                buttonText.SetActive(true);
+            }
+        }
+        else
+        {
+            buttonText.SetActive(false);
+        }
     }
 }

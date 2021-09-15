@@ -16,25 +16,6 @@ public class MirrorBehaviour : MonoBehaviour
     #endregion
 
     #region Functions
-    // When the Collider other enters the trigger,
-    private void OnTriggerEnter(Collider other)
-    {
-        // Display text when player is in range
-        if (other.CompareTag("Player"))
-        {
-            buttonText.SetActive(true);
-        }
-    }
-
-    // When the Collider other has stopped touching the trigger
-    private void OnTriggerExit(Collider other)
-    {
-        // Hide text when player is out of range
-        if (other.CompareTag("Player"))
-        {
-            buttonText.SetActive(false);
-        }
-    }
 
     // Rotate the mirror when the player interacts with the mirror
     public void RotateMirror()
