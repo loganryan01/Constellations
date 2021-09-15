@@ -21,6 +21,8 @@ public class RightHandBehaviour : MonoBehaviour
         // If the rock has been placed on the right hand of the scale, add the weight to the right hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
+            //other.gameObject.transform.position = gameObject.transform.position;
+
             scaleBehaviour.rightWeight += other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 

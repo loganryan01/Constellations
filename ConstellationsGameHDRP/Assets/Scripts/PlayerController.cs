@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
         PlayerLook();
         PlayerInteract();
 
+        // When the puzzles are completed
         if (Camera.main != null && laserBehaviour != null && laserBehaviour.dialogueStarted && dialogueManager.dialogueEnded)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -119,8 +120,6 @@ public class PlayerController : MonoBehaviour
         else if (Camera.main != null && scaleBehaviour != null && scaleBehaviour.scalePuzzleCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
-            playerInputComponent.SwitchCurrentActionMap("PlayerController");
-            Cursor.lockState = CursorLockMode.Locked;
             scaleBehaviour = null;
         }
 
@@ -131,7 +130,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        // While the dialogue is playing, disable rotation
+        // While the dialogue is playing, disable rotation (For Saggitarius)
         if (!dialogueManager.dialogueEnded)
         {
             lookSensitivity = 0;
@@ -211,6 +210,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (hitObject.GetComponent<ScaleBehaviour>())
             {
+                //===== On Interaction =====
                 scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
                 
                 hitObject.GetComponent<ScaleBehaviour>().ChangeToMainCamera(false);

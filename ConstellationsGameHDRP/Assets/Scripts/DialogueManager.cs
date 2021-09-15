@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueEnded = true; // Has the character finished talking
 
     private Queue<string> sentences; // The sentences that the person is saying
+    private UnityEvent onDialogueEnd;
     #endregion
 
     #region Functions
@@ -47,6 +49,8 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+
+        onDialogueEnd = dialogue.OnDialogueEnd;
 
         // Display the first sentence
         DisplayNextSentence();
@@ -94,6 +98,7 @@ public class DialogueManager : MonoBehaviour
 
         // Since the character is no longer talking, the dialogue has ended
         dialogueEnded = true;
+        onDialogueEnd.Invoke();
     }
 
     #endregion

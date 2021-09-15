@@ -21,10 +21,12 @@ public class LeftHandBehaviour : MonoBehaviour
         // If the rock has been placed on the left hand of the scale, add the weight to the left hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
+            //other.gameObject.transform.position = gameObject.transform.position;
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 
             other.gameObject.transform.parent = transform;
+            other.gameObject.transform.localPosition = new Vector3(-6, 137.5f, -0.1f);
         }
     }
 

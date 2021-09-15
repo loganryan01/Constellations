@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class ScaleBehaviour : MonoBehaviour
@@ -16,6 +16,9 @@ public class ScaleBehaviour : MonoBehaviour
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
 
     [Header("Scale Settings")]
+    public Camera mainCamera; // The main camera of the scene
+    public Camera puzzleCamera; // The camera for the puzzles
+
     public GameObject leftScale; // Left hand of the scale
     public GameObject rightScale; // Right hand of the scale
     public GameObject arm; // Fulcrum of the scale
@@ -37,13 +40,15 @@ public class ScaleBehaviour : MonoBehaviour
 
     [Header("Start settings")]
     public Side startingSide; // What side the scale is starting on
+
+    [Header("Puzzle Completed Settings")]
+    public UnityEvent onComplete;
+
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
     private GameObject rockGameObject; // The rock that the player is holding
-
-    private bool leftIsHeavy = false; // Is the left hand heavier than the right hand
-    private bool rightIsHeavy = false; // Is the right hand heavier than the left hand
+    private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game objec the player is holding
 
     private Vector3 heavyLeftPosition; // The position where the left hand is the heaviest
     private Vector3 heavyRightPosition; // The position where the right hand is the heaviest
@@ -53,11 +58,6 @@ public class ScaleBehaviour : MonoBehaviour
 
     private Vector3 lightLeftPosition; // The position where the left hand is the lightest
     private Vector3 lightRightPosition; // The position where the right hand is the lightest
-
-    private Camera mainCam; // The main camera of the scene
-    private Camera scaleCamera; // The camera for the puzzles
-
-    private DialogueTrigger dialogueTrigger; // Dialogue for the puzzle
     #endregion
 
     #region Functions
@@ -67,16 +67,13 @@ public class ScaleBehaviour : MonoBehaviour
         // Hide text that displays what button to push to interact with scale
         buttonText.SetActive(false);
 
-        // Get the camera for the puzzle and hide it
-        scaleCamera = GameObject.Find("PuzzleCamera").GetComponent<Camera>();
-        scaleCamera.enabled = false;
-
-        // Get the main camera of the scene
-        mainCam = Camera.main;
-
         // Calculate the position when the hand is the heaviest
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
         heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
+
+        // Get the middle position
+        middleLeftPosition = leftScale.transform.position;
+        middleRightPosition = rightScale.transform.position;
 
         // Calculate the position when the hand is the lightest
         lightLeftPosition = leftScale.transform.position + leftScalePositions[0];
@@ -93,7 +90,6 @@ public class ScaleBehaviour : MonoBehaviour
 
             // Rotate fulcrum to the left
             arm.transform.rotation = Quaternion.Euler(armRotations[0]);
-            leftIsHeavy = true;
         }
         // If the scale is starting on the right side
         else if (startingSide == Side.Right)
@@ -106,11 +102,7 @@ public class ScaleBehaviour : MonoBehaviour
 
             // Rotate fulcrum to the right
             arm.transform.rotation = Quaternion.Euler(armRotations[2]);
-            rightIsHeavy = true;
         }
-
-        // Get dialogue for the scale
-        dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
     // Update function - run every frame
@@ -126,22 +118,10 @@ public class ScaleBehaviour : MonoBehaviour
             Vector3 mousePosition = Mouse.current.position.ReadValue();
 
             // Get the World Position
-            Vector3 rockPosition = scaleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 5));
+            Vector3 rockPosition = puzzleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 5));
 
             // Set the position of the rock to be the mouse position
             rockGameObject.transform.position = rockPosition;
-            rockGameObject.GetComponent<Rigidbody>().isKinematic = true;
-        }
-
-        // When the dialogue has finished,
-        if (Camera.main == null && scalePuzzleCompleted && dialogueManager.dialogueEnded)
-        {
-            // Lock the cursor in the center
-            Cursor.lockState = CursorLockMode.Locked;
-
-            // Open the doors
-            StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
-            StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
         }
     }
 
@@ -151,60 +131,20 @@ public class ScaleBehaviour : MonoBehaviour
         if (!scalePuzzleCompleted)
         {
             // If the weight on the left side of the scale is heavier than the right side,            
-            if (leftWeight > rightWeight && !leftIsHeavy)
+            if (leftWeight > rightWeight)
             {
-                // Move the left hand to the down position
-                StartCoroutine(LerpPosition(heavyLeftPosition, 5, leftScale));
-
-                // Move the right hand to the up position
-                StartCoroutine(LerpPosition(lightRightPosition, 5, rightScale));
-
-                // Rotate the arm to the left side
-                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[0]), 5, arm));
-
-                leftIsHeavy = true;
-                rightIsHeavy = false;
+                ChangeScale(heavyLeftPosition, lightRightPosition, armRotations[0]);
             }
             // If the weight is equal,
-            else if (leftWeight == rightWeight && leftIsHeavy ||
-                     leftWeight == rightWeight && rightIsHeavy)
+            else if (leftWeight == rightWeight)
             {
-                // If the left side was the heaviest,
-                if (leftIsHeavy)
-                {
-                    // Calculate the middle position for the left hand by subtracting the left hand current position with the down position for the left hand
-                    middleLeftPosition = leftScale.transform.position - leftScalePositions[2];
+                ChangeScale(middleLeftPosition, middleRightPosition, armRotations[1]);
 
-                    // Calculate the middle position for the right hand by subtracting the right hand current position with the up position for the right hand
-                    middleRightPosition = rightScale.transform.position - rightScalePositions[0];
-                }
-                // If the right side was the heaviest,
-                else if (rightIsHeavy)
-                {
-                    // Calculate the middle position for the left hand by subtracting the left hand current position with the up position for the left hand
-                    middleLeftPosition = leftScale.transform.position - leftScalePositions[0];
-
-                    // Calculate the middle position for the right hand by subtracting the right hand current position with the down position for the right hand
-                    middleRightPosition = rightScale.transform.position - rightScalePositions[2];
-                }
-
-                // Move the left hand of the scale to the middle position
-                StartCoroutine(LerpPosition(middleLeftPosition, 5, leftScale));
-
-                // Move the right hand of the scale to the middle position
-                StartCoroutine(LerpPosition(middleRightPosition, 5, rightScale));
-
-                // Rotate the arm to the middle of the scale
-                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[1]), 5, arm));
-
-                leftIsHeavy = false;
-                rightIsHeavy = false;
+                // ===== Puzzle Complete Function =====
+                onComplete.Invoke();
 
                 // Lock the scale so the player can't interact with scale
                 scalePuzzleCompleted = true;
-
-                // Play dialogue
-                dialogueTrigger.TriggerDialogue();
 
                 // Remove rock object from player's mouse
                 if (rockGameObject != null)
@@ -214,21 +154,41 @@ public class ScaleBehaviour : MonoBehaviour
                 }
             }
             // If the right side is the heaviest
-            else if (leftWeight < rightWeight && !rightIsHeavy)
+            else if (leftWeight < rightWeight)
             {
-                // Move the left hand to the top of the scale
-                StartCoroutine(LerpPosition(lightLeftPosition, 5, leftScale));
-
-                // Move the right hand to the bottom of the scale
-                StartCoroutine(LerpPosition(heavyRightPosition, 5, rightScale));
-
-                // Rotate the arm to the right of the scale
-                StartCoroutine(LerpRotation(Quaternion.Euler(armRotations[2]), 5, arm));
-
-                leftIsHeavy = false;
-                rightIsHeavy = true;
+                ChangeScale(lightLeftPosition, heavyRightPosition, armRotations[2]);
             }
         }
+    }
+
+    public void OpenDoors()
+    {
+        StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
+        StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
+    }
+
+    public void LockMouse(bool lockMouse)
+    {
+        if (lockMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void ChangeScale(Vector3 leftHandPosition, Vector3 rightHandPosition, Vector3 fulcrumRotation)
+    {
+        // Move the left hand to the desired position
+        StartCoroutine(LerpPosition(leftHandPosition, 5, leftScale));
+
+        // Move the right hand to the desired position
+        StartCoroutine(LerpPosition(rightHandPosition, 5, rightScale));
+
+        // Rotate the arm to the desired rotation
+        StartCoroutine(LerpRotation(Quaternion.Euler(fulcrumRotation), 5, arm));
     }
 
     // Move to target position over a time period
@@ -296,15 +256,17 @@ public class ScaleBehaviour : MonoBehaviour
     // Change Cameras
     public void ChangeToMainCamera(bool enableMainCam)
     {
+        Debug.Log("Changing Cameras");
+        
         if (!enableMainCam)
         {
-            mainCam.enabled = false;
-            scaleCamera.enabled = true;
+            mainCamera.enabled = false;
+            puzzleCamera.enabled = true;
         }
         else
         {
-            mainCam.enabled = true;
-            scaleCamera.enabled = false;
+            mainCamera.enabled = true;
+            puzzleCamera.enabled = false;
         }
     }
 
@@ -315,7 +277,7 @@ public class ScaleBehaviour : MonoBehaviour
         Vector3 pos = Mouse.current.position.ReadValue();
 
         // Shoot a ray
-        Ray ray = scaleCamera.ScreenPointToRay(pos);
+        Ray ray = puzzleCamera.ScreenPointToRay(pos);
 
         RaycastHit hit;
 
@@ -328,6 +290,8 @@ public class ScaleBehaviour : MonoBehaviour
                 {
                     // The rock then follows the player's cursor 
                     rockGameObject = hit.collider.gameObject;
+                    rockGameObjectRigidbody = rockGameObject.GetComponent<Rigidbody>();
+                    rockGameObjectRigidbody.isKinematic = true;
                 }
             }
         }
