@@ -16,9 +16,6 @@ public class PuzzleCameraBehaviour : MonoBehaviour
     public DialogueManager dialogueManager; // Manager script for the dialogue in the camera
 
     public UnityEvent onReturnToPlayer;
-
-    private bool cameraInPuzzlePosition = false; // Is the camera in the puzzle position
-    private bool cameraInPlayerPosition = true; // Is the camera in the player position
     #endregion
 
     #region Functions
@@ -28,40 +25,13 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         gameObject.GetComponent<Camera>().enabled = false;
     }
 
-    // Update function - run every frame
-    void Update()
+    public void MoveToPuzzlePosition(Transform puzzleTransform)
     {
-        if (cameraInPlayerPosition)
-        {
-            originalTransform = mainCamera.transform;
-            transform.position = mainCamera.transform.position;
-            transform.rotation = mainCamera.transform.rotation;
-        }
-        
-        // If the player is solving the scale puzzle
-        //if (playerController.scaleBehaviour != null)
-        //{
-        //    // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
-        //    if (cameraInPlayerPosition && !playerController.scaleBehaviour.scalePuzzleCompleted)
-        //    {
-        //        MoveToPuzzlePosition(scalePuzzleTransform.position, scalePuzzleTransform.rotation);
-        //    }
-        //}
+        originalTransform = mainCamera.transform;
+        transform.position = mainCamera.transform.position;
+        transform.rotation = mainCamera.transform.rotation;
 
-        // If the player is solving the maze puzzle
-        if (playerController.mazeBehaviour != null)
-        {
-            // When player interacts with maze puzzle, move the camera from player's position to maze puzzle camera position
-            if (cameraInPlayerPosition && !playerController.mazeBehaviour.mazeCompleted)
-            {
-                MoveToPuzzlePosition(mazePuzzleTransform.position, mazePuzzleTransform.rotation);
-            }
-        }
-    }
-
-    public void MoveToPuzzlePosition(Vector3 position, Quaternion rotation)
-    {
-        StartCoroutine(LerpPositionAndRotation(position, rotation, 5, 0));
+        StartCoroutine(LerpPositionAndRotation(puzzleTransform.position, puzzleTransform.rotation, 5, 0));
     }
 
     public void MoveToPlayerPosition()
@@ -69,19 +39,23 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         StartCoroutine(LerpPositionAndRotation(originalTransform.position, originalTransform.rotation, 5, 1));
     }
 
+    // Change Cameras
+    public void ChangeToMainCamera(bool enableMainCam)
+    {
+        if (!enableMainCam)
+        {
+            mainCamera.enabled = false;
+            GetComponent<Camera>().enabled = true;
+        }
+        else
+        {
+            mainCamera.enabled = true;
+            GetComponent<Camera>().enabled = false;
+        }
+    }
+
     IEnumerator LerpPositionAndRotation(Vector3 targetPosition, Quaternion targetRotation, float duration, int puzzleCase)
     {
-        // Case 0 = Move to puzzle position
-        // Case 1 = Move to player position
-        if (puzzleCase == 0)
-        {
-            cameraInPlayerPosition = false;
-        }
-        else if (puzzleCase == 1)
-        {
-            cameraInPuzzlePosition = false;
-        }
-
         // Start timer
         float time = 0;
 
@@ -111,18 +85,8 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         // When the timer is up, set rotation to target rotation
         transform.rotation = targetRotation;
 
-        // If camera is moving from player to puzzle,
-        if (puzzleCase == 0)
+        if (puzzleCase == 1)
         {
-            // Then the camera is in puzzle position
-            cameraInPuzzlePosition = true;
-        }
-        // If camera is moving from puzzle to player,
-        else if (puzzleCase == 1)
-        {
-            // Then the camera is in player position
-            cameraInPlayerPosition = true;
-
             onReturnToPlayer.Invoke();
         }
     }

@@ -12,9 +12,6 @@ public class ScaleBehaviour : MonoBehaviour
     }
 
     #region Fields
-    //[Header("Interact Text")]
-    //public GameObject buttonText; // Text that displays button to press to interact with puzzle
-
     [Header("Scale Settings")]
     public Camera mainCamera; // The main camera of the scene
     public Camera puzzleCamera; // The camera for the puzzles
@@ -41,6 +38,9 @@ public class ScaleBehaviour : MonoBehaviour
     [Header("Start settings")]
     public Side startingSide; // What side the scale is starting on
 
+    [Header("Interaction Settings")]
+    public UnityEvent onInteraction;
+
     [Header("Puzzle Completed Settings")]
     public UnityEvent onComplete;
 
@@ -48,7 +48,7 @@ public class ScaleBehaviour : MonoBehaviour
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
     private GameObject rockGameObject; // The rock that the player is holding
-    private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game objec the player is holding
+    private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game object the player is holding
 
     private Vector3 heavyLeftPosition; // The position where the left hand is the heaviest
     private Vector3 heavyRightPosition; // The position where the right hand is the heaviest
@@ -64,9 +64,6 @@ public class ScaleBehaviour : MonoBehaviour
     // Start function
     void Start()
     {
-        // Hide text that displays what button to push to interact with scale
-        //buttonText.SetActive(false);
-
         // Calculate the position when the hand is the heaviest
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
         heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
@@ -167,18 +164,6 @@ public class ScaleBehaviour : MonoBehaviour
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
     }
 
-    public void LockMouse(bool lockMouse)
-    {
-        if (lockMouse)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
     private void ChangeScale(Vector3 leftHandPosition, Vector3 rightHandPosition, Vector3 fulcrumRotation)
     {
         // Move the left hand to the desired position
@@ -233,41 +218,6 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, rotate arm to target rotation
         arm.transform.rotation = endValue;
-    }
-
-    // When the collider other enters the trigger
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        buttonText.SetActive(true);
-    //    }
-    //}
-
-    // When the collider other has stopped touching the trigger
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        buttonText.SetActive(false);
-    //    }
-    //}
-
-    // Change Cameras
-    public void ChangeToMainCamera(bool enableMainCam)
-    {
-        Debug.Log("Changing Cameras");
-        
-        if (!enableMainCam)
-        {
-            mainCamera.enabled = false;
-            puzzleCamera.enabled = true;
-        }
-        else
-        {
-            mainCamera.enabled = true;
-            puzzleCamera.enabled = false;
-        }
     }
 
     // Action for when the player left clicks

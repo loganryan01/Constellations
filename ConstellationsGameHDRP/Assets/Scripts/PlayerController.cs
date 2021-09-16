@@ -11,23 +11,6 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInput;
     private CharacterController controller;
 
-    // Variables needed for dialogue to work
-    public DialogueManager dialogueManager;
-
-    // Variables needed for the scale puzzle to work
-    [HideInInspector]
-    public PlayerInput playerInputComponent;
-    [HideInInspector]
-    public ScaleBehaviour scaleBehaviour;
-
-    // Variables needed for the maze puzzle to work
-    [HideInInspector]
-    public MazeBehaviour mazeBehaviour;
-
-    // Variables need for the laser puzzle to work
-    [HideInInspector]
-    public LaserBehaviour laserBehaviour;
-
     [Header("Movement")]
     [SerializeField]
     public float moveSpeed = 5.0f;
@@ -62,6 +45,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float interactDist = 4.0f;
 
+    private GameObject lastSeenObject;
+
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
 
@@ -71,7 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
-        playerInputComponent = GetComponent<PlayerInput>();
     }
 
     private void Awake()
@@ -105,22 +89,6 @@ public class PlayerController : MonoBehaviour
         PlayerLook();
         PlayerInteract();
         CanThePlayerInteract();
-
-        // When the puzzles are completed
-        if (Camera.main != null && laserBehaviour != null && laserBehaviour.laserPuzzleCompleted && dialogueManager.dialogueEnded)
-        {
-            laserBehaviour = null;
-        }
-        else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
-            dialogueManager.dialogueEnded)
-        {
-            mazeBehaviour = null;
-        }
-        else if (Camera.main != null && scaleBehaviour != null && scaleBehaviour.scalePuzzleCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
-            dialogueManager.dialogueEnded)
-        {
-            scaleBehaviour = null;
-        }
     }
 
     public void ChangeLookSensitivity(float newLookSensitivity)
@@ -146,6 +114,18 @@ public class PlayerController : MonoBehaviour
         {
             interactTriggered = true;
             Debug.Log("Interact");
+        }
+    }
+
+    public void LockCursor(bool lockCursor)
+    {
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -190,37 +170,29 @@ public class PlayerController : MonoBehaviour
 
             if (hitObject.GetComponent<MirrorBehaviour>())
             {
-                laserBehaviour = FindObjectOfType<LaserBehaviour>();
-                
                 hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
-                interactTriggered = false;
             }
             else if (hitObject.GetComponent<ScaleBehaviour>())
             {
-                //===== On Interaction =====
-                scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
+                ScaleBehaviour scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
 
-                scaleBehaviour.ChangeToMainCamera(false);
-                interactTriggered = false;
-
-                playerInputComponent.SwitchCurrentActionMap("ScalePuzzle");
-
-                hitObject.layer = 2;
-
-                Cursor.lockState = CursorLockMode.None;
+                if (!scaleBehaviour.scalePuzzleCompleted)
+                {
+                    scaleBehaviour.onInteraction.Invoke();
+                }
             }
             else if (hitObject.GetComponent<MazeBehaviour>())
             {
-                mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
-                
-                // Interact with maze
-                playerInputComponent.SwitchCurrentActionMap("MazePuzzle");
-                mazeBehaviour.ChangeToMainCamera(false);
+                MazeBehaviour mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
+
+                if (!mazeBehaviour.mazeCompleted)
+                {
+                    mazeBehaviour.onInteraction.Invoke();
+                }
             }
             else if (hitObject.GetComponent<ChannelBehaviour>())
             {
                 hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
-                interactTriggered = false;
             }
         }
 
@@ -235,6 +207,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
+            lastSeenObject = hitObject;
 
             if (hitObject.GetComponent<ScaleBehaviour>() || 
                 hitObject.GetComponent<MirrorBehaviour>() ||
@@ -242,11 +215,35 @@ public class PlayerController : MonoBehaviour
                 hitObject.GetComponent<ChannelBehaviour>())
             {
                 buttonText.SetActive(true);
+
+                if (hitObject.layer != 1)
+                {
+                    for (int i = 0; i < hitObject.transform.childCount; i++)
+                    {
+                        hitObject.transform.GetChild(i).gameObject.layer = 1;
+                    }
+
+                    hitObject.layer = 1;
+                }
             }
         }
         else
         {
             buttonText.SetActive(false);
+
+            if (lastSeenObject != null)
+            {
+                if (lastSeenObject.layer != 0)
+                {
+                    for (int i = 0; i < lastSeenObject.transform.childCount; i++)
+                    {
+                        lastSeenObject.transform.GetChild(i).gameObject.layer = 0;
+                    }
+
+                    lastSeenObject.layer = 0;
+                }
+            }
+            
         }
     }
 }

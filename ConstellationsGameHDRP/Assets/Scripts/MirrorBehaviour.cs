@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MirrorBehaviour : MonoBehaviour
 {
@@ -8,9 +9,7 @@ public class MirrorBehaviour : MonoBehaviour
     [Header("Mirror Rotations")]
     [SerializeField] public float rotateAmount = 45.0f; // Amount to rotate object
     [SerializeField] public float rotateDuration = 2.0f; // How long the object should rotate
-
-    [Header("Interact Text")]
-    [SerializeField] public GameObject buttonText; // Text to display what button for player to push
+    public LaserBehaviour laserBehaviour;
 
     private bool _playingRotation = false; // Is the object rotating
     #endregion
@@ -20,6 +19,11 @@ public class MirrorBehaviour : MonoBehaviour
     // Rotate the mirror when the player interacts with the mirror
     public void RotateMirror()
     {
+        if (laserBehaviour.laserPuzzleCompleted)
+        {
+            return;
+        }
+        
         Quaternion newRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotateAmount, 0);
 
         if (_playingRotation == false)

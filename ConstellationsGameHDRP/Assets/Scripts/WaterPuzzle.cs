@@ -56,17 +56,5 @@ public class WaterPuzzle : MonoBehaviour
         }
     }
 
-    public void LockCursor(bool lockCursor)
-    {
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
     #endregion
 }

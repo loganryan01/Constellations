@@ -20,26 +20,6 @@ public class ChannelBehaviour : MonoBehaviour
     #endregion
     
     #region Functions
-    
-    // Start Function
-    private void Start()
-    {
-        buttonText.SetActive(false);
-    }
-
-    // Calls function when collision trigger entered
-    private void OnTriggerEnter(Collider other)
-    {
-        // Shows UI element to indicate interaction
-        buttonText.SetActive(true);
-    }
-
-    // Calls function when collision trigger exited 
-    private void OnTriggerExit(Collider other)
-    {
-        // Hides UI element to indicate interaction
-        buttonText.SetActive(false);
-    }
 
     // Update function - runs every frame
     private void Update()

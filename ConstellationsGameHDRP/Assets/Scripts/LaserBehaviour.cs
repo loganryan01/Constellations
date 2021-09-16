@@ -46,6 +46,7 @@ public class LaserBehaviour : MonoBehaviour
     #endregion
 
     #region Functions
+
     // Update function - run every frame
     void Update()
     {
@@ -121,16 +122,5 @@ public class LaserBehaviour : MonoBehaviour
         }
     } 
 
-    public void LockCursor(bool lockCursor)
-    {
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
     #endregion
 }

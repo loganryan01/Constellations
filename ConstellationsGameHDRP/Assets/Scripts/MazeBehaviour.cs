@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class MazeBehaviour : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class MazeBehaviour : MonoBehaviour
     [Header("Button Text")]
     public GameObject buttonText; // Text that displays what button to push to interact with the object
 
+    [Header("Interaction Settings")]
+    public UnityEvent onInteraction;
+
     [HideInInspector]
     public bool mazeCompleted; // Is the maze puzzle completed
 
@@ -28,11 +32,6 @@ public class MazeBehaviour : MonoBehaviour
     #endregion
 
     #region Functions
-    // Start function
-    void Start()
-    {
-
-    }
 
     // Update function - run every frame
     void Update()
@@ -84,33 +83,6 @@ public class MazeBehaviour : MonoBehaviour
         Vector2 inputVector = value.ReadValue<Vector2>();
 
         rotationDirection = gameObject.transform.forward * inputVector.y  + gameObject.transform.right * inputVector.x;
-    }
-
-    // Change from the main camera to the puzzle camera and vice versa
-    public void ChangeToMainCamera(bool enableMainCam)
-    {
-        if (!enableMainCam)
-        {
-            mainCam.enabled = false;
-            puzzleCamera.enabled = true;
-        }
-        else
-        {
-            mainCam.enabled = true;
-            puzzleCamera.enabled = false;
-        }
-    }
-
-    public void LockCursor(bool lockCursor)
-    {
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
     #endregion
 }
