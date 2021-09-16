@@ -1,5 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!182 &3355190081865491067
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205325391753633948}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &2108612978001183937
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291503226858021117}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &2760101765361925610
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488740901490967675}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &4795820533819665872
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529783293549747941}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
 --- !u!1 &5894493556941697764
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +147,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!182 &8812780509825284267
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6569502275622107539}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &3192004699290368030
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813163475150649858}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &6160232386960883772
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657341130407184827}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
+--- !u!182 &3220858147638542443
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898788503751051511}
+  m_Enabled: 1
+  m_Mode: 0
+  m_Radius: 20
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
 --- !u!1001 &447724695456802707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,6 +386,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef50a46392b664499a50056b28d498d, type: 3}
+--- !u!1 &6569502275622107539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2461150916542847214, guid: 9ef50a46392b664499a50056b28d498d, type: 3}
+  m_PrefabInstance: {fileID: 500941640803114625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8657341130407184827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -83670468077693126, guid: 9ef50a46392b664499a50056b28d498d, type: 3}
+  m_PrefabInstance: {fileID: 500941640803114625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &106127859528513898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ef50a46392b664499a50056b28d498d, type: 3}
@@ -960,6 +1082,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+--- !u!1 &3488740901490967675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6257507731046174098, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+  m_PrefabInstance: {fileID: 1820195882617124373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1205325391753633948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8504890064105482615, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+  m_PrefabInstance: {fileID: 1820195882617124373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2218053600988942846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
@@ -3306,6 +3438,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
+--- !u!1 &8898788503751051511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3449567965680905858, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
+  m_PrefabInstance: {fileID: 6098308438097618549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2291503226858021117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5434865351279756936, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
+  m_PrefabInstance: {fileID: 6098308438097618549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5992939029688877470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
@@ -3930,6 +4072,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+--- !u!1 &5529783293549747941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6257507731046174098, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+  m_PrefabInstance: {fileID: 7319863717524892811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7813163475150649858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8504890064105482615, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
+  m_PrefabInstance: {fileID: 7319863717524892811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7070607682304609120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87a7fd6406ee03146a3c12f80cfb3eaf, type: 3}
@@ -4960,7 +5112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.32561684
+      value: -0.8527957
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4968,7 +5120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94550186
+      value: 0.5222446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4980,7 +5132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 141.994
+      value: 297.034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1a1211a0a837614f87ae80e1385e5c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

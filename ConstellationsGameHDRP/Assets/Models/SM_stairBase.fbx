@@ -7,12 +7,12 @@ FBXHeaderExtension:  {
 	CreationTimeStamp:  {
 		Version: 1000
 		Year: 2021
-		Month: 8
-		Day: 19
-		Hour: 15
-		Minute: 22
-		Second: 39
-		Millisecond: 198
+		Month: 9
+		Day: 16
+		Hour: 14
+		Minute: 10
+		Second: 2
+		Millisecond: 848
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.1.1"
 	OtherFlags:  {
@@ -37,13 +37,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "202004"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "19/08/2021 05:22:39.195"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "16/09/2021 04:10:02.845"
 			P: "Original|FileName", "KString", "", "", "C:\Users\Admin\Desktop\ConstellationsGame\WIP\SM_stairBase.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "202004"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "19/08/2021 05:22:39.195"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "16/09/2021 04:10:02.845"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\Admin\Desktop\ConstellationsGame\WIP"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\Admin\Desktop\ConstellationsGame\WIP\mayaFiles\exteriorArchitecture.ma"
 		}
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2336373282016, "", "Scene" {
+	Document: 2015956580832, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -100,7 +100,7 @@ References:  {
 
 Definitions:  {
 	Version: 100
-	Count: 4
+	Count: 14
 	ObjectType: "GlobalSettings" {
 		Count: 1
 	}
@@ -118,7 +118,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "Material" {
-		Count: 1
+		Count: 3
 		PropertyTemplate: "FbxSurfaceLambert" {
 			Properties70:  {
 				P: "ShadingModel", "KString", "", "", "Lambert"
@@ -138,6 +138,29 @@ Definitions:  {
 				P: "DisplacementFactor", "double", "Number", "",1
 				P: "VectorDisplacementColor", "ColorRGB", "Color", "",0,0,0
 				P: "VectorDisplacementFactor", "double", "Number", "",1
+			}
+		}
+	}
+	ObjectType: "Texture" {
+		Count: 4
+		PropertyTemplate: "FbxFileTexture" {
+			Properties70:  {
+				P: "TextureTypeUse", "enum", "", "",0
+				P: "Texture alpha", "Number", "", "A",1
+				P: "CurrentMappingType", "enum", "", "",0
+				P: "WrapModeU", "enum", "", "",0
+				P: "WrapModeV", "enum", "", "",0
+				P: "UVSwap", "bool", "", "",0
+				P: "PremultiplyAlpha", "bool", "", "",1
+				P: "Translation", "Vector", "", "A",0,0,0
+				P: "Rotation", "Vector", "", "A",0,0,0
+				P: "Scaling", "Vector", "", "A",1,1,1
+				P: "TextureRotationPivot", "Vector3D", "Vector", "",0,0,0
+				P: "TextureScalingPivot", "Vector3D", "Vector", "",0,0,0
+				P: "CurrentTextureBlendMode", "enum", "", "",1
+				P: "UVSet", "KString", "", "", "default"
+				P: "UseMaterial", "bool", "", "",0
+				P: "UseMipMap", "bool", "", "",0
 			}
 		}
 	}
@@ -219,15 +242,42 @@ Definitions:  {
 			}
 		}
 	}
+	ObjectType: "Video" {
+		Count: 4
+		PropertyTemplate: "FbxVideo" {
+			Properties70:  {
+				P: "Path", "KString", "XRefUrl", "", ""
+				P: "RelPath", "KString", "XRefUrl", "", ""
+				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+				P: "ClipIn", "KTime", "Time", "",0
+				P: "ClipOut", "KTime", "Time", "",0
+				P: "Offset", "KTime", "Time", "",0
+				P: "PlaySpeed", "double", "Number", "",0
+				P: "FreeRunning", "bool", "", "",0
+				P: "Loop", "bool", "", "",0
+				P: "Mute", "bool", "", "",0
+				P: "AccessMode", "enum", "", "",0
+				P: "ImageSequence", "bool", "", "",0
+				P: "ImageSequenceOffset", "int", "Integer", "",0
+				P: "FrameRate", "double", "Number", "",0
+				P: "LastFrame", "int", "Integer", "",0
+				P: "Width", "int", "Integer", "",0
+				P: "Height", "int", "Integer", "",0
+				P: "StartFrame", "int", "Integer", "",0
+				P: "StopFrame", "int", "Integer", "",0
+				P: "InterlaceMode", "enum", "", "",0
+			}
+		}
+	}
 }
 
 ; Object properties
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2336168360400, "Geometry::", "Mesh" {
+	Geometry: 2015954654944, "Geometry::", "Mesh" {
 		Vertices: *24 {
-			a: 0,0,0,-850.630859375,0,0,0,763.394775390625,0,-850.630859375,763.394775390625,0,-850.630859375,0,-1000.00012207031,-850.630859375,763.394775390625,-1000.00012207031,0,0,-1000.00012207031,0,763.394775390625,-1000.00012207031
+			a: 0,0,0,-850.630859375,0,0,0,763.394775390625,0,-850.630859375,763.394775390625,0,-850.630859375,0,-1000.00012207031,-850.630859375,763.394775390625,-1000.00012207031,4.06575814682064e-20,0,-1000.00012207031,4.06575814682064e-20,763.394775390625,-1000.00012207031
 		} 
 		PolygonVertexIndex: *36 {
 			a: 0,2,-2,1,2,-4,1,3,-5,4,3,-6,4,5,-7,6,5,-8,6,7,-1,0,7,-3,2,7,-4,3,7,-6,6,0,-5,4,0,-2
@@ -253,20 +303,20 @@ Objects:  {
 			Name: "UVSet0"
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
-			UV: *16 {
-				a: 1,-5.7159923017025e-08,1,0.999999940395355,2.98023223876953e-08,1,4.4703483581543e-08,0,1,6.20493665337563e-08,1,1.00000011920929,5.96046447753906e-08,1,0,0
+			UV: *32 {
+				a: 0.999482393264771,0.00048828125,0.99951171875,0.763115108013153,0.000517487525939941,0.763153433799744,0.00048828125,0.000526666641235352,0.999482452869415,0.00048828125,0.99951171875,0.763115167617798,0.000517591834068298,0.763153553009033,0.00048828125,0.000526688992977142,0.968072652816772,-0.112942822277546,0.968072652816772,1.00039398670197,0.0210338830947876,1.00039422512054,0.0210340023040771,-0.112942822277546,0.968072295188904,-0.962858200073242,0.0210335254669189,-0.962858080863953,0.0210341215133667,1.85030972957611,0.968072772026062,1.85030949115753
 			} 
 			UVIndex: *36 {
-				a: -1,-1,-1,-1,-1,-1,0,1,3,3,1,2,-1,-1,-1,-1,-1,-1,4,5,7,7,5,6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+				a: 12,8,13,13,8,11,0,1,3,3,1,2,14,10,15,15,10,9,4,5,7,7,5,6,8,9,11,11,9,10,-1,-1,-1,-1,-1,-1
 			} 
 		}
 		LayerElementMaterial: 0 {
 			Version: 101
 			Name: ""
-			MappingInformationType: "AllSame"
+			MappingInformationType: "ByPolygon"
 			ReferenceInformationType: "IndexToDirect"
-			Materials: *1 {
-				a: 0
+			Materials: *12 {
+				a: 0,0,1,1,0,0,1,1,0,0,2,2
 			} 
 		}
 		Layer: 0 {
@@ -285,9 +335,12 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2334330938384, "Model::SM_stairBase", "Mesh" {
+	Model: 2015427298048, "Model::SM_stairBase", "Mesh" {
 		Version: 232
 		Properties70:  {
+			P: "RotationPivot", "Vector3D", "Vector", "",1.35525271560688e-22,0,-10.0000012207031
+			P: "ScalingOffset", "Vector3D", "Vector", "",-1.34170018845081e-20,0,990.000120849609
+			P: "ScalingPivot", "Vector3D", "Vector", "",1.35525271560688e-20,0,-1000.00012207031
 			P: "RotationOrder", "enum", "", "",4
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
@@ -299,7 +352,37 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 2336382072192, "Material::lambert1", "" {
+	Material: 2016132694640, "Material::stairs", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties70:  {
+			P: "AmbientColor", "Color", "", "A",0,0,0
+			P: "DiffuseColor", "Color", "", "A",1,1,1
+			P: "DiffuseFactor", "Number", "", "A",0.800000011920929
+			P: "TransparencyFactor", "Number", "", "A",1
+			P: "Emissive", "Vector3D", "Vector", "",0,0,0
+			P: "Ambient", "Vector3D", "Vector", "",0,0,0
+			P: "Diffuse", "Vector3D", "Vector", "",0.800000011920929,0.800000011920929,0.800000011920929
+			P: "Opacity", "double", "Number", "",1
+		}
+	}
+	Material: 2016132696640, "Material::bricks", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties70:  {
+			P: "AmbientColor", "Color", "", "A",0,0,0
+			P: "DiffuseColor", "Color", "", "A",1,1,1
+			P: "DiffuseFactor", "Number", "", "A",0.800000011920929
+			P: "TransparencyFactor", "Number", "", "A",1
+			P: "Emissive", "Vector3D", "Vector", "",0,0,0
+			P: "Ambient", "Vector3D", "Vector", "",0,0,0
+			P: "Diffuse", "Vector3D", "Vector", "",0.800000011920929,0.800000011920929,0.800000011920929
+			P: "Opacity", "double", "Number", "",1
+		}
+	}
+	Material: 2016132705840, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -314,6 +397,114 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
+	Video: 2016131341568, "Video::file3", "Clip" {
+		Type: "Clip"
+		Properties70:  {
+			P: "Path", "KString", "XRefUrl", "", "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_basecolor.tga"
+			P: "RelPath", "KString", "XRefUrl", "", "textureFiles\T_Stairs_basecolor.tga"
+		}
+		UseMipMap: 0
+		Filename: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_basecolor.tga"
+		RelativeFilename: "textureFiles\T_Stairs_basecolor.tga"
+	}
+	Video: 2016131338688, "Video::file2", "Clip" {
+		Type: "Clip"
+		Properties70:  {
+			P: "Path", "KString", "XRefUrl", "", "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_basecolor.tga"
+			P: "RelPath", "KString", "XRefUrl", "", "textureFiles\T_Bricks_basecolor.tga"
+		}
+		UseMipMap: 0
+		Filename: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_basecolor.tga"
+		RelativeFilename: "textureFiles\T_Bricks_basecolor.tga"
+	}
+	Video: 2016131337728, "Video::file5", "Clip" {
+		Type: "Clip"
+		Properties70:  {
+			P: "Path", "KString", "XRefUrl", "", "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_normal.tga"
+			P: "RelPath", "KString", "XRefUrl", "", "textureFiles\T_Stairs_normal.tga"
+		}
+		UseMipMap: 0
+		Filename: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_normal.tga"
+		RelativeFilename: "textureFiles\T_Stairs_normal.tga"
+	}
+	Video: 2016131343008, "Video::file6", "Clip" {
+		Type: "Clip"
+		Properties70:  {
+			P: "Path", "KString", "XRefUrl", "", "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_normal.tga"
+			P: "RelPath", "KString", "XRefUrl", "", "textureFiles\T_Bricks_normal.tga"
+		}
+		UseMipMap: 0
+		Filename: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_normal.tga"
+		RelativeFilename: "textureFiles\T_Bricks_normal.tga"
+	}
+	Texture: 2016131322368, "Texture::file3", "" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::file3"
+		Properties70:  {
+			P: "CurrentTextureBlendMode", "enum", "", "",0
+			P: "UVSet", "KString", "", "", "UVSet0"
+			P: "UseMaterial", "bool", "", "",1
+		}
+		Media: "Video::file3"
+		FileName: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_basecolor.tga"
+		RelativeFilename: "textureFiles\T_Stairs_basecolor.tga"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
+	}
+	Texture: 2016131330528, "Texture::file2", "" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::file2"
+		Properties70:  {
+			P: "CurrentTextureBlendMode", "enum", "", "",0
+			P: "UVSet", "KString", "", "", "UVSet0"
+			P: "UseMaterial", "bool", "", "",1
+		}
+		Media: "Video::file2"
+		FileName: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_basecolor.tga"
+		RelativeFilename: "textureFiles\T_Bricks_basecolor.tga"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
+	}
+	Texture: 2016131348768, "Texture::file5", "" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::file5"
+		Properties70:  {
+			P: "CurrentTextureBlendMode", "enum", "", "",0
+			P: "UVSet", "KString", "", "", "UVSet0"
+			P: "UseMaterial", "bool", "", "",1
+		}
+		Media: "Video::file5"
+		FileName: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Stairs_normal.tga"
+		RelativeFilename: "textureFiles\T_Stairs_normal.tga"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
+	}
+	Texture: 2016131343968, "Texture::file6", "" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::file6"
+		Properties70:  {
+			P: "CurrentTextureBlendMode", "enum", "", "",0
+			P: "UVSet", "KString", "", "", "UVSet0"
+			P: "UseMaterial", "bool", "", "",1
+		}
+		Media: "Video::file6"
+		FileName: "C:/Users/Admin/Desktop/ConstellationsGame/WIP/textureFiles/T_Bricks_normal.tga"
+		RelativeFilename: "textureFiles\T_Bricks_normal.tga"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
+	}
 }
 
 ; Object connections
@@ -322,11 +513,41 @@ Objects:  {
 Connections:  {
 	
 	;Model::SM_stairBase, Model::RootNode
-	C: "OO",2334330938384,0
+	C: "OO",2015427298048,0
+	
+	;Texture::file3, Material::stairs
+	C: "OP",2016131322368,2016132694640, "DiffuseColor"
+	
+	;Texture::file5, Material::stairs
+	C: "OP",2016131348768,2016132694640, "Bump"
+	
+	;Texture::file2, Material::bricks
+	C: "OP",2016131330528,2016132696640, "DiffuseColor"
+	
+	;Texture::file6, Material::bricks
+	C: "OP",2016131343968,2016132696640, "Bump"
+	
+	;Video::file3, Texture::file3
+	C: "OO",2016131341568,2016131322368
+	
+	;Video::file2, Texture::file2
+	C: "OO",2016131338688,2016131330528
+	
+	;Video::file5, Texture::file5
+	C: "OO",2016131337728,2016131348768
+	
+	;Video::file6, Texture::file6
+	C: "OO",2016131343008,2016131343968
 	
 	;Geometry::, Model::SM_stairBase
-	C: "OO",2336168360400,2334330938384
+	C: "OO",2015954654944,2015427298048
+	
+	;Material::stairs, Model::SM_stairBase
+	C: "OO",2016132694640,2015427298048
+	
+	;Material::bricks, Model::SM_stairBase
+	C: "OO",2016132696640,2015427298048
 	
 	;Material::lambert1, Model::SM_stairBase
-	C: "OO",2336382072192,2334330938384
+	C: "OO",2016132705840,2015427298048
 }
