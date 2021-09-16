@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 7f1fabbc46f9e1e42b5ce57188350b13, type: 2}
+      name: bricks
+    second: {fileID: 2100000, guid: 5f810f05dd126874a99c5ca4d63a49ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trimSheet
+    second: {fileID: 2100000, guid: 6beaa69e68b72234db575183e12f8bc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: bricks
+    second: {fileID: 2100000, guid: 5f810f05dd126874a99c5ca4d63a49ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
     second: {fileID: 2100000, guid: 03a0e8596f1727b4194c4697a0116d9a, type: 2}
   - first:
@@ -19,6 +24,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert3
     second: {fileID: 2100000, guid: 3c41ea05f5cca3b439b5b196eed5b711, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: marble
+    second: {fileID: 2100000, guid: 34fb4d45a3a1800498a51e786569eff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stairs
+    second: {fileID: 2100000, guid: a161ab09568495c4390f7112183ced6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trimSheet
+    second: {fileID: 2100000, guid: 6beaa69e68b72234db575183e12f8bc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
