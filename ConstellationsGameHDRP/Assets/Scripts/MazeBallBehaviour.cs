@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MazeBallBehaviour : MonoBehaviour
 {
     #region Fields
     [HideInInspector]
     public bool touchedEnd; // Has the ball reached the end
+
+    public UnityEvent onComplete;
     #endregion
 
     #region Functions
@@ -17,6 +20,7 @@ public class MazeBallBehaviour : MonoBehaviour
         {
             // Set bool to true
             touchedEnd = true;
+            onComplete.Invoke();
         }
     }
     #endregion

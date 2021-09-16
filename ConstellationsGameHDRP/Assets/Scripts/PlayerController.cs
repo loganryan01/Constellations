@@ -116,20 +116,12 @@ public class PlayerController : MonoBehaviour
         else if (Camera.main != null && mazeBehaviour != null && mazeBehaviour.mazeCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
-            playerInputComponent.SwitchCurrentActionMap("PlayerController");
-            Cursor.lockState = CursorLockMode.Locked;
             mazeBehaviour = null;
         }
         else if (Camera.main != null && scaleBehaviour != null && scaleBehaviour.scalePuzzleCompleted && playerInputComponent.currentActionMap != playerInputComponent.actions.FindActionMap("PlayerController") &&
             dialogueManager.dialogueEnded)
         {
             scaleBehaviour = null;
-        }
-
-        // Enable Mouse controls while dialogue is active
-        if (mazeBehaviour != null && mazeBehaviour.mazeCompleted && !dialogueManager.dialogueEnded)
-        {
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -225,7 +217,7 @@ public class PlayerController : MonoBehaviour
                 
                 // Interact with maze
                 playerInputComponent.SwitchCurrentActionMap("MazePuzzle");
-                hitObject.GetComponent<MazeBehaviour>().ChangeToMainCamera(false);
+                mazeBehaviour.ChangeToMainCamera(false);
             }
             else if (hitObject.GetComponent<ChannelBehaviour>())
             {
@@ -247,7 +239,8 @@ public class PlayerController : MonoBehaviour
             GameObject hitObject = hit.transform.gameObject;
 
             if (hitObject.GetComponent<ScaleBehaviour>() || 
-                hitObject.GetComponent<MirrorBehaviour>())
+                hitObject.GetComponent<MirrorBehaviour>() ||
+                hitObject.GetComponent<MazeBehaviour>())
             {
                 buttonText.SetActive(true);
             }

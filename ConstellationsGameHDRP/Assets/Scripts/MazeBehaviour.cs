@@ -12,7 +12,7 @@ public class MazeBehaviour : MonoBehaviour
 
     [Header("Cameras")]
     public Camera mainCam; // The main camera of the player
-    public Camera mazeCamera; // The camera for the puzzles
+    public Camera puzzleCamera; // The camera for the puzzles
 
     [Header("Ball controls")]
     public Rigidbody ballRigidbody; // The rigidbody of the ball used for the maze
@@ -25,14 +25,13 @@ public class MazeBehaviour : MonoBehaviour
     public bool mazeCompleted; // Is the maze puzzle completed
 
     private Vector3 rotationDirection; // Direction of rotation
-    private DialogueTrigger dialogueTrigger; // Dialogue for Taurus
     #endregion
 
     #region Functions
     // Start function
     void Start()
     {
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+
     }
 
     // Update function - run every frame
@@ -76,7 +75,6 @@ public class MazeBehaviour : MonoBehaviour
         if (mazeBallBehaviour.touchedEnd && !mazeCompleted)
         {
             mazeCompleted = true;
-            dialogueTrigger.TriggerDialogue();
         }
     }
 
@@ -94,32 +92,24 @@ public class MazeBehaviour : MonoBehaviour
         if (!enableMainCam)
         {
             mainCam.enabled = false;
-            mazeCamera.enabled = true;
+            puzzleCamera.enabled = true;
         }
         else
         {
             mainCam.enabled = true;
-            mazeCamera.enabled = false;
+            puzzleCamera.enabled = false;
         }
     }
 
-    // When the Collider other enters the trigger,
-    private void OnTriggerEnter(Collider other)
+    public void LockCursor(bool lockCursor)
     {
-        // Display text when player is in range
-        if (other.CompareTag("Player"))
+        if (lockCursor)
         {
-            buttonText.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
         }
-    }
-
-    // When the Collider other has stopped touching the trigger
-    private void OnTriggerExit(Collider other)
-    {
-        // Hide text when player is out of range
-        if (other.CompareTag("Player"))
+        else
         {
-            buttonText.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     #endregion

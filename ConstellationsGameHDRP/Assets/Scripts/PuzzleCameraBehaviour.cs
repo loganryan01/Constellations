@@ -39,36 +39,24 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         }
         
         // If the player is solving the scale puzzle
-        if (playerController.scaleBehaviour != null)
-        {
-            // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
-            if (cameraInPlayerPosition && !playerController.scaleBehaviour.scalePuzzleCompleted)
-            {
-                MoveToPuzzlePosition(scalePuzzleTransform.position, scalePuzzleTransform.rotation);
-            }
-        }
-
-        // If the player is solving the maze puzzle
-        //if (playerController.mazeBehaviour != null)
+        //if (playerController.scaleBehaviour != null)
         //{
-        //    // When player interacts with maze puzzle, move the camera from player's position to maze puzzle camera position
-        //    if (Camera.main == null && cameraInPlayerPosition && !playerController.mazeBehaviour.mazeCompleted)
+        //    // When player interacts with scale puzzle, move the camera from player's position to maze puzzle camera position
+        //    if (cameraInPlayerPosition && !playerController.scaleBehaviour.scalePuzzleCompleted)
         //    {
-        //        StartCoroutine(LerpPosition(mazePuzzleTransform.position, 5, 0));
-        //        StartCoroutine(LerpRotation(mazePuzzleTransform.rotation, 5, 0));
-        //    }
-        //    else if (Camera.main == null && cameraInPuzzlePosition && playerController.mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
-        //    {
-        //        StartCoroutine(LerpPosition(originalTransform.position, 5, 1));
-        //        StartCoroutine(LerpRotation(originalTransform.rotation, 5, 1));
-        //    }
-
-        //    // If the player has solved the maze puzzle, and the dialogue has finished
-        //    if (cameraInPlayerPosition && playerController.mazeBehaviour.mazeCompleted && dialogueManager.dialogueEnded)
-        //    {
-        //        playerController.mazeBehaviour.ChangeToMainCamera(true);
+        //        MoveToPuzzlePosition(scalePuzzleTransform.position, scalePuzzleTransform.rotation);
         //    }
         //}
+
+        // If the player is solving the maze puzzle
+        if (playerController.mazeBehaviour != null)
+        {
+            // When player interacts with maze puzzle, move the camera from player's position to maze puzzle camera position
+            if (cameraInPlayerPosition && !playerController.mazeBehaviour.mazeCompleted)
+            {
+                MoveToPuzzlePosition(mazePuzzleTransform.position, mazePuzzleTransform.rotation);
+            }
+        }
     }
 
     public void MoveToPuzzlePosition(Vector3 position, Quaternion rotation)
