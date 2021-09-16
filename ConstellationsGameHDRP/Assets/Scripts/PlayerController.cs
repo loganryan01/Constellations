@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 rawInputLook;
     private float xRotation = 0.0f;
-    private float originalLookSensitivity;
 
     [Header("Interactions")]
     [SerializeField]
@@ -73,7 +72,6 @@ public class PlayerController : MonoBehaviour
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         playerInputComponent = GetComponent<PlayerInput>();
-        originalLookSensitivity = lookSensitivity;
     }
 
     private void Awake()
@@ -240,7 +238,8 @@ public class PlayerController : MonoBehaviour
 
             if (hitObject.GetComponent<ScaleBehaviour>() || 
                 hitObject.GetComponent<MirrorBehaviour>() ||
-                hitObject.GetComponent<MazeBehaviour>())
+                hitObject.GetComponent<MazeBehaviour>() ||
+                hitObject.GetComponent<ChannelBehaviour>())
             {
                 buttonText.SetActive(true);
             }

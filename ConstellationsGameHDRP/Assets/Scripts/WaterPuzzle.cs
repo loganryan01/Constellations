@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaterPuzzle : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class WaterPuzzle : MonoBehaviour
     
     [Header("Dialogue")]
     [SerializeField] private DialogueTrigger dialogueTrigger;
+    public UnityEvent onComplete;
 
     private List<ChannelHolder> _channelSections = new List<ChannelHolder>();
     private bool _hasWon = false;
@@ -50,9 +52,21 @@ public class WaterPuzzle : MonoBehaviour
         if (sectionsFinished == _channelSections.Count)
         {
             _hasWon = true;
-            dialogueTrigger.TriggerDialogue();
+            onComplete.Invoke();
         }
     }
-    
+
+    public void LockCursor(bool lockCursor)
+    {
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     #endregion
 }
