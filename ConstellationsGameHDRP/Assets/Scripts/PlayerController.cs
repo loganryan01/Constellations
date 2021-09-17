@@ -45,12 +45,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float interactDist = 4.0f;
 
+    private bool interactTriggered = false;
+    private bool enableOutline = true;
+
     private GameObject lastSeenObject;
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
-
-    private bool interactTriggered = false;
 
     private void Start()
     {
@@ -88,12 +89,47 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         PlayerLook();
         PlayerInteract();
-        CanThePlayerInteract();
+
+        if (enableOutline)
+        {
+            CanThePlayerInteract();
+        }
     }
 
     public void ChangeLookSensitivity(float newLookSensitivity)
     {
         lookSensitivity = newLookSensitivity;
+    }
+
+    public void DisableOutlines(int layer)
+    {
+        if (lastSeenObject.layer != layer)
+        {
+            for (int i = 0; i < lastSeenObject.transform.childCount; i++)
+            {
+                lastSeenObject.transform.GetChild(i).gameObject.layer = layer;
+            }
+
+            lastSeenObject.transform.gameObject.layer = layer;
+        }
+    }
+
+    public void DisableOutlines(int layer, Transform gameObjectTransform)
+    {
+        if (gameObjectTransform.gameObject.layer != layer)
+        {
+            for (int i = 0; i < gameObjectTransform.childCount; i++)
+            {
+                gameObjectTransform.GetChild(i).gameObject.layer = layer;
+            }
+
+            gameObjectTransform.gameObject.layer = layer;
+        }
+    }
+
+    public void EnableOutlines()
+    {
+        enableOutline = !enableOutline;
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -207,13 +243,12 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
-            lastSeenObject = hitObject;
 
-            if (hitObject.GetComponent<ScaleBehaviour>() || 
-                hitObject.GetComponent<MirrorBehaviour>() ||
-                hitObject.GetComponent<MazeBehaviour>() ||
-                hitObject.GetComponent<ChannelBehaviour>())
+            if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted || 
+                hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
             {
+                lastSeenObject = hitObject;
+
                 buttonText.SetActive(true);
 
                 if (hitObject.layer != 1)
@@ -226,6 +261,42 @@ public class PlayerController : MonoBehaviour
                     hitObject.layer = 1;
                 }
             }
+            else if (hitObject.GetComponent<MazeBehaviour>() && !hitObject.GetComponent<MazeBehaviour>().mazeCompleted)
+            {
+                buttonText.SetActive(true);
+
+                Transform mazeChild = hitObject.transform.GetChild(0);
+
+                lastSeenObject = mazeChild.gameObject;
+
+                if (hitObject.layer != 1)
+                {
+                    for (int i = 0; i < mazeChild.childCount; i++)
+                    {
+                        mazeChild.GetChild(i).gameObject.layer = 1;
+                    }
+
+                    mazeChild.gameObject.layer = 1;
+                }
+            }
+            else if (hitObject.GetComponent<MirrorBehaviour>() && !hitObject.GetComponent<MirrorBehaviour>().laserBehaviour.laserPuzzleCompleted)
+            {
+                buttonText.SetActive(true);
+
+                if (lastSeenObject != hitObject)
+                {
+                    lastSeenObject = hitObject;
+
+                    // Change layer of children to 1
+                    for (int i = 0; i < hitObject.transform.childCount; i++)
+                    {
+                        if (hitObject.transform.GetChild(i).gameObject.layer != 1)
+                        {
+                            hitObject.transform.GetChild(i).gameObject.layer = 1;
+                        }
+                    }
+                }
+            }
         }
         else
         {
@@ -233,17 +304,17 @@ public class PlayerController : MonoBehaviour
 
             if (lastSeenObject != null)
             {
-                if (lastSeenObject.layer != 0)
+                // Change layer of mirror children to 0
+                if (lastSeenObject.GetComponent<MirrorBehaviour>())
                 {
-                    for (int i = 0; i < lastSeenObject.transform.childCount; i++)
-                    {
-                        lastSeenObject.transform.GetChild(i).gameObject.layer = 0;
-                    }
-
-                    lastSeenObject.layer = 0;
+                    DisableOutlines(0, lastSeenObject.transform.GetChild(0));
+                    DisableOutlines(0, lastSeenObject.transform.GetChild(1));
+                }
+                else
+                {
+                    DisableOutlines(0);
                 }
             }
-            
         }
     }
 }
