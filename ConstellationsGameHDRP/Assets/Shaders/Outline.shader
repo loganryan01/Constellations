@@ -5,7 +5,7 @@ Shader "Hidden/Outline"
 #pragma vertex Vert
 
 #pragma target 4.5
-#pragma only_renderers d3d11 ps4 xboxone vulkan metal switch
+#pragma only_renderers d3d11 playstation xboxone vulkan metal switch
 
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassCommon.hlsl"
 
@@ -50,25 +50,25 @@ Shader "Hidden/Outline"
         float4 outline = SAMPLE_TEXTURE2D_X_LOD(_OutlineBuffer, s_linear_clamp_sampler, uv, 0);
         outline.a = 0;
 
-        if (Luminance(outline.rgb) < luminanceThreshold)
-        {
-            float3 o = float3(_ScreenSize.zw, 0);
+        // If this sample is below the threshold
+          if (Luminance(outline.rgb) < luminanceThreshold)
+          {
+              // Search neighbors
+              for (int i = 0; i < MAXSAMPLES; i++)
+              {
+                  float2 uvN = uv + _ScreenSize.zw * _RTHandleScale.xy * samplingPositions[i];
+                  float4 neighbour = SAMPLE_TEXTURE2D_X_LOD(_OutlineBuffer, s_linear_clamp_sampler, uvN, 0);
 
-            for (int i = 0; i < MAXSAMPLES; i++)
-            {
-                float2 uvN = uv + _ScreenSize.zw * samplingPositions[i];
-                float4 neighbour = SAMPLE_TEXTURE2D_X_LOD(_OutlineBuffer, s_linear_clamp_sampler, uvN, 0);
+                  if (Luminance(neighbour) > luminanceThreshold)
+                  {
+                      outline.rgb = _OutlineColor.rgb;
+                      outline.a = 1;
+                      break;
+                  }
+              }
+          }
 
-                if (Luminance(neighbour) > luminanceThreshold)
-                {
-                    outline.rgb = _OutlineColor.rgb;
-                    outline.a = 1;
-                    break;
-                }
-            }
-        }
-
-        return outline;
+          return outline;
     }
 
         ENDHLSL
