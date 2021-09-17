@@ -3,7 +3,27 @@ guid: 5e159201d0790e84c990f977fd97d021
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bricks
+    second: {fileID: 2100000, guid: 5f810f05dd126874a99c5ca4d63a49ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: marble
+    second: {fileID: 2100000, guid: 34fb4d45a3a1800498a51e786569eff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stairs
+    second: {fileID: 2100000, guid: a161ab09568495c4390f7112183ced6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trimSheet
+    second: {fileID: 2100000, guid: 6beaa69e68b72234db575183e12f8bc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
