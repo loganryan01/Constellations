@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_AllowMSAA
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3950982640610550004, guid: 7f594eeac2c618241896af8203ca8e8d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3950982640837493409, guid: 7f594eeac2c618241896af8203ca8e8d, type: 3}
       propertyPath: m_Name
       value: Player Rig
