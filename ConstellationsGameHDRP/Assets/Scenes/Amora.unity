@@ -420,7 +420,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.009
+  weight: 0.201
   sharedProfile: {fileID: 11400000, guid: 617403f4275530249aad32d92b5599b5, type: 2}
 --- !u!4 &565010261
 Transform:
@@ -465,8 +465,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 161.1608
+  m_Color: {r: 0.740566, g: 0.870283, b: 1, a: 1}
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -523,13 +523,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594661824}
-  m_LocalRotation: {x: 0.47590527, y: 0.04248637, z: 0.23876722, w: 0.8453989}
+  m_LocalRotation: {x: 0.5060336, y: -0.16228124, z: -0.42775354, w: 0.7311784}
   m_LocalPosition: {x: -4.97, y: 5.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 51.663, y: 388.828, z: -2834.273}
+  m_LocalEulerAnglesHint: {x: 36.954, y: 302.996, z: -2961.225}
 --- !u!114 &594661827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 161.1608
+  m_Intensity: 4
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
