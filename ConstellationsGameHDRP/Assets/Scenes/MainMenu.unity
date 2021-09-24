@@ -1230,6 +1230,7 @@ MonoBehaviour:
   optionsCanvas: {fileID: 1807357999}
   mainMenuCanvas: {fileID: 1836993250}
   masterMixer: {fileID: 24100000, guid: 251c6a9e5bd3ef14492643f720f8198a, type: 2}
+  screenResolutionDropdown: {fileID: 706271240}
 --- !u!4 &526173392
 Transform:
   m_ObjectHideFlags: 0

@@ -9,11 +9,14 @@ public class MainMenuController : MonoBehaviour
 {
     #region Fields
     [Header("UI Screens")]
-    public GameObject optionsCanvas;
-    public GameObject mainMenuCanvas;
+    public GameObject optionsCanvas; // Screen that displays the options for the game
+    public GameObject mainMenuCanvas; // Screen that displays the start, options and quit button
     
     [Header("Audio controls")]
-    public AudioMixer masterMixer;
+    public AudioMixer masterMixer; // Mixer that controls the audio for the game
+
+    [Header("Screen Resolution Dropdown")]
+    public Dropdown screenResolutionDropdown; // Dropdown that displays the screen resolutions for the game
     #endregion
 
     #region Functions
@@ -27,18 +30,22 @@ public class MainMenuController : MonoBehaviour
         if (Screen.width >= 1280 && Screen.width < 1920)
         {
             Screen.SetResolution(1280, 720, true);
+            screenResolutionDropdown.value = 4;
         }
         else if (Screen.width >= 1920 && Screen.width < 2560)
         {
             Screen.SetResolution(1920, 1080, true);
+            screenResolutionDropdown.value = 5;
         }
         else if (Screen.width >= 2560 && Screen.width < 3840)
         {
             Screen.SetResolution(2560, 1440, true);
+            screenResolutionDropdown.value = 6;
         }
         else if (Screen.width >= 3840)
         {
             Screen.SetResolution(3840, 2160, true);
+            screenResolutionDropdown.value = 7;
         }
     }
 
@@ -68,9 +75,9 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Change the quality of the game
-    public void ChangeQuality(Dropdown dropdown)
+    public void ChangeQuality()
     {
-        switch (dropdown.value)
+        switch (screenResolutionDropdown.value)
         {
             case 0:
                 QualitySettings.SetQualityLevel(0);
