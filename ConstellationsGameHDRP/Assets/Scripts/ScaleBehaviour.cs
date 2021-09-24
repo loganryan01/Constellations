@@ -120,6 +120,11 @@ public class ScaleBehaviour : MonoBehaviour
             // Set the position of the rock to be the mouse position
             rockGameObject.transform.position = rockPosition;
         }
+
+        if (gameObject.layer == 0)
+        {
+            Debug.Log("Still on default");
+        }
     }
 
     public void UpdateScale()
@@ -164,6 +169,13 @@ public class ScaleBehaviour : MonoBehaviour
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
     }
 
+    // Change layer of the game object
+    public void ChangeLayer(int layer)
+    {
+        gameObject.layer = layer;
+    }
+
+    // Rotate the scale position
     private void ChangeScale(Vector3 leftHandPosition, Vector3 rightHandPosition, Vector3 fulcrumRotation)
     {
         // Move the left hand to the desired position
