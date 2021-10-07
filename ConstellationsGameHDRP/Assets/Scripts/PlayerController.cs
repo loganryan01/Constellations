@@ -126,6 +126,10 @@ public class PlayerController : MonoBehaviour
             // If it does, change the layer to disable the outlines
             for (int i = 0; i < lastSeenObject.transform.childCount; i++)
             {
+                if (lastSeenObject.transform.childCount > 0)
+                {
+                    DisableOutlines(layer, lastSeenObject.transform.GetChild(i));
+                }
                 lastSeenObject.transform.GetChild(i).gameObject.layer = layer;
             }
 
@@ -334,13 +338,15 @@ public class PlayerController : MonoBehaviour
                     lastSeenObject = hitObject;
 
                     // Draw outline for the object's children
-                    for (int i = 0; i < hitObject.transform.childCount; i++)
-                    {
-                        if (hitObject.transform.GetChild(i).gameObject.layer != 1)
-                        {
-                            hitObject.transform.GetChild(i).gameObject.layer = 1;
-                        }
-                    }
+                    //for (int i = 0; i < hitObject.transform.childCount; i++)
+                    //{
+                    //    if (hitObject.transform.GetChild(i).gameObject.layer != 1)
+                    //    {
+                    //        hitObject.transform.GetChild(i).gameObject.layer = 1;
+                    //    }
+                    //}
+
+                    DisableOutlines(1);
                 }
             }
             else if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted)
@@ -351,8 +357,7 @@ public class PlayerController : MonoBehaviour
                 buttonText.SetActive(true);
 
                 // Draw outline for the object's children
-                DisableOutlines(1, hitObject.transform.GetChild(6));
-                DisableOutlines(1, hitObject.transform);
+                DisableOutlines(1);
             }
         }
         else
