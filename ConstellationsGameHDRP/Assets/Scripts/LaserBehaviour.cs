@@ -1,3 +1,11 @@
+/*----------------------------------------------------
+    Name: LaserBehaviour
+    Purpose: Enables the laser to reflect off objects.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+------------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+----------------------------------------------------*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

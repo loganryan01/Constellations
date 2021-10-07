@@ -1,6 +1,13 @@
+/*------------------------------------------------
+    Name: ChannelBehaviour
+    Purpose: Control the rotation of the channels.
+    Authour: Mara Dusevic
+    Modified: 7 October 2021
+--------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+------------------------------------------------*/
 using System.Collections;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 
 public class ChannelBehaviour : MonoBehaviour
 {

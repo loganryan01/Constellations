@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*----------------------------------------
+    Name: MainMenuController
+    Purpose: Controls the main menu scene.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+------------------------------------------
+    Copyright 2021 Bookshelf Studios
+----------------------------------------*/
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;

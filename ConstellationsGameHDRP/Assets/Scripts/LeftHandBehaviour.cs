@@ -1,5 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*-------------------------------------------------------------------
+    Name: LeftHandBehaviour
+    Purpose: Checks how much weight is on the left hand of the scale.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+---------------------------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+-------------------------------------------------------------------*/
 using UnityEngine;
 
 public class LeftHandBehaviour : MonoBehaviour

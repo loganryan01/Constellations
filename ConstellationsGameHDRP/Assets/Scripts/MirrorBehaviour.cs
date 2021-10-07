@@ -1,7 +1,13 @@
+/*------------------------------------
+    Name: MirrorBehaviour
+    Purpose: Rotates the mirror.
+    Authour: Mara Dusevic / Logan Ryan
+    Modified: 7 October 2021
+--------------------------------------
+    Copyright 2021 Bookshelf Studios
+------------------------------------*/
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MirrorBehaviour : MonoBehaviour
 {

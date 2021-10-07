@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*-------------------------------------------------------------------
+    Name: MazeBallBehaviour
+    Purpose: Checks if the maze ball has reached the end of the maze.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+---------------------------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+-------------------------------------------------------------------*/
 using UnityEngine;
 using UnityEngine.Events;
 

@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*-----------------------------------------------
+    Name: PauseController
+    Purpose: Controls the pause menu of the game.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+-------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+-----------------------------------------------*/
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 

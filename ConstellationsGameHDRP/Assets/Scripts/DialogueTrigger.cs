@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*-------------------------------------------------
+    Name: DialogueTrigger
+    Purpose: Starts the dialogue for the character.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+---------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+-------------------------------------------------*/
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
