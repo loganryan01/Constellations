@@ -337,13 +337,12 @@ public class PlayerController : MonoBehaviour
                 // Display button text
                 buttonText.SetActive(true);
 
-                if (lastSeenObject != hitObject)
-                {
-                    lastSeenObject = hitObject;
+                lastSeenObject = hitObject;
 
-                    // Draw outline for the object's children
-                    DisableOutlines(1);
-                }
+                // Draw outline for the object's children
+                //DisableOutlines(1);
+                DisableOutlines(1, hitObject.transform.GetChild(0));
+                DisableOutlines(1, hitObject.transform.GetChild(1));
             }
             else if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted)
             {
