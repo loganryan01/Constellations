@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (lastSeenObject.transform.childCount > 0)
                 {
-                    DisableOutlines(layer, lastSeenObject.transform.GetChild(i));
+                    DisableOutlines(layer, lastSeenObject.transform.GetChild(0));
                 }
                 lastSeenObject.transform.GetChild(i).gameObject.layer = layer;
             }
@@ -147,6 +147,10 @@ public class PlayerController : MonoBehaviour
             // If it does, change the layer to disable the outlines
             for (int i = 0; i < gameObjectTransform.childCount; i++)
             {
+                if (gameObjectTransform.GetChild(i).childCount > 0)
+                {
+                    DisableOutlines(layer, gameObjectTransform.GetChild(i).GetChild(0));
+                }
                 gameObjectTransform.GetChild(i).gameObject.layer = layer; 
             }
 
@@ -363,8 +367,9 @@ public class PlayerController : MonoBehaviour
                 // Change layer of mirror children to 0
                 if (lastSeenObject.GetComponent<MirrorBehaviour>())
                 {
+                    DisableOutlines(9, lastSeenObject.transform);
                     DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                    DisableOutlines(0, lastSeenObject.transform.GetChild(1));
+                    DisableOutlines(9, lastSeenObject.transform.GetChild(1));
                 }
                 else if (lastSeenObject.GetComponent<ScaleBehaviour>())
                 {
