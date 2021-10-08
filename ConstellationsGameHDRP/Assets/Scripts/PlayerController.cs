@@ -338,14 +338,6 @@ public class PlayerController : MonoBehaviour
                     lastSeenObject = hitObject;
 
                     // Draw outline for the object's children
-                    //for (int i = 0; i < hitObject.transform.childCount; i++)
-                    //{
-                    //    if (hitObject.transform.GetChild(i).gameObject.layer != 1)
-                    //    {
-                    //        hitObject.transform.GetChild(i).gameObject.layer = 1;
-                    //    }
-                    //}
-
                     DisableOutlines(1);
                 }
             }

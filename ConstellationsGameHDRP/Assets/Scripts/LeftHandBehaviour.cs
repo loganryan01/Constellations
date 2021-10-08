@@ -32,7 +32,7 @@ public class LeftHandBehaviour : MonoBehaviour
             scaleBehaviour.UpdateScale();
 
             other.gameObject.transform.parent = transform;
-            other.gameObject.transform.localPosition = new Vector3(-6, 137.5f, -0.1f);
+            other.gameObject.transform.localPosition = new Vector3(-6f, 138.5f, -0.1f);
         }
     }
 

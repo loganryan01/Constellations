@@ -123,7 +123,7 @@ public class ScaleBehaviour : MonoBehaviour
             Vector3 mousePosition = Mouse.current.position.ReadValue();
 
             // Get the World Position
-            Vector3 rockPosition = puzzleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 5));
+            Vector3 rockPosition = puzzleCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 4.25f));
 
             // Set the position of the rock to be the mouse position
             rockGameObject.transform.position = rockPosition;
