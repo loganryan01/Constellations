@@ -3,7 +3,17 @@ guid: b5e1737e4486f81458ab367012fc74e3
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: marble
+    second: {fileID: 2100000, guid: 34fb4d45a3a1800498a51e786569eff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trimSheet
+    second: {fileID: 2100000, guid: 6beaa69e68b72234db575183e12f8bc9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
