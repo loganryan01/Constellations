@@ -6,8 +6,11 @@
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,6 +60,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
+
+    [Header("Ending settings")]
+    public int numberOfPuzzles = 4;
+    public Color targetColour = new Color(0,0,0,1);
+    public Image elementToFade;
+    private int puzzlesCompleted = 0;
     #endregion
 
     #region Functions
@@ -162,6 +171,21 @@ public class PlayerController : MonoBehaviour
     public void EnableOutlines()
     {
         enableOutline = !enableOutline;
+    }
+
+    // Checks if player has completed all the puzzles
+    public void EndGameCheck()
+    {
+        // Gets called when a puzzle is completed
+        // Increase number of puzzles solved by 1
+        puzzlesCompleted++;
+
+        // Check if the number of puzzles completed is equal to the number of puzzles in the game
+        // If they are, then screen fades to black and load the ending scene
+        if(puzzlesCompleted == numberOfPuzzles)
+        {
+            StartCoroutine(FadeToBlack(targetColour, 5));
+        }
     }
 
     // Get the movement from the player keyboard input
@@ -295,6 +319,11 @@ public class PlayerController : MonoBehaviour
             // If the object is the scale or a channel, 
             if (hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
             {
+                if (lastSeenObject != hitObject)
+                {
+                    DisableOutlines(0);
+                }
+                
                 lastSeenObject = hitObject;
 
                 // Display button text
@@ -303,12 +332,7 @@ public class PlayerController : MonoBehaviour
                 // Draw outline for the object's children
                 if (hitObject.layer != 1)
                 {
-                    for (int i = 0; i < hitObject.transform.childCount; i++)
-                    {
-                        hitObject.transform.GetChild(i).gameObject.layer = 1;
-                    }
-
-                    hitObject.layer = 1;
+                    DisableOutlines(1);
                 }
             }
             // If the object is a mirror
@@ -381,6 +405,24 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator FadeToBlack(Color endValue, float duration)
+    {
+        float time = 0;
+        Color startValue = elementToFade.color;
+
+        while (time < duration)
+        {
+            elementToFade.color = Color.Lerp(startValue, endValue, time / duration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        elementToFade.color = endValue;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
 }
