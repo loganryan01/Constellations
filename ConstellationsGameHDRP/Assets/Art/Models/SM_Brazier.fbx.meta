@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: marble
-    second: {fileID: 2100000, guid: 34fb4d45a3a1800498a51e786569eff6, type: 2}
+      name: Bronze
+    second: {fileID: 2100000, guid: b75b35edae84ae846bbc004ebcba8b0c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
