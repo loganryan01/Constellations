@@ -56,11 +56,11 @@ Material:
     - Vector1_82EAB169: 5.45
     - Vector1_8578D847: 0.01
     - Vector1_986DEC4C: 0
-    - Vector1_E44E32BE: 30
+    - Vector1_E44E32BE: 100
     - Vector1_EA7FA48F: 1
     - Vector1_EC7FE742: 0
     - Vector1_EEC26D1F: 7.87
-    - Vector1_F6CB75DC: 4.63
+    - Vector1_F6CB75DC: 3.25
     - Vector1_FF745530: 0.1
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
