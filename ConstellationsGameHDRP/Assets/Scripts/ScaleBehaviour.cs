@@ -11,6 +11,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
+public class PuzzleInteractionEvent : UnityEvent<int, Transform>
+{
+
+}
+
 public class ScaleBehaviour : MonoBehaviour
 {
     public enum Side
