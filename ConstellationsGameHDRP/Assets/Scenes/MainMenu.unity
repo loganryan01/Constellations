@@ -1175,7 +1175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000034332275}
+  m_AnchoredPosition: {x: 0, y: -0.00006484985}
   m_SizeDelta: {x: 0, y: 38.446}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &490474334
@@ -1282,8 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff239c9701f9e744b87e29a7d710984a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsCanvas: {fileID: 0}
-  mainMenuCanvas: {fileID: 1836993250}
+  optionsCanvas: {fileID: 1150610611}
+  mainMenuCanvas: {fileID: 197355285}
   masterMixer: {fileID: 24100000, guid: 251c6a9e5bd3ef14492643f720f8198a, type: 2}
   screenResolutionDropdown: {fileID: 706271240}
 --- !u!4 &526173392
@@ -3210,10 +3210,10 @@ MonoBehaviour:
       - m_Target: {fileID: 526173391}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ChangeQuality
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1173909625}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Dropdown, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3549,8 +3549,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 628847938}
   m_HandleRect: {fileID: 628847937}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.74369335
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
