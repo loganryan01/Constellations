@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Cubemap_60b491bfb7fe4521a406ea3bd77201c5:
-        m_Texture: {fileID: 8900000, guid: 419c704fac4b50a4ca8fdec9879b46f6, type: 3}
+        m_Texture: {fileID: 8900000, guid: 281a85e76bf59964abcb915d302fa830, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_612904d3a4a547e8931c1a6c5d318508:
@@ -34,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_bb8de4a650ac425bbace393509f98a54:
-        m_Texture: {fileID: 8900000, guid: aa8bad6aa39d9954b924ea0d9669c0c3, type: 3}
+        m_Texture: {fileID: 8900000, guid: 281a85e76bf59964abcb915d302fa830, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_e73385650c0448c28705bdbf1a903dd4:
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_fb9cd3df11a745c0973fd24d70b969a0:
-        m_Texture: {fileID: 8900000, guid: 462a4589d3d15564fb04bfe18cca552b, type: 3}
+        m_Texture: {fileID: 8900000, guid: 281a85e76bf59964abcb915d302fa830, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_0250ae3add7e4af5859645fe3b3db235:
