@@ -7,6 +7,7 @@
     Copyright 2021 Bookshelf Studios
 -------------------------------------*/
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -78,6 +79,13 @@ public class ScaleBehaviour : MonoBehaviour
     // Start function
     void Start()
     {
+        //foreach (string item in leftScale.GetComponent<MeshRenderer>().material.GetTexturePropertyNames())
+        //{
+        //    Debug.Log(item);
+        //}
+        Debug.Log(leftScale.GetComponent<MeshRenderer>().material.GetFloat("_GalaxyIntensity"));
+
+
         // Calculate the position when the hand is the heaviest
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
         heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
@@ -178,6 +186,29 @@ public class ScaleBehaviour : MonoBehaviour
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
     }
 
+    public void IncreaseGalaxyIntensity(Transform gameObjectTransform)
+    {
+        // Get all the mesh renderers in the scale
+        for (int i = 0; i < gameObjectTransform.childCount; i++)
+        {
+            MeshRenderer meshRenderer = gameObjectTransform.GetChild(i).GetComponent<MeshRenderer>();
+            
+            if (meshRenderer != null && meshRenderer.material.name == "M_Scales (Instance)")
+            {
+                Debug.Log(meshRenderer.material.name);
+                Debug.Log("Increasing Galaxy Intensity");
+                StartCoroutine(LerpFloat(2, 5, meshRenderer));
+            }
+
+            // Check if the game object has a child object
+            if (gameObjectTransform.childCount > 0)
+            {
+                Debug.Log("This object has children");
+                IncreaseGalaxyIntensity(gameObjectTransform.GetChild(i));
+            }
+        }
+    }
+
     // Rotate the scale position
     private void ChangeScale(Vector3 leftHandPosition, Vector3 rightHandPosition, Vector3 fulcrumRotation)
     {
@@ -233,6 +264,22 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, rotate arm to target rotation
         arm.transform.rotation = endValue;
+    }
+
+    IEnumerator LerpFloat(float endValue, float duration, MeshRenderer meshRenderer)
+    {
+        float time = 0;
+        float startValue = meshRenderer.material.GetFloat("_GalaxyIntensity");
+
+        while (time < duration)
+        {
+            meshRenderer.material.SetFloat("_GalaxyIntensity", Mathf.Lerp(startValue, endValue, time / duration));
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        meshRenderer.material.SetFloat("_GalaxyIntensity", endValue);
     }
 
     // Action for when the player left clicks

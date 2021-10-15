@@ -7738,7 +7738,7 @@
     },
     "m_Name": "Galaxy Intensity",
     "m_DefaultReferenceName": "Vector1_dd7860dc310c44089773bc534459a1bd",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_GalaxyIntensity",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

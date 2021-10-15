@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -81,9 +82,11 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Change the quality of the game
-    public void ChangeQuality()
+    public void ChangeQuality(TMP_Dropdown dropdown)
     {
-        switch (screenResolutionDropdown.value)
+        Debug.Log(dropdown.options[dropdown.value].text);
+        
+        switch (dropdown.value)
         {
             case 0:
                 QualitySettings.SetQualityLevel(0);
@@ -98,7 +101,7 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Change the screen resolution
-    public void ChangeScreenResolution(Dropdown dropdown)
+    public void ChangeScreenResolution(TMP_Dropdown dropdown)
     {
         switch (dropdown.value)
         {

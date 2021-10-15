@@ -363,7 +363,8 @@ public class PlayerController : MonoBehaviour
                 buttonText.SetActive(true);
 
                 // Draw outline for the object's children
-                DisableOutlines(1, hitObject.transform);
+                DisableOutlines(1, hitObject.transform.GetChild(0));
+                DisableOutlines(1, hitObject.transform.GetChild(1));
                 //DisableOutlines(1, hitObject.transform.GetChild(2));
             }
             else if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted)
