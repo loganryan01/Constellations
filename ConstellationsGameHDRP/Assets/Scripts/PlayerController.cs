@@ -297,7 +297,9 @@ public class PlayerController : MonoBehaviour
 
                     puzzleOutline.AddListener(DisableOutlines);
                     puzzleOutline.Invoke(2, hitObject.transform);
+
                     scaleBehaviour.onInteraction.Invoke();
+
                     puzzleOutline.RemoveAllListeners();
                 }
             }
@@ -308,7 +310,17 @@ public class PlayerController : MonoBehaviour
 
                 if (!mazeBehaviour.mazeCompleted)
                 {
+                    if (puzzleOutline == null)
+                    {
+                        puzzleOutline = new PuzzleOutlineEvent();
+                    }
+
+                    puzzleOutline.AddListener(DisableOutlines);
+                    puzzleOutline.Invoke(2, hitObject.transform);
+
                     mazeBehaviour.onInteraction.Invoke();
+
+                    puzzleOutline.RemoveAllListeners();
                 }
             }
             // If it hits a channel, rotate the water channel

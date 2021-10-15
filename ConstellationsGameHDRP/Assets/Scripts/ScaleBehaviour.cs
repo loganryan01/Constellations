@@ -79,13 +79,6 @@ public class ScaleBehaviour : MonoBehaviour
     // Start function
     void Start()
     {
-        //foreach (string item in leftScale.GetComponent<MeshRenderer>().material.GetTexturePropertyNames())
-        //{
-        //    Debug.Log(item);
-        //}
-        Debug.Log(leftScale.GetComponent<MeshRenderer>().material.GetFloat("_GalaxyIntensity"));
-
-
         // Calculate the position when the hand is the heaviest
         heavyLeftPosition = leftScale.transform.position + leftScalePositions[2];
         heavyRightPosition = rightScale.transform.position + rightScalePositions[2];
@@ -195,15 +188,12 @@ public class ScaleBehaviour : MonoBehaviour
             
             if (meshRenderer != null && meshRenderer.material.name == "M_Scales (Instance)")
             {
-                Debug.Log(meshRenderer.material.name);
-                Debug.Log("Increasing Galaxy Intensity");
                 StartCoroutine(LerpFloat(2, 5, meshRenderer));
             }
 
             // Check if the game object has a child object
             if (gameObjectTransform.childCount > 0)
             {
-                Debug.Log("This object has children");
                 IncreaseGalaxyIntensity(gameObjectTransform.GetChild(i));
             }
         }

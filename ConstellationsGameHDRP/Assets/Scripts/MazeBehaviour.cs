@@ -88,7 +88,7 @@ public class MazeBehaviour : MonoBehaviour
     {
         Vector2 inputVector = value.ReadValue<Vector2>();
 
-        rotationDirection = gameObject.transform.forward * inputVector.y  + gameObject.transform.right * inputVector.x;
+        rotationDirection = gameObject.transform.forward * (-inputVector.y)  + gameObject.transform.right * (-inputVector.x);
     }
     #endregion
 }
