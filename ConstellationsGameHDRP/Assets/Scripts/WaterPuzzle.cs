@@ -1,7 +1,7 @@
 /*----------------------------------------------------
     Name: WaterPuzzle
     Purpose: Checks if the pisces puzzle is completed.
-    Authour: Mara Dusevic
+    Author: Mara Dusevic
     Modified: 7 October 2021
 ------------------------------------------------------
     Copyright 2021 Bookshelf Studios
