@@ -1,0 +1,2330 @@
+commit 26c1895a59e3009a114557ae77f281a718342cff
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Sat Oct 16 01:01:23 2021 +1100
+
+    Refactor (Main Menu) : #76 : Updated main menu UI
+    
+    Updated fonts, background image and options menu UI
+
+commit 739f57bc69f5c3ac60761737dd2d6950d815c74f
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Oct 15 23:10:19 2021 +1100
+
+    Refactor (Pisces) : #N/A : Fixed pisces puzzle
+    
+    Updated prefabs with new models, fixed puzzle mechanics
+
+commit 6d284d9ecd66618badf5b3321d5e9fa1c784793f
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 15 17:47:30 2021 +1100
+
+    Refactor (Pisces) : #N/A : Updated pisces puzzle
+
+commit 2e8822d40ba1852fa7c6f2c415b1b3c4df023d64
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 15 17:23:02 2021 +1100
+
+    Refactor (Environment) #N/A: Re-pushing assets, adding balcony
+
+commit 67e36e201936bf04149fd2b54878ff1c5c72fc6c
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 15 16:54:23 2021 +1100
+
+    Refactor (Maze) : #N/A : Setup new maze with functionality
+
+commit f0cb3c27a070cc424b928fe8d95b4ef8b64b97f8
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 15 14:05:38 2021 +1100
+
+    Refactor (Scales) #13: Updating galaxy shader with new cubemap
+
+commit b392f8a7cb179255671f008ad466bb56eb46b7b3
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 15 13:54:27 2021 +1100
+
+    Feature (Temple) #19: Adding roof, fixing dialogue
+
+commit ebdf9497848652e2382ac1fa3ae531d5e1e2e664
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 15 12:19:36 2021 +1100
+
+    Feature (Material) : #83 : Scale changes material when puzzle is completed
+
+commit c30d0fde2dbbfb75b58981959a120a35f6c5ca70
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 15 10:29:21 2021 +1100
+
+    Refactor (Temple) #19: Adding point light and reflection probe for baking in beta
+
+commit 270e95ebc5702d9b0be30edfc9413624d81f84cb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 20:55:17 2021 +1100
+
+    Fix (Foliage) #40: Fixing leaf material
+
+commit 28d7ab4075f718f721ba44e13650ecc0e370f96d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 20:54:48 2021 +1100
+
+    Feature (Foliage) #40: Adding falling leaf particles
+
+commit a72c4832600a60fb308e50e6f6e06aca7349d8e6
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 17:16:28 2021 +1100
+
+    Refactor (Taurus) #29: Replacing old model, updating prefabs
+
+commit 550e07e578d9a082e399c58b8508b0412e90306e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 16:41:55 2021 +1100
+
+    Fix (Materials) #14: Fixing willow and fish materials
+
+commit c3f931a3e322e89ecb058365a1df4c4c8e7c6f08
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 16:40:12 2021 +1100
+
+    Add (Taurus) #32: Adding ball and material for Taurus puzzle
+
+commit 8c38004e8b7f86d4edec9a0352155f43a6d6ed16
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Oct 14 15:29:02 2021 +1100
+
+    Fix (Occlusion Culling) : #N/A : Updated Occlusion Culling
+
+commit 99a512e7dd077f029a990fd8d3966290b2bf34a1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 14:13:12 2021 +1100
+
+    Refactor (Ocean) #N/A: Adding height map for ocean shader
+
+commit a204b7aa37896eb346d417764fa4818604b59474
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 13:47:00 2021 +1100
+
+    Refactor (Foliage) #40: Second pass willow (no leaves)
+
+commit d71096620c7d6de2018e989510a4d97b008c3d0b
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Oct 14 12:17:48 2021 +1100
+
+    Feature (Credits) : #82 : Added credits
+
+commit e4f8a9ffbaaa8fd10938d31499b342759b85ca6e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 11:54:03 2021 +1100
+
+    Refactor (Animation) #23: Adding fish animation and controller
+
+commit 3f1a21ac0d1f07c34d2c7a1cb741d491ba3a7dd4
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Oct 14 11:31:27 2021 +1100
+
+    Fix (Outline) : #81 : Fixed Outline shaders for puzzles
+
+commit 3c616cbbb768668e3caaf4c7ff8c6b75bd6ca775
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 11:22:29 2021 +1100
+
+    Add (Material) #23: Adding fish textures and material
+
+commit 2eafa12fdcb99b238e364ab5a47278ab933e1a50
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 14 10:52:14 2021 +1100
+
+    Refactor (Pisces) #23: Adding fish!
+
+commit e27bf9f9e9b62a6133109db76595c3a9a629e075
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 18:23:44 2021 +1100
+
+    Refactor (Ocean) #N/A: Making the ocean nicer
+
+commit 61de4e05ea3188995be0dc51ebbef8b2de1ce93c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 17:08:32 2021 +1100
+
+    Refactor (Environment) #N/A: Updating ocean shader, materials and main scene
+
+commit c79d4f95c5bd5a25470945a977f1ef6b4969c353
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 16:51:56 2021 +1100
+
+    Refactor (Material) #23: Making tile color blue for Pisces puzzle
+
+commit 2007c718834d77541b2c180400fed7ef5c9f7adb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 16:36:56 2021 +1100
+
+    Refactor (Pisces) #23: Updating models (again)
+
+commit 519a0032bf3eaac5fe16790797bcb5405251d3d1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 16:29:37 2021 +1100
+
+    Refactor (Pisces) #23: Updating models with materials
+
+commit c1bd88dd939a871040d2ee0d0d25da469c807d28
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 15:12:07 2021 +1100
+
+    Add (Material) #14: Adding new material for pisces puzzle
+
+commit 3f7207887aec62b1453254ea6a824214bec5e9f3
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 14:54:53 2021 +1100
+
+    Add (Pisces) #23: Adding new models for Pisces puzzle
+
+commit 150359d5a2a059f0a18e6a13db024451a656d822
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Oct 13 14:27:40 2021 +1100
+
+    Fix (Taurus) : #N/A : Fixed Taurus position
+
+commit fab4c3008d4d90eb9f68fe73a52edd55f02a8967
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Oct 13 12:30:22 2021 +1100
+
+    Feature (Ending) : #80 : Created ending for game
+
+commit 9a8bb5437321eca34575f0f7c7e1c534d1f1e747
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 11:10:11 2021 +1100
+
+    Fix (Materials) #14: Fixing gold material and bronze base colour
+
+commit 4ce73fa12d73bd5814c1809dc9ff96b88c7d1b25
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 11:09:28 2021 +1100
+
+    Refactor (Brazier) #14: Adding material to Brazier model
+
+commit a13c5b60036e10bb4d1d2fec4fa256ab5e8616ce
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 13 10:53:56 2021 +1100
+
+    Add (Materials) #14: Adding bronze material
+
+commit 2d36353a13b5eba726e691516b3e6ef8e23927b1
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Oct 13 09:19:59 2021 +1100
+
+    Refactor (Assets) : #N/A : Moved folder to asset store folder
+
+commit d01c620c76a39e54ef8f483b0a608e46787d3d85
+Merge: b2366a8 35994fd
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Oct 11 21:50:26 2021 +1100
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit b2366a8928c3e303c791dc894f299842061ee7a7
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Oct 11 21:49:32 2021 +1100
+
+    Fix #N/A: Fixing just a few things
+
+commit 35994fdff98e5094907ba072908bd53977933cab
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Mon Oct 11 21:48:37 2021 +1100
+
+    Refactor (Main Menu) : #76 : Updated design
+    
+    Added new background, fonts and updated layout. UI scripts need to be updated for options menu.
+
+commit 048045386eb684fa01b01f401001da9a06ed6519
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Oct 11 20:28:04 2021 +1100
+
+    Refactor (Environment) #14: Changing brazier models
+
+commit 03f3bdfe968ebf864ba8c1f8755c3befc63d39e4
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 8 17:00:59 2021 +1100
+
+    Fix (Mirror) : #74 : Fixed outline for mirror
+
+commit a785ebfcdf5ab9e9c04a033da7152185b5d29b0c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 8 16:57:01 2021 +1100
+
+    Add (Materials) #14: Adding table textures and material
+
+commit cf0382271c60968d5eb3a0e8f0167f1883f53cf5
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 8 16:37:40 2021 +1100
+
+    Fix (Mirror) : #73 : Fixed mirror reflection
+
+commit c939c2a47d2c3651e064d8b16d401f4c3bbffad1
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 8 15:58:50 2021 +1100
+
+    Fix (Occlusion Culling) : #72 : Fixed Occlusion Culling for interior
+
+commit ab7f60d516e2bd8eb37287e5a12d23baad1ee833
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 8 15:31:18 2021 +1100
+
+    Add (Materials) #14: Adding Urn material and textures
+
+commit 405c63583891b81d5545e7bff8c43842b3378682
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 8 14:32:50 2021 +1100
+
+    Add (Interior) #19: Adding table model and adding to scene
+
+commit 805de9030e5d5c2c0b9665746836d6984b0cfc23
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Oct 8 10:58:58 2021 +1100
+
+    Refactor (Scale) : #71 : Fixed Occlusion Culling
+
+commit 99a0da42d5ab1096c32a63cc34c07ce987ca37c7
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Oct 7 17:20:04 2021 +1100
+
+    Refactor (Assets) : #N/A : Sorted Assets into respected folders
+
+commit 8a561feba1122bd1db3191a15c43a9dde920da53
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Oct 7 17:15:42 2021 +1100
+
+    Refactor (Code) : #N/A : Inserted Headers on scripts
+
+commit 1824ada643db48b74c6ccb1fd763de32ccf6a5aa
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 7 15:13:55 2021 +1100
+
+    Refactor (Interior) #19: Adding more detail to interior
+
+commit d3dca01e9e1a87123f6ad713cf96f00b5b6e1430
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 7 15:06:28 2021 +1100
+
+    Refactor (Interior) #19: Adding urns to temple prefab
+
+commit ebb2c3f88e504496bd36742cd787401523f6814c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 7 14:56:52 2021 +1100
+
+    Add (Interior) #19: Adding urns
+
+commit 97d9b72daa2fff09eb3ad2bd4cc13ce8c97b2a0e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Oct 7 14:31:41 2021 +1100
+
+    Refactor (Environment) #14: Adjusting stair railings
+
+commit 2acd70b94454bfb3f5f320339ce0bbd580e471a1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 6 23:18:27 2021 +1100
+
+    Refactor (Foliage) #40: Adding new foliage
+
+commit dd889035ff56a3acce1cbbd97bd519d54a965f66
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Oct 6 00:56:55 2021 +1100
+
+    Add (Interior) #19: Adding Candelabra for temple interior
+
+commit f224fbe1e68d2b25b034881ce161f5c2da124d04
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Oct 5 17:52:00 2021 +1100
+
+    Add (Assets) #19: Adding candle interior assets, minor fixes
+
+commit 1466a10769036e760cb6813b6fdef354c59f70a6
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Oct 5 15:06:15 2021 +1100
+
+    Refactor (Materials) #14: Adjusting model and texture to look badass
+
+commit 3e5c9a9496945b272f70b0b2394d7f8fc7f73e8a
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Oct 5 13:29:18 2021 +1100
+
+    Add (Materials) #14: Adding treasure pile material and updating model
+
+commit 2218766afdba748aafea561a280e2ccfb428f08b
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Oct 5 00:57:39 2021 +1100
+
+    Add (Interior) #19: Adding treasure pile asset and adding to interior prefabs
+
+commit 91eb8dc91f23d4d9cdc821d95421cf82c9d54cb2
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Oct 4 01:11:19 2021 +1100
+
+    Add (Environment) #N/A: Adding fog particle effect, fixing foliage collision
+
+commit 63006ea37ad80b8dbbcb629204bfe5504753a220
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Sun Oct 3 18:51:13 2021 +1100
+
+    Refactor (Collisions) #N/A: Fixing/adding collisions on foliage, assets and environment
+
+commit b765ccc507f8987e565ecc0b07a05b5f25e8e392
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Sun Oct 3 01:39:16 2021 +1000
+
+    Refactor (Terrain) #14: Adding dirt material and updating terrain prefab
+
+commit 80f12b7a5eba3acdfd99c021634732e19648da75
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Sat Oct 2 00:30:08 2021 +1000
+
+    Refactor (Interior) #19: Adding flooring and collisions
+
+commit 2845d8f3f4b2125893c3e26bbd8dc232ead662b2
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Sat Oct 2 00:01:11 2021 +1000
+
+    Refactor (Overhaul) #N/A: Adding collisions, fixing post processing, adjusting skybox, fixing materials, fixing terrain
+
+commit 023cde50f799395df8fcce2c2426c9ae7cf93957
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 1 18:51:42 2021 +1000
+
+    Refactor (Terrain) #14: Adding new terrain material
+
+commit 93ae2f88803174cb780bc393746b4bc19ac0029d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 1 18:12:50 2021 +1000
+
+    Refactor (Libra): Adjusting puzzle location
+
+commit 4f23cabceffd256dd24a89373bf22a54fc6bee6a
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Oct 1 18:10:32 2021 +1000
+
+    Refactor (Environment) #40: Adding better fireflies and fixing pisces area
+
+commit 64751557b7cf5c22d66517b0e9fc6444edb2bf02
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 30 14:26:55 2021 +1000
+
+    Fix (Culling) : #71 : Fixed Occlusion Culling calculations
+
+commit 9edfb925e15e07c1eb2ebcb6f07db0f10de8d189
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Sep 28 20:44:05 2021 +1000
+
+    Refactor (Environment) #14: Attempting to fix grass, adding fireflies to scene
+
+commit a721408111cda2efe4b4a1f2b8d74986bc9d7429
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Sep 28 16:34:41 2021 +1000
+
+    Refactor
+
+commit 988bee3cfed12e105b5a5ca2b49955495748a2bb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Sep 28 14:04:17 2021 +1000
+
+    Refactor (Foliage) #40: Adding dense foliage to scene
+
+commit ca8542c52208830c02eca27d724f63c921e362cf
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Sep 27 16:09:26 2021 +1000
+
+    Refactor (Grass) #14: Adding vertex offset to grass shader and terrain
+
+commit 4bfde26a01b724029913efc0f6cea5ab4a8b197d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 24 17:13:26 2021 +1000
+
+    Add (Temple) #19: Adding floor to temple interior and fixing surrounding terrain
+
+commit 2e74ec9a6e9eb6f9b29cdfbf764e97f00fb909c6
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 24 16:32:44 2021 +1000
+
+    Feature (Fire) : #68 : Added fire prefabs to main scene
+
+commit 7867698014845fdbde60ff64f77ff070fbbb9aeb
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 24 15:20:49 2021 +1000
+
+    Fix (Scale) : #69-70 : Fixed bugs with scale
+
+commit 3d042c74b85da70dd5ee963fb84c4c0fe6d5b000
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 24 15:16:04 2021 +1000
+
+    Refactor (Environment) #14: Adding updated materials and models
+
+commit f43e545358bce942c515c6f5d421e69d3dc44fa1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 24 12:31:02 2021 +1000
+
+    Fix (Materials) #14: Fixing metallic properties on materials
+
+commit b036746698943ee305e2d13d378dabda8a12e3a0
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 24 12:16:16 2021 +1000
+
+    Refactor (Materials) #14: Fixing metallic attribute
+
+commit e3dffd94409fd011d9291a0047a9e54357022354
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 24 12:15:00 2021 +1000
+
+    Add (Skybox) #52: Adding new skybox material
+
+commit eeaf13f5142efb0c481312d6838d7d0a11d4a349
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 24 11:49:26 2021 +1000
+
+    Updated git attributes
+
+commit b0b00dff5067ca4726deeec2edd52b73547ec921
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 24 10:23:47 2021 +1000
+
+    Feature (Fire) : #68 : Created fire
+
+commit 1a33e0017f31741afa288a6b9f40775eb76fd4ae
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 23 17:06:08 2021 +1000
+
+    Refactor (Temple) #14: Adding new Temple asset
+
+commit 5f91aca331e867c5aaf17ca56f753f9994e670e0
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 23 12:11:55 2021 +1000
+
+    Fix (Prefabs) #14: Fixing environment prefabs, adding new bush
+
+commit 91ee5b5528863b26ed40013a33c6fa19282fbd69
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 23 11:28:25 2021 +1000
+
+    Fix (Assets) #14: Adding lightmaps to environment assets
+
+commit c85e7893bfae1f3867862235ec4730b2bc92bc50
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Sep 20 15:43:34 2021 +1000
+
+    Pushing personal scene
+
+commit caa3a185534ad7721459aaac32ded0f138ed084f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Sep 20 15:43:10 2021 +1000
+
+    Feature (Environment) #37: Adding surrounding terrain for immersion
+
+commit 447b8219a1c61633607090c7e7a3898ee751cd0e
+Merge: 6ec822b 08b8560
+Author: jac <jacques.harries@gmail.com>
+Date:   Mon Sep 20 15:25:12 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 6ec822b5c81af16d306ccb6c547afab6e7067b64
+Author: jac <jacques.harries@gmail.com>
+Date:   Mon Sep 20 15:24:35 2021 +1000
+
+    Feature (Ocean) #N/A: Created ocean prefab
+
+commit 08b8560d48d4f3154855fb049228c05706afd270
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Mon Sep 20 15:12:06 2021 +1000
+
+    Refactor (code) : #N/A : Commented player controller
+
+commit 8cb4daa2f6076110def41e439ad456ac50f82de5
+Author: jac <jacques.harries@gmail.com>
+Date:   Sun Sep 19 21:31:22 2021 +1000
+
+    beeg ocean
+
+commit f5750836d3b74e97c971b85e56fe0413d760154d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 22:10:35 2021 +1000
+
+    Fix (Materials) #14: Fixing leafs!
+
+commit 9b903cc3a6c9ae5c89d5852b761690b2c1f955bc
+Merge: d67ffc1 284b71c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 17:23:32 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit d67ffc16170b260538faff40ccb934fe908f29c4
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 17:23:29 2021 +1000
+
+    Add (Materials) #14: Adding new textures and assets, refactoring brazier prefab
+
+commit 284b71ca97953c41e9e995ccf1c091ff01bd97f0
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 17 15:52:14 2021 +1000
+
+    Fix (Outline) : #67 : Outline shader now appears in build
+
+commit 544328c9425643d240df5b8a65e13b3d5bcdf5c7
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 15:13:18 2021 +1000
+
+    Fix (Materials) #14 Fixing stairs material
+
+commit ac46235ff0ced199385c2aa42e8bbac4f9a2a261
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 15:03:00 2021 +1000
+
+    Refactor (Assets) #14: Adding materials to stairs and fixing the Pisces prefab
+
+commit 7bb0e1ea3b9997af7cce6ee3a2d849e38d26ace5
+Merge: 6f796b3 ee42e58
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 12:31:06 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 6f796b397a41a2adfb1a741570cf8b1c6c90e958
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 12:31:03 2021 +1000
+
+    Refactor (Assets) #14: Adding materials to assets
+
+commit ee42e585a2eddb6c2737be2f8f9d1ff8c1c95933
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 17 12:14:52 2021 +1000
+
+    Refactor (Shader) : #66 : Added outline for maze, mirrors and channels
+
+commit 652724e7cc2ac8c233ead8df27049b94fa3b231d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 10:03:48 2021 +1000
+
+    Fix (Prefab) #23: Adding collisions to Pisces puzzle
+
+commit f8c2210963f32793e0e8d36ef9a2286e6c6baf79
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 17 09:58:21 2021 +1000
+
+    Fix (Material) #14: Fixing stair material
+
+commit bba3091c86975d7100ab8a0100ad144b9fe6d88b
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 17:09:17 2021 +1000
+
+    Cleanse (Prefabs) #66: Removing some unnecessary prefabs
+
+commit 189025994a38f74d51b4952084367b86af6a7d2b
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 16 16:58:49 2021 +1000
+
+    Feature (Shader) : #66 : Added outline for scale
+
+commit 78d48118c42e2ced50dff1ab49a88f190600e5a8
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 16:40:22 2021 +1000
+
+    Refactor (Material/Asset) #14/37: fixing assets and materials for optimization
+
+commit 33664dfca4404366581b9e6663e25bbe1ab4ea49
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 15:38:51 2021 +1000
+
+    Refactor (Assets) #14: Adding new versions of models for texturing
+
+commit b2cdfa67b7e012e89451d94962145a6af87f2e32
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 13:52:08 2021 +1000
+
+    Refactor (Directory): Moving assets into foliage folder
+
+commit 231fc4c3483a621b7157a9db9dae3b4c929b5c14
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 13:42:23 2021 +1000
+
+    refactor (Foliage) #40: Adding more set dressing to exterior
+
+commit b029fcdc881fc96c9653b21f0ba74d0cc5b6471e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 16 13:15:01 2021 +1000
+
+    Refactor (Foliage) #40: Adding optimized trees!
+
+commit f8dd40299379b62ff62dea9b981e70e84bc5145c
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 16 10:29:28 2021 +1000
+
+    Refactor (Water) : #65 : Added unity events to water script
+
+commit 0cfd5ace79fbe407578b42c106517894e9179f76
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 16 10:04:21 2021 +1000
+
+    Refactor (Maze) : #64 : Added unity events to maze script
+
+commit 6390701a8a3e6547d50dc3bae76ae1867a7ad844
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Sep 15 16:54:14 2021 +1000
+
+    Refactor (Laser) : #63 : Added unity events to laser script
+
+commit 68085e63ec0e6ecfdd88535115714f57637caf82
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Sep 15 15:16:37 2021 +1000
+
+    Refactor (Scale) : #N/A : Added unity events to scale script
+
+commit 2a616d99986c87d3de32597a6c1cbe4b287b92d6
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Tue Sep 14 16:17:38 2021 +1000
+
+    Refactor (code) : #N/A : Cleaned Scale Code
+
+commit 294404cbad2b3ff663f3582075d7fff3abcf0771
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Mon Sep 13 17:04:48 2021 +1000
+
+    Refactor (Code) : #N/A : Commented code
+
+commit 4d70895293b74ae7c114f036ce34cdc2430ed159
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Mon Sep 13 15:31:58 2021 +1000
+
+    Fix (Main) : #N/A : Main scene is now playable
+
+commit 471160b48df5adf8834559deb48326f95c137ecb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 10 17:01:28 2021 +1000
+
+    Fix (Terrain) #14: Fixing terrain materials
+
+commit 96d70f8f3c90d4f0debf89b413af51f2e8015769
+Merge: 4a40cbe f59f0ef
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 10 16:54:45 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 4a40cbe4a14d298e7aa2c5ee42412fa867c91d44
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 10 16:54:30 2021 +1000
+
+    Fix (Terrain) #14: Adding more beach
+
+commit f59f0efbe4ec2587c7ef1c7e84b8d44d0b8debed
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 10 16:36:11 2021 +1000
+
+    Fix (Scale) : #58-60 : Fixed bugs for scale
+
+commit fe540de3cbf53f2b8068a290476d337ae26bb96d
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 10 15:21:31 2021 +1000
+
+    Refactor (Code) : #N/A : Commented Code
+
+commit a65733181b088920f608ccb634410ff53b4a0f51
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Sep 10 14:36:22 2021 +1000
+
+    Add (Materials) #14: Adding door materials and fixing prefab
+
+commit 13dd03a679b4b47f1288a0df4ce2acd56437d449
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 10 11:41:19 2021 +1000
+
+    Fix (Maze) : #29 : Fixed maze interaction
+
+commit 3696e015571815a43a4cd98985ce148c2702fd52
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 9 17:29:48 2021 +1000
+
+    Add (Materials) #14: Adding wall texture and updating temple prefabprefab
+
+commit ad9318f15aedbbb88eb8bc1d12c9287e2d4a7d60
+Merge: 782fd4b e2b76c5
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 9 14:46:26 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 782fd4b39315044592c7f330a4e3a244eb202d7e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 9 14:46:07 2021 +1000
+
+    Refactor (Materials) #14: Fixing normal maps on all objects
+
+commit e2b76c5468d62c54d7905f5781937e9ed7fa8fb3
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 9 12:32:08 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit 6e9d272ccc22747c8df5bbb6b0016996eede89b5
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 9 12:30:05 2021 +1000
+
+    Refactor (Maze) : #29 : Updated maze prefab
+
+commit f17ee9db45f7883a7a02040ac24709d9e49eb10e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 9 10:24:23 2021 +1000
+
+    Add (Materials) #14: Adding fixed Normals and materials
+
+commit af5ba09cf9324af5cf2f6c090ae4e10753dc3ff5
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 9 10:22:48 2021 +1000
+
+    Add (Materials) #14: Adding stairs materials and textures
+
+commit 132a5cf25694a45b8104ee7ca2654c230630abdf
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Sep 6 13:30:27 2021 +1000
+
+    Refactor (Prefabs) #51: Updating environment prefabs
+
+commit f7ff5a380cc49c541ca9eecd66fc1b2e2918cf6e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Sep 6 13:28:46 2021 +1000
+
+    Add (Environment) #51: Adding sand without rocks to blend on beach
+
+commit 0dce37596b3bebb3cda6527d4ac785802ad46d01
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Sep 3 16:34:44 2021 +1000
+
+    Refactor (Quality) : #N/A : Attempted to change quality for low-end PCs
+
+commit db77d61141db89432f00e17f1af3868d3bb1a921
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 22:18:00 2021 +1000
+
+    Refactor (Main Scene) : N/A : Updated with new prefabs and puzzles
+
+commit e451541821c36ff5d936eddf44725655ba4c7a54
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 21:57:30 2021 +1000
+
+    Re-added updated ocean water shader
+
+commit 23a94cfcfbbcf012e3c28e559c60453de61d863c
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 21:55:00 2021 +1000
+
+    Re-added main menu and refactors of prefabs
+
+commit 10edc19bee2c2907e1618a848add52310ad11d80
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 21:44:26 2021 +1000
+
+    Re-added more sounds
+
+commit 0ab46a0090569c20d020810b431134f641acafb1
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 21:39:27 2021 +1000
+
+    Re-added sounds
+
+commit 3260ab748d32e491955e627f79243d2919e70344
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 20:56:58 2021 +1000
+
+    Revert "Merge conflict fix"
+    
+    This reverts commit b1c57359c9e022e5d3c8276b31271d9414ce4440.
+
+commit b1c57359c9e022e5d3c8276b31271d9414ce4440
+Merge: afa0ecb 6fbfed0
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 20:56:58 2021 +1000
+
+    Merge conflict fix
+
+commit afa0ecbabdb9786c77f726ac356724cec947199d
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Sep 2 20:47:48 2021 +1000
+
+    Refactor (Puzzles) : N/A : Fixed mirror puzzle, updated prefabs
+    
+    Fixed the Sagittarius puzzle, cleaned up and updated prefabs as well as main scene
+
+commit 6fbfed0526b9ed6b9b6db7a214d7cfdcbfaa6ab2
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 17:27:40 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    Cleaned out unnecessary placeholder sounds
+
+commit a58acd955d4e41aed45f31378751a19c4f771785
+Merge: b530709 98b7936
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Sep 2 17:24:21 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit b530709a36d45589b6ba5d4cbd40674e0ec015d5
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Sep 2 17:24:10 2021 +1000
+
+    Fix (Shader) #13: Water shader normal map no longer stalks the camera
+
+commit 98b79366aac2a6e2a46151039903a0ef2b8d5ea8
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 2 17:04:19 2021 +1000
+
+    Refactor (Quality) : #N/A : Changed quality settings
+
+commit 0a0be012ae9280e169023a92113add3078944975
+Merge: 033dd1e 49c3113
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 2 16:57:22 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 033dd1e2115464d6b45e3fb5d4d40960caab70a9
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Sep 2 16:34:23 2021 +1000
+
+    Refactor (Prefabs): Separating prefabs into smaller, more manageable prefabs
+
+commit 49c31137787df1c38767b740ebe35b7e7c9461a2
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:48:58 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Wind
+
+commit c52c6214209520b9b9173817d4267ce29bea9ffd
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:44:20 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Wind
+
+commit 12e0c3f9e405c1bcd1c2c88ad2eb905468012270
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:42:31 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Wind
+
+commit 244bfa5d306a9c42d3e3731008f3b4379e2ec873
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:39:51 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Water
+
+commit af76f3cec2ec08df73d51e0981372bd4489cdbb6
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:39:02 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Shore
+
+commit a3bc08e9a9ce9cb6c29caa43ed7904d066e611c8
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:37:40 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Shore
+
+commit 172b390e848fd5a90f27e79a7db8f639c29d58cc
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:31:02 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Misc
+
+commit 0faad45cbecb187154785680b4bf2fc43f628a97
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:29:47 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Misc
+
+commit 8b083242e542bf678d9563686c4e7b2ab209cf50
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:28:34 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Various
+
+commit 6a0f856a4894dc370567d0aa8e03289aa5eacde8
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:24:17 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Footsteps: Various
+
+commit 163189362f7f174a706f0b6c08072efd50006d69
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:22:29 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Click
+
+commit 180ecdb8d137a8bd7ff3188e9dfc3aaf3d8f67ec
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:05:22 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Bright
+
+commit ed245b243ab8d864b02ac34894b3ab07a1c1e60a
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:04:54 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Bright
+
+commit f7f8ee0ecadac157343fd6a74c262fa2095a1b4d
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:01:06 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX: Ambient
+
+commit 2a6fe3a8c6d9f1850b9769b7fde1acb82424b71e
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 14:00:14 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    SFX : Ambient
+
+commit 1811b977af0f5d858fe681d79541c686cf037505
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Sep 2 13:53:19 2021 +1000
+
+    Feature (Sound) : #55 : Adding Placeholder Sounds
+    
+    Music
+
+commit 67410e3d529a11ce6ddc9a1e1c3f25e313f82b86
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Sep 2 12:02:48 2021 +1000
+
+    Feature (UI) : #54 : Added pause menu to main scene
+
+commit 21a898a66246ccf7a9bd0131f6d4824a2f22f7da
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 21:49:17 2021 +1000
+
+    Refactor (Environment) #37: Adding collisions to stairs
+
+commit 71106d1900248caa27a8c5c9eadc534699a61eb6
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 20:50:35 2021 +1000
+
+    Addition (Foliage) #40: Adding bush and further optimising assets
+
+commit aaefc46547033089cae8da4485b1b831c792972c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 19:48:25 2021 +1000
+
+    Refactor (Foliage) #40: Adding optimised trees, Willow needs tecture
+
+commit 429e21d25bf67a635a234bfda2f5a352052a67cd
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 16:50:35 2021 +1000
+
+    Refactor (Environment): Adding compressed meshes and GPU instancing
+
+commit cb9152e990df536a441440d3998ba22bfac12352
+Merge: 48c0749 37fd5d8
+Author: AmoraIvory <amora.j.sorbello@gmail.com>
+Date:   Wed Sep 1 16:31:08 2021 +1000
+
+    Merge branch 'Development' of https://github.com/loganryan01/Constellations into Development
+
+commit 48c0749484949cea8a8b9e4fb14ef581e4a30f31
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 16:30:51 2021 +1000
+
+    Refactor (Environment) #51: Fixing some cliffs and editing the terrain textures
+
+commit 0c7b0fbf737f1a8bb60abd33edbfb7243962d10f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 16:29:54 2021 +1000
+
+    Adding Substance for Unity
+
+commit 37fd5d8cd53c9594b273bbfc369167f4946d6ce2
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Sep 1 16:26:12 2021 +1000
+
+    Feature (UI) : #54 : Created a pause menu
+
+commit b3e434bf49ae6e9ffbc85f1555a6e450b65dc14c
+Merge: 155a4fa 3a000fe
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Wed Sep 1 14:36:40 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 155a4fa861071d160b15bb202c70f4c67d744849
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Wed Sep 1 14:36:24 2021 +1000
+
+    Refactor (Scripts) : N/A : Fixed and organised code
+    
+    Organised and formatted code for pisces puzzle, updated pisces puzzle prefab
+
+commit 3a000fe4d30a5e5c86b0cb8232e148457871143c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 14:26:59 2021 +1000
+
+    Refactor (Terrain) #14: Adding materials to terrain
+
+commit 8e15d19bd8f5ea42c5d611a5342693fcd52d1397
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 13:29:44 2021 +1000
+
+    Save (Scene): Pushing saved Amora scene
+
+commit 893aa17b98d364fc5b19eecc960bdf4fa8e3ccea
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 13:27:14 2021 +1000
+
+    Refactor (Prefab) #43: Adding section for Pisces and adding cliffs
+
+commit 066b99d07dffd42558754c11913d5c09c6d3ed9e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 13:26:11 2021 +1000
+
+    Addition (Environment) #51: Adding last cliff piece
+
+commit d7e6d015fe77450beb4703b572ae73627f7df205
+Merge: a43e48c 0d6d09f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Sep 1 09:33:17 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 0d6d09fbeb700f31b8bf1f3c956d318ec4822d2e
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Sep 1 09:22:44 2021 +1000
+
+    Fix (Door) : #N/A : Fixed right door rotation
+
+commit a43e48cbfae57821e6facf4ba55707c1439c080d
+Merge: 71f32f9 c7f8aa6
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Aug 30 10:56:45 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit c7f8aa644edb35d39cfe76999d8e2468526561f1
+Merge: a04e515 1a9650d
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 02:06:16 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit a04e515d8e50aaab118bed3178523c7da7d031d9
+Merge: 49cd424 312e0d7
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 02:02:42 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 1a9650df06b021736c63565b7e247feec548454b
+Merge: 49cd424 312e0d7
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 02:02:42 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 49cd424f7ce33a801a065ce9a7061922b054bc87
+Merge: f176c72 a39f6ef
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 01:39:07 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 312e0d76fc76234d113621c38f7335e12cbc602d
+Merge: f176c72 a39f6ef
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 01:39:07 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit f176c7220755746f53ee4bf65fab589f82d488af
+Author: jac <jacques.harries@gmail.com>
+Date:   Sat Aug 28 01:38:43 2021 +1000
+
+    Feature (Postprocessing) #52: Added basic post processing to main scene
+
+commit a39f6ef30e9f98ca14520b67111aed18ddcb9e3a
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 27 17:43:59 2021 +1000
+
+    Refactor (Doors) : #N/A : Moved doors
+
+commit 71f32f9cbaa7c4b90ef93a7196e5b0f383adaf08
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 27 17:29:07 2021 +1000
+
+    Build (N/A) : #N/A : Build for 27th August (1/2)
+
+commit 76d827558f20705f554f08f46eeb3862c2179e17
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 27 17:20:43 2021 +1000
+
+    Refactor (Scripts) : #N/A : Commented and Cleaned scale script
+
+commit 3c5817d94e509068b48f3ef7418e7217f828bfcf
+Merge: ae47694 427410a
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 17:13:49 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit ae476940bd479aa525554f7679c9cecfef487bdf
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 17:12:09 2021 +1000
+
+    Feature (Terrain) #40: Adding shader to blend terrain materials
+
+commit 427410aa6dc6924e7ef9283746d37d85df1c94c6
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Aug 27 16:16:03 2021 +1000
+
+    Refactor (WaterPuzzle) : #41 : Updated prefab, water material
+
+commit 88423bc276be59cd19a7ef3805be25c2aafa8ce3
+Merge: 895e18a 6357dba
+Author: loganryan01 <61926209+loganryan01@users.noreply.github.com>
+Date:   Fri Aug 27 16:08:06 2021 +1000
+
+    Merge pull request #1 from loganryan01/HDRPConvert
+    
+    Changing URP to HDRP
+
+commit 6357dba9b420d3cd87b04f277e1c1e5ec5cddfa4
+Author: AmoraIvory <amora.j.sorbello@gmail.com>
+Date:   Fri Aug 27 15:59:01 2021 +1000
+
+    Save before merge
+
+commit 9adbc43795577b709315e392c02249c760a44865
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 15:51:19 2021 +1000
+
+    Refactor (Textures) #40: Adding cliff texture for terrain
+
+commit 0ce284ec79760dff8e571f067be747c8c60cc14c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 15:50:21 2021 +1000
+
+    Addition (Environment) #51: Adding cliff style 03 assets
+
+commit fd60cee52e6c40b19d8a86b31f61d7a6a32691af
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 11:49:53 2021 +1000
+
+    Addition (Environment) #51: Adding Cliff_Style02 assets
+
+commit 34a7b125b97b3aac16feaf14051b76f8865034e1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 27 11:48:49 2021 +1000
+
+    Fix (Environment) #51: Fixing Cliff_Style01 assets
+
+commit 895e18aaf5d700d8262442c49fbbf3952cd8661b
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 27 09:53:57 2021 +1000
+
+    Fix (Camera) : #50 : Fixed camera transition from player to puzzle
+
+commit fc700f3468ee4dc22b207472ebece791770f858b
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Aug 26 17:29:01 2021 +1000
+
+    Refactor (WaterPuzzle) : Added moving fish, refactored code
+
+commit b011236a9da71e3ac8afe738aa5ba9280af76160
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 26 17:05:47 2021 +1000
+
+    Feature (Main) : #N/A : Moved work to main scene
+
+commit d96704e908c6846844ef81aac447c44cbbd21359
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 26 15:03:20 2021 +1000
+
+    Refactor (Dialogue) : #49 : Added dialogue for Libra
+
+commit b028141b8b687383a55cd0163c733a5f51f5b68f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 26 14:29:21 2021 +1000
+
+    Addition (Environment) #14: Adding cliff & materials
+
+commit b3bc78129bdf54688d2560637f08bd52ec3bdb5e
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 26 12:02:39 2021 +1000
+
+    Fix (Terrain) #14: WTF is happening whyyyyyy
+
+commit 97419efdd63a15a508e51eb1832dfb5cae78fbce
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 26 12:01:18 2021 +1000
+
+    Fix (Terrain) #14: Second fix to terrain
+
+commit b3daa9c1b8c4781d4afd5b4814d4b16e402a4123
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 26 11:52:44 2021 +1000
+
+    Refactor (Terrain) #14: Fixing terrain material in HDRP
+
+commit 232055b290cf64dbf6989752786ec96515862b13
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 26 11:34:02 2021 +1000
+
+    Refactor (Dialogue) : #48 : Added dialogue for Sagittarius
+
+commit 87f0c92f3000656f2b5940b78d834b1f90c1e418
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Aug 26 09:59:44 2021 +1000
+
+    HDRPConvert Initial Commit
+
+commit 68a11306f8a4ef480f54ddbcfa4fd5fabe627a0c
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 20 17:08:15 2021 +1000
+
+    Feature (Dialogue) : #47 : Added font to Taurus Dialogue
+
+commit a35bcca14d0d86c0e80b898f98965b95f809f6b0
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 20 12:00:59 2021 +1000
+
+    Feature (Dialogue) : #47 : Created Dialogue System
+
+commit 24d6eeb9812b0708c7f1469df7d418614e31fb93
+Merge: df0f301 1c2122d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 16:57:49 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit df0f3011908b03e9015f112b66e81c6974f2c537
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 16:57:46 2021 +1000
+
+    Addition (Environment) #40/#37: Adding foliage and architecture pieces
+
+commit 1c2122d3f0cc5ad941badd008d851080621c1e7f
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 19 16:19:06 2021 +1000
+
+    Feature (Maze) : #33 : Add constraints to maze rotation
+
+commit 964a55e56d0914142a88eb29f2f0eec11dc06d27
+Merge: 88d4668 5a9ca64
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 15:09:28 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 88d466812212f65fc88cb3511d0c733fb3b1a6fe
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 15:09:22 2021 +1000
+
+    Refactor (Foliage) #40: Adding lower poly Jacaranda tree with updated textures
+
+commit 5a9ca64098569dd84bade833f03498b1ad91058f
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Aug 19 14:12:00 2021 +1000
+
+    Refactor (WaterPuzzle) : #41 : Added prefab of working puzzle
+
+commit 998f01fd2cd1f80be410d09d441f3c06ed6737ae
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Aug 19 13:53:53 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit a359348216ca2420d811bb7097a46d3a18d1592c
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Thu Aug 19 13:53:15 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit 4d4f0a3f9bac4605d6cf2562c0bed202eff6d621
+Merge: ae74a21 b4af2c1
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 12:29:27 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit ae74a21ee26ebec3ad8ae8e03b71e92b7109bbe3
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 19 12:29:21 2021 +1000
+
+    Addition (Foliage) #40: Adding Jacaranda tree
+
+commit b4af2c13db820173077d3247a9f1d8e9c57bbde2
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 19 11:43:04 2021 +1000
+
+    Feature (Laser) : #44 : Add laser shader for Sagittarius puzzle
+
+commit 6248fb5f4e1970f104509ff76e79cef6eebcb20c
+Merge: 8c584d0 73c826c
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Aug 19 00:04:47 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 8c584d0540d43bf8cfece056b3adf7231cb40811
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Wed Aug 18 19:32:02 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit 73c826c3ddc36315d2b6615bbb16468facbf9d1c
+Merge: d0b0f7e a4ecfec
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 18 20:26:46 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit d0b0f7e64fd935d1138a77eff05bd688c240dddb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 18 20:26:39 2021 +1000
+
+    Addition (Particle) #37: Adding dust particle effect
+
+commit a4ecfec8033aa8615cb385450b9e83e22c75ea1e
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Wed Aug 18 19:32:02 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit 930bf9aa7a722a57fae49bb526286535573ecedc
+Merge: 8794440 16bf4ac
+Author: jac <jacques.harries@gmail.com>
+Date:   Wed Aug 18 17:10:56 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 87944409854b48b41d18ccf0d8fe2e384c5d42a0
+Author: jac <jacques.harries@gmail.com>
+Date:   Wed Aug 18 17:10:27 2021 +1000
+
+    Feature (Skybox) #42: Skybox Shader, Skybox prefab, dissolve effect
+
+commit 16bf4ac753cb645da1976c4cdf1549debb3fdf99
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Wed Aug 18 17:00:45 2021 +1000
+
+    Refactor(Blockout)#3 Pisces Puzzle Prefab
+
+commit b3cfdbebcb7e656b6916e3a102818c905e3d1d5e
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Wed Aug 18 16:08:18 2021 +1000
+
+    Refactor(Blockout)#3 Pisces
+
+commit 5a6bb109a0e5db6291f0192356ce2809f57ecb83
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 18 15:07:29 2021 +1000
+
+    Refactor (Level Layout) #43: Updating terrain to match level layout
+
+commit 7dd33d5ff32a665aaeb0b7f96e20a117fa89fcf2
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Wed Aug 18 14:55:55 2021 +1000
+
+    Refactor(Blockout)#3Prefab
+
+commit 57d54b202567511ad96f3b3f99dff4ecfd482504
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 18 14:17:39 2021 +1000
+
+    Addition (Model) #40: Adding first pass of Willow tree
+
+commit 8359ef1d51d7c7735b64ce5e781ee9953a5933e9
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 18 12:32:21 2021 +1000
+
+    Delete (Model) #40: Deleting Sycamore tree model, it real bad
+
+commit a66fb3efeb2fd1d3fe030afa6734e57882bba617
+Merge: 2353e49 2eee120
+Author: jac <jacques.harries@gmail.com>
+Date:   Tue Aug 17 22:20:37 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 2353e499442d070a1fd4c0afeabe24433b21ea80
+Author: jac <jacques.harries@gmail.com>
+Date:   Tue Aug 17 22:20:27 2021 +1000
+
+    Feature (Shader) #42: Testing skybox setups
+
+commit 2eee120b136b58dcac74df40e80449b21054e33c
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 12:46:50 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Pisces Puzzle
+
+commit f4bb1e2c9d0feb81a0a0ddc13aa310d209340e73
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 12:39:02 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Pisces Puzzle
+
+commit c890c8361cdaa29b5f3d6e63e133305967e1fd6a
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 10:48:32 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Taurus Puzzle
+
+commit c767d53185b86e5b9314809d001f312579858a8a
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 10:42:00 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Taurus Puzzle
+
+commit 91e4d6e16ae6da37002181300bd4e3a97376a795
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 09:58:55 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Taurus Puzzle
+
+commit d52c4ff9a458f2dece8c594169c135ea5cd4dcd1
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 09:41:59 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Taurus Puzzle
+
+commit 2237952f67a9957bccc1a123701124dee4af7616
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Mon Aug 16 08:55:37 2021 +1000
+
+    Refactor(Blockout)#3 Iterating on Taurus puzzle
+    
+    Terrain
+
+commit e59dc83e970d1306c6aa5d956bdbb8966b0063a8
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Aug 13 17:29:13 2021 +1000
+
+    Fixed meta file
+
+commit 2b95b696e26ee04797ac5646ca53555b2f5b65db
+Merge: bdb3916 0839907
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 17:09:39 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit bdb3916004ffdaa99846ee2f4928459be03e5936
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 17:09:23 2021 +1000
+
+    Refactor(Scene)#3 Taurus: Blockout
+
+commit 08399072715de6c6ea08a33eb1cf44cc71f58141
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 13 17:08:47 2021 +1000
+
+    Refactor (Foliage) #40: Tried importing speedtree asset
+
+commit 390b9b54fe8ddd9bad73717cd5d8d58cfa402e3c
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 13 16:47:28 2021 +1000
+
+    Refactor (Camera) : #35 : Added Camera Transitions
+
+commit f9dd4f03e920ad5503ce1efa179a47273e2a79fc
+Merge: 4ff72a5 b38b422
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 16:27:04 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 4ff72a55b68ca0ca31b4dd896ff89dff7176e015
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 16:26:57 2021 +1000
+
+    Refactor(Scene)#3: Sagittarius
+
+commit b38b422f344ecf49d885f241d30534ae192fbba6
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Aug 13 16:20:30 2021 +1000
+
+    Feature (WaterPuzzle) : #41 : Added rotating water channels
+
+commit 96a423ca435dd195ce3a987a4bcbb436a05cde26
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 15:29:51 2021 +1000
+
+    Feature (Asset) #29: Taurus Maze Blockout
+
+commit de0787cc8243e3366d0a5cc7e77b3cea37f157fe
+Merge: c880bc2 5599c26
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 15:25:41 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit c880bc2d02ceaafab19c1915b703353114d6081b
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 15:25:39 2021 +1000
+
+    Feature (Shader) #40: Basic foliage shader and material
+
+commit 5599c26d56960afe018bc1e1bed228f46d594ae0
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 15:25:29 2021 +1000
+
+    Refactor(Scene)#3: Rebuild Sagittarius Scene
+
+commit 05617f70adc4d2a79ac1d3f0a9577bae14b2de8a
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 15:12:36 2021 +1000
+
+    Refactor(Scene)#3: Cleaning Unity
+    
+    Clearing unused scenes in untiy
+
+commit 3d5f7545f60c698fe5426abf91a60f8efea454aa
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 13 15:04:27 2021 +1000
+
+    Update (Main) #37: Updating main scene with Sagittarius prefab
+
+commit b66fde271b7d3eb5677fd7692b56740e480e546d
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 13 14:47:24 2021 +1000
+
+    Feature (Maze) : #35 : Adding Camera Transitions
+
+commit cc083a5a6a52cc2870ad013ec011c989ec6e2dff
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 14:24:12 2021 +1000
+
+    Revert "Feature (Asset) #40: Created basic foliage shader and material"
+    
+    This reverts commit 261546511d305ed82cc4e6ea33ca1a816aa6c838.
+
+commit 7afdbf9d4ed61ea1d838ca836ff5eadaebbcfb84
+Merge: 2615465 8a7a469
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 14:24:17 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 261546511d305ed82cc4e6ea33ca1a816aa6c838
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 13 14:24:12 2021 +1000
+
+    Feature (Asset) #40: Created basic foliage shader and material
+
+commit 8a7a46992fa60d2932ba295c326fb41d1fe6b983
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 13 14:19:10 2021 +1000
+
+    Refactor (Prefab) #4: Fixing Sagittarius interior prefab
+
+commit 5677aba8afec0f1944bfb94ea7606d07751eb1f9
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 13 14:07:55 2021 +1000
+
+    Refactor (Prefab) #5: Updating interior prefab
+
+commit 02ad7b08a6f1346053763366fbebdaf594d6aeda
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 13:49:19 2021 +1000
+
+    Refactor(Blockout)#5: Prefab
+
+commit 2e7dbe115f34809e5d1a0d44c99b27d225d0ab9d
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 13 13:44:15 2021 +1000
+
+    Refactor (Prefab) #3: Redoing Environment prefab
+
+commit 023f119e11d07a1241d5f58ea06f4a571e94524e
+Merge: 81c6695 40d4ce3
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 13:39:09 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 81c6695a2b5fd5bbf7b33c52a1e0720bc382f45c
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 13:39:03 2021 +1000
+
+    Refactor(Blockout)#5: Prefab
+
+commit 40d4ce3bf05bb96c881acd40c44512427e29f492
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 13 10:30:35 2021 +1000
+
+    Feature (Maze) : #18 : Completed the maze blockout
+
+commit 3999c5351b70348f63f1a8058645bf8608906058
+Merge: 52cb58e df59164
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 09:58:45 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 52cb58e44a23a9aaac5460b156c2a8939731ca8d
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Aug 13 09:58:39 2021 +1000
+
+    Refactor(Scene)#5:Prefab
+
+commit df59164a86653fc96e3975f9bbcbdba89708fda6
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 13 09:33:09 2021 +1000
+
+    Feature (Maze) : #18 : Completed half of the maze blockout
+
+commit f3c341c6fbc3e6422788c72874c20618116874a7
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Aug 12 15:28:38 2021 +1000
+
+    Refactor(Blockout)#4: Sagittarius
+
+commit 2c91dd0f7342b78bc08f8cfe267bf6c0b63d26f4
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Aug 12 15:10:56 2021 +1000
+
+    Refactor(Blockout)#4: Sagittarius
+
+commit 70f733252fa6ee04a1f910b7b7bb38dd77af363e
+Merge: 1265bb4 21a3f0b
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 12 13:31:37 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 1265bb449fb332326087a1fb049dc34488c3ac5c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 12 13:31:31 2021 +1000
+
+    Add (Foliage) #3: Adding Willow tree blockout
+
+commit 21a3f0b7cc191f31d7ebb402491d4db27ae6aed6
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Aug 12 12:34:36 2021 +1000
+
+    Refactor(Blockout)#4: Sagittarius reiteration
+
+commit 0b2d157d44b9e08b12f0e41537fe45a77d351444
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 12 12:01:18 2021 +1000
+
+    Feature (Maze) : #17 : Maze rotates with ball
+
+commit 4d8e0ed59c546a2e61c446eb398512d4d2e61b16
+Merge: c6195c4 22b628f
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Aug 12 11:14:29 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit c6195c45a7ea80de8c687778d1457e93459f613b
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Aug 12 11:14:25 2021 +1000
+
+    Refactor(Blockout)#4: Sagittarius reiteration
+
+commit 22b628f9852fb07e6576fb07c0ee900eb92a7321
+Author: Markus <markus.lawsonho@gmail.com>
+Date:   Thu Aug 12 11:11:45 2021 +1000
+
+    Brazier
+
+commit 8cc20ce536d2c325e2f000b3c74b7e61b3e11bc2
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 6 14:48:14 2021 +1000
+
+    Refactor (Mirror) : #16 : Added smooth mirror rotation
+
+commit 7ef7f0628f7f3595e681cadffb92d325775528fe
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 6 14:44:25 2021 +1000
+
+    Remove outdated terrain
+
+commit 124c9d9cc4dfb7a6a71910aceff9ebb7e3026310
+Merge: 5aa27a0 82cd34c
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 6 14:33:01 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 5aa27a099d8a6d394d9543b14424a2e7b02c6ed6
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Aug 6 14:04:42 2021 +1000
+
+    Refactor (Shaders) #13: Changes to water shader and water material
+
+commit 82cd34c0d04679805b283c1ac8137e0eaa09df82
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Aug 6 13:36:25 2021 +1000
+
+    Feature (Environment) : #15 : Reapplied colliders to environment
+
+commit 9986c646091b3ddfef86bc74438f939204353c7c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 6 11:42:02 2021 +1000
+
+    Refactor (Main) #3: Adding environment prefab to main scene
+
+commit 59e127ec10433c6492e52bf804aa77e20dae89b4
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Aug 6 11:38:59 2021 +1000
+
+    Refactor (Prefabs) #3: Creating prefab from entire Amora scene
+
+commit ec2ce357929414210283929518b1468db4703774
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 5 17:07:11 2021 +1000
+
+    Feature (Laser) : #16 : Created laser
+
+commit 17d0d2baaa94a6bbfb273331c35bf450e1bf7dc3
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 16:43:19 2021 +1000
+
+    Fix #10 (Player): Fixing camera height in Amora Scene
+
+commit 5dad82e3eb97daa231226df0e8dfaac2c41b54fe
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 16:32:43 2021 +1000
+
+    Refactor (Unity Scene) #3: Update to Amora's scene
+
+commit c22df4d0041aa86db3e0580141d9aa8f599680d9
+Merge: fcafa96 86b20e4
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 16:26:29 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit fcafa9608708a102ac0a70be72538318374cf38f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 16:26:20 2021 +1000
+
+    Refactor (Temple) #3: Updating temple asset
+
+commit 86b20e4796d0f7f22ed9744ef9a0227fb910d8c3
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 5 16:05:40 2021 +1000
+
+    Feature (Environment) : #15 : Added colliders to main scene
+
+commit 340195eac842c06b07e2f5edf87ba8f766f452ca
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 12:18:53 2021 +1000
+
+    Fix (Terrain) #3: Fix to terrain height
+
+commit b77698f3726dd3ad5c5d9c8439246d3bf4effa75
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Aug 5 11:51:14 2021 +1000
+
+    Refactor (Blockout) #3: Adding temple assets
+
+commit 5a9aba18be21d3edba1ec34ab8c4b0205fba418e
+Merge: eff72bf 8d08b30
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Aug 5 10:08:47 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit eff72bf365b2c820f9f0dc423ea3e76d40b33a10
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Aug 5 10:08:44 2021 +1000
+
+    Refactor (Shader) #13: Now has intended effect
+    
+    Light information is retained on stone, metal etc, galaxy effect is unlit
+
+commit 8d08b30162bef35d4ada6b102dcc7fd8d94c9b1f
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Aug 5 10:01:27 2021 +1000
+
+    Refactor (Player) : #10 : Player cannot move when camera's switch
+
+commit 38996371878b3aa5d6b5521a4caadfe2a45e98a4
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Aug 4 17:01:50 2021 +1000
+
+    Fix (Scale) : # 10 Rocks stay in center of the scale's hands
+
+commit 10db89442227c7a40d072994568492c0463856d8
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 4 16:57:41 2021 +1000
+
+    Refactor (Environment) 3#: Adding more greybox assets
+    
+    Stair way
+
+commit 3121397dbeee19c228bb395b06be697e64e63336
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 4 10:45:12 2021 +1000
+
+    Fix (Lighting) #3: Fixing Skybox and lighting
+
+commit 5f4b355c7c1e4929edc5f09c7f4794a422532c74
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 4 09:29:00 2021 +1000
+
+    Refactor (Lighting) #3: Adding skybox mats and lighting
+
+commit 995924d345e1708d5565bf5d328d3050b49e1229
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Aug 4 00:10:40 2021 +1000
+
+    Refactor (Materials) #3: Updating temple front textures
+
+commit 821b653ff2aa2d9a56cebf03cbf85ac716d34232
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Aug 3 18:47:57 2021 +1000
+
+    Refactor (Materials) #3: Adding crappy placeholder texture for temple
+
+commit 90506d9e2fa268d2714ae5f1fe2afe44c222302a
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Aug 3 14:07:12 2021 +1000
+
+    Refactor (Materials) #3: Adding pillar material
+
+commit 1fe40229a9870d27809e7969c831c62c7ce96636
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Tue Aug 3 10:55:41 2021 +1000
+
+    Refactor (Player) : #10 : Player can now move rocks in scale puzzle
+
+commit 718508e472b4a6107fa8c96fece414e8b16827f7
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Tue Aug 3 00:56:14 2021 +1000
+
+    Refactor (Asset) #3: Updating temple front assets past midnight like a crazy woman who can't sleep
+
+commit e07218b0725fa0c8a510c2fd5ece45eac339dc84
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Mon Aug 2 15:36:47 2021 +1000
+
+    Refactor (Assets) #3: Update to models
+
+commit 4fc4e9029e63813ce1e9ff112c4e457a418fe47b
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Mon Aug 2 10:52:44 2021 +1000
+
+    Refactor (Player) : #10 : Input changes when player interacts with scale
+
+commit 68783e60a7d719bdcdb0d0f6f9ed7bb571a0bd6a
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Mon Aug 2 09:45:00 2021 +1000
+
+    Refactor (Player) : N/A : Added code to debug player controller
+
+commit 48327660a3e8d7da298320efeb75e7ea3829aad5
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Mon Aug 2 09:41:35 2021 +1000
+
+    Fix (Scale) : N/A : Fixed scale with new model
+
+commit 20c557d959d338e7aeb2a9fd7117e6b1e087340f
+Author: jac <jacques.harries@gmail.com>
+Date:   Sun Aug 1 22:05:32 2021 +1000
+
+    Refactor (Shaders) #13: Galaxy effect has a slider
+
+commit e1a6e189d3abf39a3cfc259f9b3f53ea09a51c9f
+Merge: 33a4188 79a7b35
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 18:43:18 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 33a4188f1288d18a5a4918c295a83c3bd8dd5155
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 18:43:14 2021 +1000
+
+    Refactor (Shaders) #13: Made GalaxyTexture3 tileable, added properties
+
+commit 79a7b3509f0288236026d8ffb9c1f3d6a2554f93
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 30 14:50:31 2021 +1000
+
+    Refactor (Scene) #3: Updating unity scene
+
+commit 4ad426a42f108ac815449dd88ce8e933a8315976
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 14:46:35 2021 +1000
+
+    Refactor (Asset) #2: Working Galaxy shader on Scales
+
+commit 6cf420cc44dbea92eb525c1b324cdb1f3467882d
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 14:23:56 2021 +1000
+
+    Refactor (Material) #14: Stone material meta
+
+commit 9cfa763f38b75bade6371bf56ff3930efd11814c
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 14:16:43 2021 +1000
+
+    Refactor (Asset) #2: Made left plate and right plate separate objects
+
+commit 843f8b0f048bf5b92bca0ad4cc4c2af968bb3cf7
+Merge: 484255e 87d9e6d
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 14:06:25 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 484255ef35176fcf8ddd435f6a3ff504736eae33
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 14:06:20 2021 +1000
+
+    Refactor (Asset) #2: Updated Scales model and added texture
+
+commit 87d9e6dc460b15b03fc1de48c061b8f65a7b1e99
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 30 13:59:14 2021 +1000
+
+    Refactor (Scene) #3: Adding a whole lotta stuff to personal scene
+
+commit 468a6fde1d017d46c9e909b810598f8464ba9ea6
+Merge: 69f1705 065ad52
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 30 13:44:33 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 69f1705aea8b03c8c9f3d8cbda8af6dc4d22cc18
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 30 13:44:28 2021 +1000
+
+    Fix (Scale) : N/A : Updated scale to change camera
+
+commit 43a5aac566595955ab93e0317095a3818165750b
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 12:33:45 2021 +1000
+
+    Feature (Shaders) 13: Shader which combines galaxy effect with statue
+
+commit 065ad52ad05fc29843c0d4c190097730a91730ca
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Jul 30 10:32:24 2021 +1000
+
+    ReFactor (Blockout) #4: Proper Grayboxing
+    
+    final basic blockout
+
+commit e527c6dc945cfc56d8ab7022fe12430fc0cfb4cc
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Jul 30 10:19:50 2021 +1000
+
+    ReFactor (Assets) #4: Proper Grayboxing
+    
+    created a prefab
+
+commit f1807f48ecfeee6a234408fc5adc76ea091c8d89
+Merge: e91343d 6f85f9d
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 30 10:17:29 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit e91343d6fa760649b85bfa40232ef88a56b0351c
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 30 10:17:23 2021 +1000
+
+    Refactor (Scale) : N/A : Fixing scale interaction
+
+commit 6f85f9d9ca02796669cb59a4b880e27f1e71a65c
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Jul 30 10:16:08 2021 +1000
+
+    ReFactor (Blockout) #4: Proper Grayboxing
+
+commit 5a8b227432c1e1ad36d28b662a5e90b16b6470cd
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 30 08:20:01 2021 +1000
+
+    Feature (Object-Interaction) : #10 : Updated controls for interactions
+    
+    Player controls were updated to deal with puzzle interactions, mirror object was created for testing
+
+commit 9549470af4b117b6f53c81eacb6750f5e71225f5
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Jul 30 05:56:08 2021 +1000
+
+    ReFactor (Blockout) #4: Proper Grayboxing
+
+commit 0499c8dee04a0c4fececf8ec037633141f42440b
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Fri Jul 30 05:34:48 2021 +1000
+
+    ReFactor (Blockout) #4: Proper Greyboxing
+    
+    Continuance of blockout
+
+commit 3090967cfa97c73ece8ff51896c1237f7f7c6871
+Merge: 0c532ad cc145e5
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 01:29:33 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 0c532adefefe5ce297119db044d59adb125d1c06
+Author: jac <jacques.harries@gmail.com>
+Date:   Fri Jul 30 01:29:30 2021 +1000
+
+    Refactor (Shaders) #13: Noise cubemap for nebula clouds
+
+commit cc145e5eb589b881ceacf5a38d192db84b49ac36
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Jul 29 17:44:38 2021 +1000
+
+    Feature (Scale) : #9 : Doors open when scale puzzle is completed
+
+commit 6e97676bfaf2aa757af3839ee69c18cfa6bd61ed
+Merge: 0bf24d1 314c8ea
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 29 14:52:31 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 0bf24d1199ac49e6703edfd92f615deb2fd16552
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 29 14:20:23 2021 +1000
+
+    ReFactor (Blockout) #4: Proper Grayboxing
+
+commit 314c8ea99d960133930e7b1a9d8bddaf9b8eb61b
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 29 14:20:23 2021 +1000
+
+    Create a basic level blockout of the overall game
+
+commit 8f7ea0758eeb02a40e144028bfbd0f1587ccab1a
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Jul 29 01:20:14 2021 +1000
+
+    Feature (Shaders) #13: Added variant of galaxy shader
+
+commit f9bd88e477c3b6d204e4f0bf3e769bc86f309a9c
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Jul 23 17:07:25 2021 +1000
+
+    Refactor (Shaders) : #13 : Changed names of variables for galaxy shader
+
+commit e963000ddb41e8bebb27d5cbf7a377bdef6e0294
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 23 17:03:25 2021 +1000
+
+    Fix (controls) : #10 : Fixed player controls, updated test scene
+
+commit 5e22170e7c0e3a2d13634593bc5940ae1927600c
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 23 17:01:33 2021 +1000
+
+    Fix (Doors) #3: Replacing greyboxed doors to Unity scene
+
+commit 73a7eae2a0779970f43fcda1aadc21b53b247093
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 23 16:59:52 2021 +1000
+
+    Fix (Grass) #3: Adding PolyBrush tool to Unity
+
+commit 866faf4f9cf3e6ca801661da4c9309351f289659
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 23 15:26:10 2021 +1000
+
+    Auto stash before merge of "Development" and "origin/Development"
+
+commit a8e2f3fc93257f5b03eaea99f92d1435b9af33a1
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Jul 23 15:18:14 2021 +1000
+
+    Feature (Shader) : #13 : Created Galaxy Shader
+
+commit edf5beaf2d466ec3553db58e311bc3545e020447
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Fri Jul 23 15:07:45 2021 +1000
+
+    Test (Shader) #13: Adding X-bot for testing
+
+commit b4d2f9979b08cc1fd04083f9c0450ea66d9ecc8f
+Merge: 37deb3b ba282d8
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 23 14:54:21 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 37deb3b3431b14505a430941766baecb23df0195
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 23 14:54:12 2021 +1000
+
+    Refactor (controls) : #10 : Added player script, mouse movement
+    
+    Added script to move player and camera with input system
+
+commit ba282d8d23029482cca593a75c4650ee96b10243
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Fri Jul 23 10:13:23 2021 +1000
+
+    Refactor (scale) : #9 : Scale can start in different positions
+
+commit 9d0bc4b8d1c5527cbc132c92db330fecc4b578a3
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 23 10:01:28 2021 +1000
+
+    Feature (controls) : #10 : Created test scene, added input actions
+    
+    Created input actions and set up bindings
+
+commit 7fcaaaed8a5eb801ca5baafbe7b6fe392964b5b9
+Author: Mara Dusevic <s200494@students.aie.edu.au>
+Date:   Fri Jul 23 09:43:01 2021 +1000
+
+    Feature (controls) : #10 : Added Unity Input System
+
+commit 47be5b4f9c68503d6d7cd996490e86457f1b989e
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Jul 22 17:22:01 2021 +1000
+
+    Added scripts for scale puzzle
+
+commit bff86f73325ba11fc10ed2b8fd01a3b831e1de17
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 16:33:33 2021 +1000
+
+    Doors
+
+commit 039c0dd9a9c814b3531681024fd15b03321bffb9
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Thu Jul 22 14:34:04 2021 +1000
+
+    Added Wave Shader
+
+commit 5efb5347d778171b94dbe90b0fede98b110180da
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 14:05:32 2021 +1000
+
+    update for main scene and temple
+
+commit 767f331eaba5fcb18af828332996e53cc1566c22
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 12:17:12 2021 +1000
+
+    PREFABS for temple
+
+commit c12df6a76a55e17b2f6fa84f435deda4c4811a5f
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 12:07:39 2021 +1000
+
+    main scene update
+
+commit f945f4db4b004f053b921bfc0d1bddfc6ede39b0
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 11:15:01 2021 +1000
+
+    Updating terrain things
+
+commit 1999ed9518ab8e4c1993360739864f18403a41fb
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 10:26:22 2021 +1000
+
+    Temple resize
+
+commit c5e0db8a3a40a87517af8abd8aa4f424b692e232
+Merge: 57fd0b9 f28e661
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 22 10:12:34 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit 57fd0b9c34b9e054a87104e4ac24a580dbb9b3b3
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 22 10:12:27 2021 +1000
+
+    Add Scene Material and change Asset placement
+
+commit f28e661c3eaba2ab6134949e664d08bfdf9cc867
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Jul 22 10:03:27 2021 +1000
+
+    scales chain doublesided
+
+commit 4945fda2fc079712ae8638722aae1a4af527570c
+Author: jac <jacques.harries@gmail.com>
+Date:   Thu Jul 22 09:54:37 2021 +1000
+
+    Scales prefab
+
+commit 515c005e556efe1338b0388a5623d0ef08177cd2
+Merge: b089b8d be1366f
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 22 09:43:10 2021 +1000
+
+    Merge remote-tracking branch 'origin/Development' into Development
+
+commit b089b8d4c76c63dc6203506bf74cd50e64756e6c
+Author: Andrew Phillip Gonzalez <Lekonia@iinet.net.au>
+Date:   Thu Jul 22 09:43:03 2021 +1000
+
+    Add Pro-Builder, Pro-Grids
+
+commit be1366f0a65866eb644c2e4b7356ac55b0d81a46
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Thu Jul 22 09:42:15 2021 +1000
+
+    making terrain things
+
+commit c45e83fdb88a3cd0f35179ccd9c1d7c316525657
+Author: Amora <amora.j.ivory@gmail.com>
+Date:   Wed Jul 21 16:18:20 2021 +1000
+
+    Adding greybox assets, main scene with temple front and metas
+
+commit e65e844bc06ad45f3384e18af3755ad6329954a1
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Jul 21 15:31:34 2021 +1000
+
+    Update to 2020.3.5
+
+commit fd2276beeca9989976d5dc3aeec7d01a2d50b9ca
+Author: Logan Ryan <loganryan982@gmail.com>
+Date:   Wed Jul 21 13:39:30 2021 +1000
+
+    Initial Commit
+
+commit 2ca689f48883190ae899451ee70cc1709c216373
+Author: loganryan01 <61926209+loganryan01@users.noreply.github.com>
+Date:   Wed Jul 21 10:00:06 2021 +1000
+
+    Initial commit
