@@ -1,8 +1,8 @@
 /*----------------------------------------
     Name: MainMenuController
     Purpose: Controls the main menu scene.
-    Author: Logan Ryan
-    Modified: 7 October 2021
+    Author: Logan Ryan and Mara Dusevic
+    Modified: 19 October 2021
 ------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------*/
@@ -75,12 +75,6 @@ public class MainMenuController : MonoBehaviour
         masterMixer.SetFloat("musicVol", soundLevel);
     }
 
-    // Close the application
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     // Change the quality of the game
     public void ChangeQuality(TMP_Dropdown dropdown)
     {
@@ -136,6 +130,12 @@ public class MainMenuController : MonoBehaviour
     public void EnableFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
+    }
+    
+    // Close the application
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     #endregion
 }
