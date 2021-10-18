@@ -1,8 +1,8 @@
 /*----------------------------------------------
     Name: DialogueManager
     Purpose: Controls the dialogue for the game.
-    Author: Logan Ryan
-    Modified: 7 October 2021
+    Author: Logan Ryan and Mara Dusevic
+    Modified: 19 October 2021
 ------------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------------*/
@@ -10,14 +10,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     #region Fields
     [Header("Character texts")]
-    public Text nameText; // Name of the character talking
-    public Text dialogueText; // What the character is saying
+    public TMP_Text nameText; // Name of the character talking
+    public TMP_Text dialogueText; // What the character is saying
 
     [Header("Dialogue Box Animator")]
     public Animator animator; // Animator to control animation for dialogue box
@@ -93,6 +93,7 @@ public class DialogueManager : MonoBehaviour
         // Every 1 second, add a letter to the dialogue text box
         foreach (char letter in sentence.ToCharArray())
         {
+            yield return new WaitForSeconds(0.024f);
             dialogueText.text += letter;
             yield return null;
         }
