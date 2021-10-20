@@ -1,0 +1,51 @@
+﻿/*--------------------------------------------------------------
+    Name: RightHandBehaviour
+    Purpose: Measures the weight in the right hand of the scale.
+    Authour: Logan Ryan
+    Modified: 7 October 2021
+----------------------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+--------------------------------------------------------------*/
+using UnityEngine;
+
+public class RightHandBehaviour : MonoBehaviour
+{
+    #region Fields
+    // The main scale script
+    ScaleBehaviour scaleBehaviour;
+    #endregion
+
+    #region Functions
+    // Start function
+    void Start()
+    {
+        scaleBehaviour = GetComponentInParent<ScaleBehaviour>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // If the rock has been placed on the right hand of the scale, add the weight to the right hand
+        if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
+        {
+            //other.gameObject.transform.position = gameObject.transform.position;
+
+            scaleBehaviour.rightWeight += other.gameObject.GetComponent<Rigidbody>().mass;
+            scaleBehaviour.UpdateScale();
+
+            other.gameObject.transform.parent = transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If the rock has been remove from the right hand of the scale, remove the weight from the right hand
+        if (other.gameObject.CompareTag("Rock"))
+        {
+            scaleBehaviour.rightWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
+            scaleBehaviour.UpdateScale();
+
+            other.gameObject.transform.parent = null;
+        }
+    }
+    #endregion
+}
