@@ -64,6 +64,7 @@ public class ScaleBehaviour : MonoBehaviour
 
     private GameObject rockGameObject; // The rock that the player is holding
     private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game object the player is holding
+    private GameObject lastTouchedRock; // The rock that was last touched
 
     private Vector3 heavyLeftPosition; // The position where the left hand is the heaviest
     private Vector3 heavyRightPosition; // The position where the right hand is the heaviest
@@ -134,6 +135,12 @@ public class ScaleBehaviour : MonoBehaviour
 
             // Set the position of the rock to be the mouse position
             rockGameObject.transform.position = rockPosition;
+
+            rockGameObject.layer = 0;
+        }
+        else if (rockGameObject == null)
+        {
+            OutlineRock();
         }
     }
 
@@ -195,6 +202,35 @@ public class ScaleBehaviour : MonoBehaviour
             if (gameObjectTransform.childCount > 0)
             {
                 IncreaseGalaxyIntensity(gameObjectTransform.GetChild(i));
+            }
+        }
+    }
+
+    private void OutlineRock()
+    {
+        // Get the mouse current position
+        Vector3 pos = Mouse.current.position.ReadValue();
+
+        // Shoot a ray
+        Ray ray = puzzleCamera.ScreenPointToRay(pos);
+
+        RaycastHit hit;
+
+        // If it hits a rock,
+        if (Physics.Raycast(ray, out hit, 27.5f))
+        {
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Rock"))
+                {
+                    lastTouchedRock = hit.collider.gameObject;
+                    lastTouchedRock.layer = 1;
+                }
+                else
+                {
+                    lastTouchedRock.layer = 0;
+                    lastTouchedRock = null;
+                }
             }
         }
     }
@@ -284,7 +320,7 @@ public class ScaleBehaviour : MonoBehaviour
         RaycastHit hit;
 
         // If it hits a rock,
-        if (Physics.Raycast(ray, out hit, 25))
+        if (Physics.Raycast(ray, out hit, 27.5f))
         {
             if (hit.collider != null)
             {

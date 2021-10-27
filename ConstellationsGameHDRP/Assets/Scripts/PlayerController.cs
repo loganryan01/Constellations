@@ -126,6 +126,10 @@ public class PlayerController : MonoBehaviour
         {
             CanThePlayerInteract();
         }
+        else
+        {
+
+        }
     }
 
     // Change the player's look sensitivity
