@@ -2,7 +2,7 @@
     Name: MainMenuController
     Purpose: Controls the main menu scene.
     Author: Logan Ryan and Mara Dusevic
-    Modified: 19 October 2021
+    Modified: 27 October 2021
 ------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------*/
@@ -21,9 +21,15 @@ public class MainMenuController : MonoBehaviour
     
     [Header("Audio controls")]
     public AudioMixer masterMixer; // Mixer that controls the audio for the game
+    public Slider audioValue;
+    public TextMeshProUGUI audioValueText;
 
     [Header("Screen Resolution Dropdown")]
-    public Dropdown screenResolutionDropdown; // Dropdown that displays the screen resolutions for the game
+    public TMP_Dropdown screenResolutionDropdown; // Dropdown that displays the screen resolutions for the game
+
+    [Header("Mouse Sensitivity Settings")]
+    public Slider mouseSensitivityValue;
+    public TextMeshProUGUI mouseSensitivityValueText;
     #endregion
 
     #region Functions
@@ -54,6 +60,11 @@ public class MainMenuController : MonoBehaviour
             Screen.SetResolution(3840, 2160, true);
             screenResolutionDropdown.value = 7;
         }
+
+        mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
+
+        float audioVolume = 5 / 4 * audioValue.value + 80;
+        audioValueText.text = audioVolume.ToString();
     }
 
     // Load the next scene in the build order
@@ -69,17 +80,26 @@ public class MainMenuController : MonoBehaviour
         mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
     }
 
+    public void SetLookSensitivity(float sensitivity)
+    {
+        PlayerPrefs.SetFloat("Look Sensitivity", sensitivity);
+
+        mouseSensitivityValueText.text = sensitivity.ToString();
+    }
+
     // Change the volume of the sound of the game
     public void SetSound(float soundLevel)
     {
         masterMixer.SetFloat("musicVol", soundLevel);
+
+        //float audioLevel = soundLevel;
+        float audioVolume = 5 / 4 * soundLevel + 80;
+        audioValueText.text = audioVolume.ToString();
     }
 
     // Change the quality of the game
     public void ChangeQuality(TMP_Dropdown dropdown)
     {
-        Debug.Log(dropdown.options[dropdown.value].text);
-        
         switch (dropdown.value)
         {
             case 0:

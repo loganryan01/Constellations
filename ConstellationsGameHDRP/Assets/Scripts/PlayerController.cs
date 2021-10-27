@@ -2,7 +2,7 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 7 October 2021
+    Modified: 27 October 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
     // Start function
     private void Start()
     {
+        lookSensitivity = PlayerPrefs.GetFloat("Look Sensitivity");
+        
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -125,10 +127,6 @@ public class PlayerController : MonoBehaviour
         if (enableOutline)
         {
             CanThePlayerInteract();
-        }
-        else
-        {
-
         }
     }
 
