@@ -30,49 +30,147 @@ public class MainMenuController : MonoBehaviour
     [Header("Mouse Sensitivity Settings")]
     public Slider mouseSensitivityValue;
     public TextMeshProUGUI mouseSensitivityValueText;
+
+    [Header("Quality Settings")]
+    public TMP_Dropdown qualityDropdown;
+
+    [Header("Fullscreen Settings")]
+    public Toggle fullscreenToggle;
     #endregion
 
     #region Functions
     // Start function
     void Start()
     {
-        // Enable the fullscreen
-        Screen.fullScreen = true;
-
-        // Change the resolution based on the users screen
-        if (Screen.width >= 1280 && Screen.width < 1920)
-        {
-            Screen.SetResolution(1280, 720, true);
-            screenResolutionDropdown.value = 4;
-        }
-        else if (Screen.width >= 1920 && Screen.width < 2560)
-        {
-            Screen.SetResolution(1920, 1080, true);
-            screenResolutionDropdown.value = 5;
-        }
-        else if (Screen.width >= 2560 && Screen.width < 3840)
-        {
-            Screen.SetResolution(2560, 1440, true);
-            screenResolutionDropdown.value = 6;
-        }
-        else if (Screen.width >= 3840)
-        {
-            Screen.SetResolution(3840, 2160, true);
-            screenResolutionDropdown.value = 7;
-        }
-
-        PlayerPrefs.SetFloat("Screen Resolution", screenResolutionDropdown.value);
-
-        // Mouse Sensitivity
-        mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
-
-        PlayerPrefs.SetFloat("Look Sensitivity", mouseSensitivityValue.value);
-
         // Audio
+        if (PlayerPrefs.HasKey("Audio"))
+        {
+            audioValue.value = PlayerPrefs.GetFloat("Audio");
+        }
+        else
+        {
+            audioValue.value = 20;
+        }
+
         float audioVolume = 5 / 4 * audioValue.value + 80;
         audioValueText.text = audioVolume.ToString();
 
+        masterMixer.SetFloat("musicVol", audioValue.value);
+
         PlayerPrefs.SetFloat("Audio", audioValue.value);
+
+        // Quality
+        if (PlayerPrefs.HasKey("Quality"))
+        {
+            qualityDropdown.value = PlayerPrefs.GetInt("Quality");
+        }
+        else
+        {
+            qualityDropdown.value = 0;
+        }
+
+        QualitySettings.SetQualityLevel(qualityDropdown.value);
+
+        PlayerPrefs.SetInt("Quality", qualityDropdown.value);
+
+        // Enable the fullscreen
+        int fullscreenInt;
+        if (PlayerPrefs.HasKey("Fullscreen"))
+        {
+            fullscreenInt = PlayerPrefs.GetInt("Fullscreen");
+        }
+        else
+        {
+            fullscreenInt = 1;
+        }
+
+        switch (fullscreenInt)
+        {
+            case 0:
+                Screen.fullScreen = false;
+                fullscreenToggle.isOn = false;
+                break;
+            case 1:
+                Screen.fullScreen = true;
+                fullscreenToggle.isOn = true;
+                break;
+        }
+
+        // Change the resolution based on the users screen
+        if (PlayerPrefs.HasKey("Screen Resolution"))
+        {
+            screenResolutionDropdown.value = PlayerPrefs.GetInt("Screen Resolution");
+
+            switch (screenResolutionDropdown.value)
+            {
+                case 0:
+                    Screen.SetResolution(256, 144, Screen.fullScreen);
+                    break;
+                case 1:
+                    Screen.SetResolution(426, 240, Screen.fullScreen);
+                    break;
+                case 2:
+                    Screen.SetResolution(640, 360, Screen.fullScreen);
+                    break;
+                case 3:
+                    Screen.SetResolution(854, 480, Screen.fullScreen);
+                    break;
+                case 4:
+                    Screen.SetResolution(1280, 720, Screen.fullScreen);
+                    break;
+                case 5:
+                    Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                    break;
+                case 6:
+                    Screen.SetResolution(2560, 1440, Screen.fullScreen);
+                    break;
+                case 7:
+                    Screen.SetResolution(3840, 2160, Screen.fullScreen);
+                    break;
+            }
+        }
+        else
+        {
+            if (Screen.width >= 1280 && Screen.width < 1920)
+            {
+                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                screenResolutionDropdown.value = 4;
+            }
+            else if (Screen.width >= 1920 && Screen.width < 2560)
+            {
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                screenResolutionDropdown.value = 5;
+            }
+            else if (Screen.width >= 2560 && Screen.width < 3840)
+            {
+                Screen.SetResolution(2560, 1440, Screen.fullScreen);
+                screenResolutionDropdown.value = 6;
+            }
+            else if (Screen.width >= 3840)
+            {
+                Screen.SetResolution(3840, 2160, Screen.fullScreen);
+                screenResolutionDropdown.value = 7;
+            }
+        }
+
+        PlayerPrefs.SetInt("Screen Resolution", screenResolutionDropdown.value);
+
+        // Mouse Sensitivity
+        if (PlayerPrefs.HasKey("Look Sensitivity"))
+        {
+            mouseSensitivityValue.value = PlayerPrefs.GetFloat("Look Sensitivity");
+            Debug.Log("Player Preferences has been found");
+        }
+        else
+        {
+            mouseSensitivityValue.value = 15;
+            Debug.Log("Player Preferences has not been found");
+        }
+
+        mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
+        Debug.Log(mouseSensitivityValue.value);
+
+        PlayerPrefs.SetFloat("Look Sensitivity", mouseSensitivityValue.value);
     }
 
     // Load the next scene in the build order

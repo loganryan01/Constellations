@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
             lookSensitivity = 15;
         }
         
-        
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
