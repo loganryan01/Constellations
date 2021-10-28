@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             CanThePlayerInteract();
         }
+        else
+        {
+            HideOutlines();
+        }
     }
 
     // Change the player's look sensitivity
@@ -306,11 +310,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
             // If it hits the maze, move the camera
-            else if (hitObject.GetComponent<MazeBehaviour>())
+            else if (hitObject.GetComponent<TaurusBehaviour>())
             {
-                MazeBehaviour mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
+                TaurusBehaviour taurusBehaviour = hitObject.GetComponent<TaurusBehaviour>();
 
-                if (!mazeBehaviour.mazeCompleted)
+                if (!taurusBehaviour.CheckPuzzleCompletion())
                 {
                     if (puzzleOutline == null)
                     {
@@ -320,7 +324,7 @@ public class PlayerController : MonoBehaviour
                     puzzleOutline.AddListener(DisableOutlines);
                     puzzleOutline.Invoke(2, hitObject.transform);
 
-                    mazeBehaviour.onInteraction.Invoke();
+                    taurusBehaviour.OnInteraction();
 
                     puzzleOutline.RemoveAllListeners();
                 }
@@ -354,6 +358,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
+            Debug.Log("The object we are looking at is: " + hitObject.name);
 
             // If the object is the scale or a channel, 
             if (hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
@@ -367,15 +372,17 @@ public class PlayerController : MonoBehaviour
                 DisableOutlines(1, hitObject.transform);
             }
             // If the object is a mirror
-            else if (hitObject.GetComponent<MazeBehaviour>() && !hitObject.GetComponent<MazeBehaviour>().mazeCompleted)
+            else if (hitObject.GetComponent<TaurusBehaviour>() && !hitObject.GetComponent<TaurusBehaviour>().CheckPuzzleCompletion())
             {
-                lastSeenObject = hitObject;
+                GameObject mazeObject = hitObject.GetComponent<TaurusBehaviour>().GetMazeObject();
+
+                lastSeenObject = mazeObject;
 
                 // Display button text
                 buttonText.SetActive(true);
 
                 // Draw outline for the object's grandchildren
-                DisableOutlines(1, hitObject.transform);
+                DisableOutlines(1, mazeObject.transform);
             }
             else if (hitObject.GetComponent<MirrorBehaviour>() && !hitObject.GetComponent<MirrorBehaviour>().laserBehaviour.laserPuzzleCompleted)
             {
@@ -421,65 +428,43 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Hide Button's text
-                buttonText.SetActive(false);
-
-                // Hide outline for object
-                if (lastSeenObject != null)
-                {
-                    // Change layer of mirror children to 0
-                    if (lastSeenObject.GetComponent<MirrorBehaviour>())
-                    {
-                        DisableOutlines(9, lastSeenObject.transform);
-                        DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                        DisableOutlines(9, lastSeenObject.transform.GetChild(1));
-                    }
-                    else if (lastSeenObject.GetComponent<ScaleBehaviour>())
-                    {
-                        DisableOutlines(0, lastSeenObject.transform.GetChild(6));
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                    else if (lastSeenObject.GetComponent<ChannelBehaviour>())
-                    {
-                        Debug.Log("Disabling outlines for channel");
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                    else
-                    {
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                }
+                HideOutlines();
             }
         }
         else
         {
-            // Hide Button's text
-            buttonText.SetActive(false);
+            HideOutlines();
+        }
+    }
 
-            // Hide outline for object
-            if (lastSeenObject != null)
+    private void HideOutlines()
+    {
+        // Hide Button's text
+        buttonText.SetActive(false);
+
+        // Hide outline for object
+        if (lastSeenObject != null)
+        {
+            // Change layer of mirror children to 0
+            if (lastSeenObject.GetComponent<MirrorBehaviour>())
             {
-                // Change layer of mirror children to 0
-                if (lastSeenObject.GetComponent<MirrorBehaviour>())
-                {
-                    DisableOutlines(9, lastSeenObject.transform);
-                    DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                    DisableOutlines(9, lastSeenObject.transform.GetChild(1));
-                }
-                else if (lastSeenObject.GetComponent<ScaleBehaviour>())
-                {
-                    DisableOutlines(0, lastSeenObject.transform.GetChild(6));
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
-                else if (lastSeenObject.GetComponent<ChannelBehaviour>())
-                {
-                    Debug.Log("Disabling outlines for channel");
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
-                else
-                {
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
+                DisableOutlines(9, lastSeenObject.transform);
+                DisableOutlines(0, lastSeenObject.transform.GetChild(0));
+                DisableOutlines(9, lastSeenObject.transform.GetChild(1));
+            }
+            else if (lastSeenObject.GetComponent<ScaleBehaviour>())
+            {
+                DisableOutlines(0, lastSeenObject.transform.GetChild(6));
+                DisableOutlines(0, lastSeenObject.transform);
+            }
+            else if (lastSeenObject.GetComponent<ChannelBehaviour>())
+            {
+                Debug.Log("Disabling outlines for channel");
+                DisableOutlines(0, lastSeenObject.transform);
+            }
+            else
+            {
+                DisableOutlines(0, lastSeenObject.transform);
             }
         }
     }

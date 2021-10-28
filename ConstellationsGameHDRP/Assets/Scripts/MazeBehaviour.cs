@@ -31,6 +31,9 @@ public class MazeBehaviour : MonoBehaviour
     [Header("Interaction Settings")]
     public UnityEvent onInteraction;
 
+    [Header("Quit Settings")]
+    public UnityEvent onQuit;
+
     [HideInInspector]
     public bool mazeCompleted; // Is the maze puzzle completed
 
@@ -102,6 +105,11 @@ public class MazeBehaviour : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(startingRotation);
         mazeBallBehaviour.gameObject.transform.position = ballStartingPosition;
+    }
+
+    public void QuitPuzzle(InputAction.CallbackContext value)
+    {
+        onQuit.Invoke();
     }
     #endregion
 }

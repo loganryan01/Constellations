@@ -59,6 +59,9 @@ public class ScaleBehaviour : MonoBehaviour
     [Header("Puzzle Completed Settings")]
     public UnityEvent onComplete;
 
+    [Header("Quit Settings")]
+    public UnityEvent onQuit;
+
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
@@ -380,6 +383,11 @@ public class ScaleBehaviour : MonoBehaviour
         {
             rockGameObjects[i].transform.position = rockStartingPositions[i];
         }
+    }
+
+    public void QuitPuzzle(InputAction.CallbackContext value)
+    {
+        onQuit.Invoke();
     }
     #endregion
 }
