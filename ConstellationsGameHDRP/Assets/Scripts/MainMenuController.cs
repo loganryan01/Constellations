@@ -2,7 +2,7 @@
     Name: MainMenuController
     Purpose: Controls the main menu scene.
     Author: Logan Ryan and Mara Dusevic
-    Modified: 27 October 2021
+    Modified: 28 October 2021
 ------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------*/
@@ -61,10 +61,18 @@ public class MainMenuController : MonoBehaviour
             screenResolutionDropdown.value = 7;
         }
 
+        PlayerPrefs.SetFloat("Screen Resolution", screenResolutionDropdown.value);
+
+        // Mouse Sensitivity
         mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
 
+        PlayerPrefs.SetFloat("Look Sensitivity", mouseSensitivityValue.value);
+
+        // Audio
         float audioVolume = 5 / 4 * audioValue.value + 80;
         audioValueText.text = audioVolume.ToString();
+
+        PlayerPrefs.SetFloat("Audio", audioValue.value);
     }
 
     // Load the next scene in the build order
@@ -92,9 +100,10 @@ public class MainMenuController : MonoBehaviour
     {
         masterMixer.SetFloat("musicVol", soundLevel);
 
-        //float audioLevel = soundLevel;
         float audioVolume = 5 / 4 * soundLevel + 80;
         audioValueText.text = audioVolume.ToString();
+
+        PlayerPrefs.SetFloat("Audio", soundLevel);
     }
 
     // Change the quality of the game
@@ -112,6 +121,8 @@ public class MainMenuController : MonoBehaviour
                 QualitySettings.SetQualityLevel(2);
                 break;
         }
+
+        PlayerPrefs.SetInt("Quality", dropdown.value);
     }
 
     // Change the screen resolution
@@ -144,12 +155,23 @@ public class MainMenuController : MonoBehaviour
                 Screen.SetResolution(3840, 2160, Screen.fullScreen); // 4K
                 break;
         }
+
+        PlayerPrefs.SetInt("Screen Resolution", screenResolutionDropdown.value);
     }
 
     // Change from fullscreen to window and vice versa
     public void EnableFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
+
+        if (Screen.fullScreen)
+        {
+            PlayerPrefs.SetInt("Fullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Fullscreen", 0);
+        }
     }
     
     // Close the application
