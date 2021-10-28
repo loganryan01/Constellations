@@ -81,7 +81,15 @@ public class PlayerController : MonoBehaviour
     // Start function
     private void Start()
     {
-        lookSensitivity = PlayerPrefs.GetFloat("Look Sensitivity");
+        if (PlayerPrefs.HasKey("Look Sensitivity"))
+        {
+            lookSensitivity = PlayerPrefs.GetFloat("Look Sensitivity");
+        }
+        else
+        {
+            lookSensitivity = 15;
+        }
+        
         
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;

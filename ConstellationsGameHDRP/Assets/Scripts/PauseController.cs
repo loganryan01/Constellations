@@ -55,19 +55,48 @@ public class PauseController : MonoBehaviour
 
         // Reading options from the main menu
         // Audio
-        audioValue.value = PlayerPrefs.GetFloat("Audio");
+        if (PlayerPrefs.HasKey("Audio"))
+        {
+            audioValue.value = PlayerPrefs.GetFloat("Audio");
+        }
+        else
+        {
+            audioValue.value = 80;
+        }
 
         float audioVolume = 5 / 4 * audioValue.value + 80;
         audioValueText.text = audioVolume.ToString();
 
         // Quality
-        qualityDropdown.value = PlayerPrefs.GetInt("Quality");
+        if (PlayerPrefs.HasKey("Quality"))
+        {
+            qualityDropdown.value = PlayerPrefs.GetInt("Quality");
+        }
+        else
+        {
+            qualityDropdown.value = 0;
+        }
 
         // Resolution
-        screenResolutionDropdown.value = PlayerPrefs.GetInt("Screen Resolution");
+        if (PlayerPrefs.HasKey("Screen Resolution"))
+        {
+            screenResolutionDropdown.value = PlayerPrefs.GetInt("Screen Resolution");
+        }
+        else
+        {
+            screenResolutionDropdown.value = 5;
+        }
 
         // Fullscreen
-        int fullscreenInt = PlayerPrefs.GetInt("Fullscreen");
+        int fullscreenInt;
+        if (PlayerPrefs.HasKey("Fullscreen"))
+        {
+            fullscreenInt = PlayerPrefs.GetInt("Fullscreen");
+        }
+        else
+        {
+            fullscreenInt = 1;
+        }
 
         switch (fullscreenInt)
         {
