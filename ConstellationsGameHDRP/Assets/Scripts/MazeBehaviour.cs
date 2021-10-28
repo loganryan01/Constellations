@@ -2,7 +2,7 @@
     Name: MazeBehaviour
     Purpose: Rotates the maze.
     Authour: Logan Ryan
-    Modified: 7 October 2021
+    Modified: 28 October 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -35,9 +35,16 @@ public class MazeBehaviour : MonoBehaviour
     public bool mazeCompleted; // Is the maze puzzle completed
 
     private Vector3 rotationDirection; // Direction of rotation
+    private Vector3 startingRotation; // The starting rotation of the maze
+    private Vector3 ballStartingPosition; // The starting position of the ball
     #endregion
 
     #region Functions
+    private void Start()
+    {
+        startingRotation = transform.rotation.eulerAngles;
+        ballStartingPosition = mazeBallBehaviour.gameObject.transform.position;
+    }
 
     // Update function - run every frame
     void Update()
@@ -89,6 +96,12 @@ public class MazeBehaviour : MonoBehaviour
         Vector2 inputVector = value.ReadValue<Vector2>();
 
         rotationDirection = gameObject.transform.forward * (-inputVector.y)  + gameObject.transform.right * (-inputVector.x);
+    }
+
+    public void ResetPuzzle(InputAction.CallbackContext value)
+    {
+        transform.rotation = Quaternion.Euler(startingRotation);
+        mazeBallBehaviour.gameObject.transform.position = ballStartingPosition;
     }
     #endregion
 }

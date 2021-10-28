@@ -218,6 +218,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d9f4e20-5948-43ff-9b39-19f4dd4deccb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -275,6 +283,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7db0e1a-e812-4991-937f-dd10a7a450ef"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -323,6 +342,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         // MazePuzzle
         m_MazePuzzle = asset.FindActionMap("MazePuzzle", throwIfNotFound: true);
         m_MazePuzzle_Movement = m_MazePuzzle.FindAction("Movement", throwIfNotFound: true);
+        m_MazePuzzle_Reset = m_MazePuzzle.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -479,11 +499,13 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_MazePuzzle;
     private IMazePuzzleActions m_MazePuzzleActionsCallbackInterface;
     private readonly InputAction m_MazePuzzle_Movement;
+    private readonly InputAction m_MazePuzzle_Reset;
     public struct MazePuzzleActions
     {
         private @PlayerInputActions m_Wrapper;
         public MazePuzzleActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_MazePuzzle_Movement;
+        public InputAction @Reset => m_Wrapper.m_MazePuzzle_Reset;
         public InputActionMap Get() { return m_Wrapper.m_MazePuzzle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -496,6 +518,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
+                @Reset.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_MazePuzzleActionsCallbackInterface = instance;
             if (instance != null)
@@ -503,6 +528,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -541,5 +569,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     public interface IMazePuzzleActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

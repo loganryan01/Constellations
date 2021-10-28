@@ -2,7 +2,7 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 27 October 2021
+    Modified: 28 October 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -330,6 +330,14 @@ public class PlayerController : MonoBehaviour
             {
                 hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
             }
+            else if (hitObject.GetComponent<SagittariusBehaviour>())
+            {
+                hitObject.GetComponent<SagittariusBehaviour>().ResetMirrors();
+            }
+            else if (hitObject.GetComponent<PiscesBehaviour>())
+            {
+                hitObject.GetComponent<PiscesBehaviour>().ResetChannels();
+            }
         }
 
         interactTriggered = false;
@@ -389,6 +397,26 @@ public class PlayerController : MonoBehaviour
                 buttonText.SetActive(true);
 
                 // Draw outline for the object's children
+                DisableOutlines(1, hitObject.transform);
+            }
+            else if (hitObject.GetComponent<SagittariusBehaviour>() && !hitObject.GetComponent<SagittariusBehaviour>().CheckPuzzleCompletion())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
+                DisableOutlines(1, hitObject.transform);
+            }
+            else if (hitObject.GetComponent<PiscesBehaviour>() && !hitObject.GetComponent<PiscesBehaviour>().CheckPuzzleCompletion())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
                 DisableOutlines(1, hitObject.transform);
             }
             else

@@ -2,7 +2,7 @@
     Name: ChannelBehaviour
     Purpose: Control the rotation of the channels.
     Authour: Mara Dusevic
-    Modified: 7 October 2021
+    Modified: 28 October 2021
 --------------------------------------------------
     Copyright 2021 Bookshelf Studios
 ------------------------------------------------*/
@@ -23,10 +23,16 @@ public class ChannelBehaviour : MonoBehaviour
 
     private bool _playingRotation = false; // Whether rotation is playing currently
     private bool _isDone = false; // Whether the channel is in correct position
+    private float defaultRotation; // Default rotation for channels
 
     #endregion
-    
+
     #region Functions
+
+    private void Start()
+    {
+        defaultRotation = transform.rotation.y;
+    }
 
     // Update function - runs every frame
     private void Update()
@@ -80,6 +86,16 @@ public class ChannelBehaviour : MonoBehaviour
         if (this._playingRotation == false)
         {
             // Starts coroutine to rotate channel to target rotation at a given speed
+            StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
+        }
+    }
+
+    public void RotateToDefaultPosition()
+    {
+        Quaternion newRot = Quaternion.Euler(0, defaultRotation, 0);
+
+        if (_playingRotation == false)
+        {
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
         }
     }

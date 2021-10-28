@@ -74,6 +74,10 @@ public class ScaleBehaviour : MonoBehaviour
 
     private Vector3 lightLeftPosition; // The position where the left hand is the lightest
     private Vector3 lightRightPosition; // The position where the right hand is the lightest
+
+    private Vector3[] rockStartingPositions = new Vector3[3];
+    List<GameObject> rockGameObjects = new List<GameObject>();
+    GameObject[] rockArray = new GameObject[4];
     #endregion
 
     #region Functions
@@ -116,6 +120,22 @@ public class ScaleBehaviour : MonoBehaviour
             // Rotate fulcrum to the right
             arm.transform.rotation = Quaternion.Euler(armRotations[2]);
         }
+
+        // Setup rock default positions
+        rockArray = GameObject.FindGameObjectsWithTag("Rock");
+
+        for (int i = 0; i < rockArray.Length; i++)
+        {
+            if (rockArray[i].layer == 0)
+            {
+                rockGameObjects.Add(rockArray[i]);
+            }
+        }
+
+        for (int i = 0; i < rockGameObjects.Count; i++)
+        {
+            rockStartingPositions[i] = rockGameObjects[i].transform.position;
+        }
     }
 
     // Update function - run every frame
@@ -144,6 +164,7 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Update the scale positions and rotations
     public void UpdateScale()
     {
         // If the puzzle is not completed,
@@ -180,12 +201,14 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Open the doors when the puzzle is completed
     public void OpenDoors()
     {
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
     }
 
+    // Change the material from a statue to galaxy
     public void IncreaseGalaxyIntensity(Transform gameObjectTransform)
     {
         // Get all the mesh renderers in the scale
@@ -206,6 +229,7 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Outline the rock when the player hover the mouse over it
     private void OutlineRock()
     {
         // Get the mouse current position
@@ -344,6 +368,17 @@ public class ScaleBehaviour : MonoBehaviour
             // Let go of the rock
             rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
             rockGameObject = null;
+        }
+    }
+
+    // Action for when the player wants to reset the puzzle
+    public void ResetPuzzle(InputAction.CallbackContext value)
+    {
+        rockGameObject = null;
+        
+        for (int i = 0; i < rockGameObjects.Count; i++)
+        {
+            rockGameObjects[i].transform.position = rockStartingPositions[i];
         }
     }
     #endregion
