@@ -254,6 +254,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Stop player from moving
+    public void LockMovement(float movementSpeed)
+    {
+        moveSpeed = movementSpeed;
+    }
+
     // Move the player
     private void PlayerMovement()
     {
