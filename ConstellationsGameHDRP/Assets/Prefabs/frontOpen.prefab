@@ -764,6 +764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brazier (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2942636468763677687, guid: 294989dfbbdbc9d40981214e65596b59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4841140896915672334, guid: 294989dfbbdbc9d40981214e65596b59, type: 3}
       propertyPath: m_Intensity
       value: 475.59543
@@ -849,6 +853,10 @@ PrefabInstance:
     - target: {fileID: 2942636468763677687, guid: 294989dfbbdbc9d40981214e65596b59, type: 3}
       propertyPath: m_Name
       value: Brazier (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942636468763677687, guid: 294989dfbbdbc9d40981214e65596b59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4841140896915672334, guid: 294989dfbbdbc9d40981214e65596b59, type: 3}
       propertyPath: m_Intensity
