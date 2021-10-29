@@ -108,8 +108,6 @@ public class PauseController : MonoBehaviour
                 Screen.fullScreen = true;
                 fullscreenToggle.isOn = true;
                 break;
-            default:
-                break;
         }
 
         // Look Sensitivity
