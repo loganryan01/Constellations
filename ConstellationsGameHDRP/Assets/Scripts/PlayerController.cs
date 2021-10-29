@@ -198,14 +198,21 @@ public class PlayerController : MonoBehaviour
     // Checks if player has completed all the puzzles
     public void EndGameCheck()
     {
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            puzzlesCompleted--;
+        }
+        
         // Gets called when a puzzle is completed
         // Increase number of puzzles solved by 1
         puzzlesCompleted++;
+        Debug.Log(puzzlesCompleted);
 
         // Check if the number of puzzles completed is equal to the number of puzzles in the game
         // If they are, then screen fades to black and load the ending scene
         if(puzzlesCompleted == numberOfPuzzles)
         {
+            Debug.Log("Ending Game");
             StartCoroutine(FadeToBlack(targetColour, 5));
         }
     }
@@ -365,7 +372,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
-            Debug.Log("The object we are looking at is: " + hitObject.name);
+            //Debug.Log("The object we are looking at is: " + hitObject.name);
 
             // If the object is the scale or a channel, 
             if (hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
