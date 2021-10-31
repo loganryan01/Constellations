@@ -10388,27 +10388,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.72821
+      value: 0.0073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.72821
+      value: 0.0073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.72821
+      value: 0.0073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000115
+      value: -14.1767435
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.40000153
+      value: -3.4804668
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6200027
+      value: 0.43319476
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 185b6898b37f93245862fbeeb929ed87, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10523,6 +10523,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93f2366ee87ece24f84c78f50c023be0, type: 3}
       propertyPath: m_Name
       value: SM_MedusaStatue
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93f2366ee87ece24f84c78f50c023be0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f2366ee87ece24f84c78f50c023be0, type: 3}
