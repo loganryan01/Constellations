@@ -210,6 +210,7 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    // Changes the look sensitivity of the player
     public void SetLookSensitivity(float sensitivity)
     {
         playerController.lookSensitivity = sensitivity;

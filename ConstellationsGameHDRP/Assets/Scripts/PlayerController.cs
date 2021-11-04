@@ -2,7 +2,7 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 28 October 2021
+    Modified: 4 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -22,13 +22,13 @@ public class PuzzleOutlineEvent : UnityEvent<int, Transform>
 public class PlayerController : MonoBehaviour
 {
     #region Fields
-    private Transform mainCam;
-    public PlayerInputActions playerInput;
-    private CharacterController controller;
+    private Transform mainCam; // The main camera position, rotation and scale
+    public PlayerInputActions playerInput; // The players actions
+    private CharacterController controller; // The controller that moves the player
 
     [Header("Movement")]
     [SerializeField]
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f; // The speed of the player
 
     private Vector3 rawInputMovement;
 
@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
+    public GameObject sagittariusControls;
+    public GameObject piscesControls;
 
     [Header("Ending settings")]
     public int numberOfPuzzles = 4;
@@ -138,6 +140,30 @@ public class PlayerController : MonoBehaviour
         else
         {
             HideOutlines();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sagittarius") && !sagittariusControls.activeInHierarchy)
+        {
+            sagittariusControls.SetActive(true);
+        }
+        else if (other.CompareTag("Pisces") && !piscesControls.activeInHierarchy)
+        {
+            piscesControls.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Sagittarius") && sagittariusControls.activeInHierarchy)
+        {
+            sagittariusControls.SetActive(false);
+        }
+        else if (other.CompareTag("Pisces") && piscesControls.activeInHierarchy)
+        {
+            piscesControls.SetActive(false);
         }
     }
 
@@ -354,10 +380,12 @@ public class PlayerController : MonoBehaviour
             {
                 hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
             }
+            // If the player selects the sagittarius puzzle, reset the mirrors to default position
             else if (hitObject.GetComponent<SagittariusBehaviour>())
             {
                 hitObject.GetComponent<SagittariusBehaviour>().ResetMirrors();
             }
+            // If it selects the end pool, it will restart the pisces puzzle
             else if (hitObject.GetComponent<PiscesBehaviour>())
             {
                 hitObject.GetComponent<PiscesBehaviour>().ResetChannels();
@@ -457,6 +485,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Changes the layer of the object that was last seen to hide the outlines
     private void HideOutlines()
     {
         // Hide Button's text
@@ -489,6 +518,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Coroutine to fade the screen to black
     IEnumerator FadeToBlack(Color endValue, float duration)
     {
         float time = 0;
