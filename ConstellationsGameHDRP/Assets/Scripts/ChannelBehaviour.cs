@@ -31,7 +31,7 @@ public class ChannelBehaviour : MonoBehaviour
 
     private void Start()
     {
-        defaultRotation = transform.localRotation.y;
+        defaultRotation = this.transform.localRotation.eulerAngles.y;
     }
 
     // Update function - runs every frame
@@ -103,7 +103,6 @@ public class ChannelBehaviour : MonoBehaviour
         if (_playingRotation == false)
         {
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
-            //gameObject.transform.localRotation = newRot;
         }
     }
 
