@@ -31,7 +31,7 @@ public class ChannelBehaviour : MonoBehaviour
 
     private void Start()
     {
-        defaultRotation = transform.rotation.y;
+        defaultRotation = transform.localRotation.y;
     }
 
     // Update function - runs every frame
@@ -92,11 +92,18 @@ public class ChannelBehaviour : MonoBehaviour
 
     public void RotateToDefaultPosition()
     {
+        // If the channel is in correct rotation, return.
+        if (this._isDone == true)
+        {
+            return;
+        }
+
         Quaternion newRot = Quaternion.Euler(0, defaultRotation, 0);
 
         if (_playingRotation == false)
         {
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
+            //gameObject.transform.localRotation = newRot;
         }
     }
 
