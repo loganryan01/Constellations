@@ -232,6 +232,11 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    public void DisplayControls(GameObject controls)
+    {
+        controls.SetActive(!controls.activeInHierarchy);
+    }
+
     // Outline the rock when the player hover the mouse over it
     private void OutlineRock()
     {
