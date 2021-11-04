@@ -253,7 +253,7 @@ public class ScaleBehaviour : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Rock"))
+                if (hit.collider.CompareTag("Rock") && rockGameObject == null)
                 {
                     lastTouchedRock = hit.collider.gameObject;
                     lastTouchedRock.layer = 1;
@@ -356,7 +356,7 @@ public class ScaleBehaviour : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Rock"))
+                if (hit.collider.CompareTag("Rock") && rockGameObject == null)
                 {
                     // The rock then follows the player's cursor 
                     rockGameObject = hit.collider.gameObject;

@@ -15,7 +15,7 @@ public class MirrorBehaviour : MonoBehaviour
     [Header("Mirror Rotations")]
     [SerializeField] public float rotateAmount = 45.0f; // Amount to rotate object
     [SerializeField] public float rotateDuration = 2.0f; // How long the object should rotate
-    public float correctRotation = 0;
+    //public float correctRotation = 0;
 
     public LaserBehaviour laserBehaviour;
 
@@ -56,15 +56,15 @@ public class MirrorBehaviour : MonoBehaviour
         }
     }
 
-    private bool CheckCorrectRotation()
-    {
-        if (transform.localRotation.eulerAngles.y == correctRotation)
-        {
-            return true;
-        }
+    //private bool CheckCorrectRotation()
+    //{
+    //    if (transform.localRotation.eulerAngles.y == correctRotation)
+    //    {
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     // Rotate object over a duration of time
     private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)
