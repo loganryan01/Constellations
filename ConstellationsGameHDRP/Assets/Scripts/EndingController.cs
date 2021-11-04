@@ -7,61 +7,61 @@ using UnityEngine.SceneManagement;
 public class EndingController : MonoBehaviour
 {
     #region Fields
-    [Header("Target Colours")]
-    public Color targetColour1 = new Color(0, 0, 0, 0);
-    public Color targetColour2 = new Color(0, 0, 0, 0);
 
-    [Header("Target text")]
-    public TextMeshProUGUI textToFade;
-    public TextMeshProUGUI creditsText;
+    [Header("Target Colours")]
+    [SerializeField] private Color targetColour1 = new Color(0, 0, 0, 0);
+    [SerializeField] private Color targetColour2 = new Color(0, 0, 0, 0);
+
+    [Header("Fade Text")]
+    [SerializeField] private TextMeshProUGUI finishGameText;
+    [SerializeField] private List<TextMeshProUGUI> creditsText;
 
     [Header("Fade Timer")]
-    public float fadeDuration = 3;
+    [SerializeField] private float endGameSpeed = 4;
+    [SerializeField] private float creditsSpeed = 6;
+
     #endregion
 
     #region Functions
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(FadeText());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FadeText()
     {
-        //if (coroutineFinished)
-        //{
-        //    StartCoroutine(LerpTextColour(targetColour2, fadeDuration));
-        //}
-    }
+        // Game Completion Text
 
-    //void FadeText()
-    //{
+        StartCoroutine(LerpTextColour(targetColour1, endGameSpeed, finishGameText));
 
-    //}
+        yield return new WaitForSeconds(endGameSpeed);
 
-    IEnumerator FadeText()
-    {
-        StartCoroutine(LerpTextColour(targetColour1, fadeDuration, textToFade));
+        StartCoroutine(LerpTextColour(targetColour2, endGameSpeed, finishGameText));
 
-        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSeconds(endGameSpeed);
 
-        StartCoroutine(LerpTextColour(targetColour2, fadeDuration, textToFade));
+        // Credits Text
 
-        yield return new WaitForSeconds(fadeDuration);
+        foreach (TextMeshProUGUI text in creditsText)
+        {
+            StartCoroutine(LerpTextColour(targetColour1, creditsSpeed, text));
+        }
 
-        StartCoroutine(LerpTextColour(targetColour1, fadeDuration, creditsText));
+        yield return new WaitForSeconds(creditsSpeed);
 
-        yield return new WaitForSeconds(fadeDuration);
+        foreach (TextMeshProUGUI text in creditsText)
+        {
+            StartCoroutine(LerpTextColour(targetColour2, creditsSpeed, text));
+        }
 
-        StartCoroutine(LerpTextColour(targetColour2, fadeDuration, creditsText));
-
-        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSeconds(creditsSpeed);
 
         SceneManager.LoadScene(0);
     }
 
-    IEnumerator LerpTextColour(Color endColour, float duration, TextMeshProUGUI text)
+    private IEnumerator LerpTextColour(Color endColour, float duration, TextMeshProUGUI text)
     {
         float time = 0;
         Color startColour = text.color;
@@ -75,5 +75,6 @@ public class EndingController : MonoBehaviour
 
         text.color = endColour;
     }
+
     #endregion
 }
