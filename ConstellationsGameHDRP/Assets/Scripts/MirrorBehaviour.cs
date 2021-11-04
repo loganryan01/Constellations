@@ -15,6 +15,8 @@ public class MirrorBehaviour : MonoBehaviour
     [Header("Mirror Rotations")]
     [SerializeField] public float rotateAmount = 45.0f; // Amount to rotate object
     [SerializeField] public float rotateDuration = 2.0f; // How long the object should rotate
+    public float correctRotation = 0;
+
     public LaserBehaviour laserBehaviour;
 
     private float defaultRotation;
@@ -25,7 +27,7 @@ public class MirrorBehaviour : MonoBehaviour
     #region Functions
     private void Start()
     {
-        defaultRotation = transform.localRotation.y;
+        defaultRotation = transform.localRotation.eulerAngles.y;
     }
 
     public void RotateMirrorToDefaultPosition()
@@ -52,6 +54,16 @@ public class MirrorBehaviour : MonoBehaviour
         {
             StartCoroutine(LerpRotation(newRot, rotateDuration, gameObject));
         }
+    }
+
+    private bool CheckCorrectRotation()
+    {
+        if (transform.localRotation.eulerAngles.y == correctRotation)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     // Rotate object over a duration of time
