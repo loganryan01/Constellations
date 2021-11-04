@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: BurntWood
+    second: {fileID: 2100000, guid: 37c2f26919078fa488972c53e58b4074, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: trimSheet
     second: {fileID: 2100000, guid: 6beaa69e68b72234db575183e12f8bc9, type: 2}
   materials:
