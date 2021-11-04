@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
-    public GameObject sagittariusControls;
+    public GameObject sagittariusControls; // 
     public GameObject piscesControls;
 
     [Header("Ending settings")]
