@@ -28,11 +28,13 @@ public class LeftHandBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
             //other.gameObject.transform.position = gameObject.transform.position;
+            Debug.Log("Rock Detected");
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
-            scaleBehaviour.UpdateScale();
 
             other.gameObject.transform.parent = transform;
             other.gameObject.transform.localPosition = new Vector3(-6f, 138.5f, -0.1f);
+
+            scaleBehaviour.UpdateScale();
         }
     }
 

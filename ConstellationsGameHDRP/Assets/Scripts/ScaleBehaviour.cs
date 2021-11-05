@@ -170,6 +170,14 @@ public class ScaleBehaviour : MonoBehaviour
     // Update the scale positions and rotations
     public void UpdateScale()
     {
+        // Remove rock object from player's mouse
+        if (rockGameObject != null)
+        {
+            Debug.Log("Removing Rock");
+            rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+            rockGameObject = null;
+        }
+
         // If the puzzle is not completed,
         if (!scalePuzzleCompleted)
         {
@@ -184,16 +192,20 @@ public class ScaleBehaviour : MonoBehaviour
                 ChangeScale(middleLeftPosition, middleRightPosition, armRotations[1]);
 
                 // ===== Puzzle Complete Function =====
-                onComplete.Invoke();
-
-                // Lock the scale so the player can't interact with scale
-                scalePuzzleCompleted = true;
-
-                // Remove rock object from player's mouse
-                if (rockGameObject != null)
+                if (leftWeight + rightWeight > 0)
                 {
-                    rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
-                    rockGameObject = null;
+                    // Remove rock object from player's mouse
+                    if (rockGameObject != null)
+                    {
+                        Debug.Log("Removing Rock");
+                        rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                        rockGameObject = null;
+                    }
+
+                    onComplete.Invoke();
+
+                    // Lock the scale so the player can't interact with scale
+                    scalePuzzleCompleted = true;
                 }
             }
             // If the right side is the heaviest
@@ -201,6 +213,8 @@ public class ScaleBehaviour : MonoBehaviour
             {
                 ChangeScale(lightLeftPosition, heavyRightPosition, armRotations[2]);
             }
+
+            
         }
     }
 
