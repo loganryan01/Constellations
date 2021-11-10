@@ -22,6 +22,7 @@ public class PauseController : MonoBehaviour
     public PlayerController playerController;
 
     public static bool gameIsPaused = false; // Is the game paused
+    public static bool disablePauseFunctionality = false;
 
     [Header("Audio controls")]
     public AudioMixer masterMixer; // Mixer that controls the audio for the game
@@ -117,31 +118,34 @@ public class PauseController : MonoBehaviour
     // Pause the game
     public void Pause()
     {
-        // The game is now paused
-        gameIsPaused = !gameIsPaused;
-
-        // If the game is paused
-        if (gameIsPaused)
+        if (!disablePauseFunctionality)
         {
-            // Set time scale to 0
-            Time.timeScale = 0;
+            // The game is now paused
+            gameIsPaused = !gameIsPaused;
 
-            // Display pause screen
-            pauseCanvas.SetActive(true);
+            // If the game is paused
+            if (gameIsPaused)
+            {
+                // Set time scale to 0
+                Time.timeScale = 0;
 
-            // Unlock the mouse
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            // Set time scale to 1
-            Time.timeScale = 1.0f;
+                // Display pause screen
+                pauseCanvas.SetActive(true);
 
-            // Hide pause screen
-            pauseCanvas.SetActive(false);
+                // Unlock the mouse
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                // Set time scale to 1
+                Time.timeScale = 1.0f;
 
-            // Lock the mouse
-            Cursor.lockState = CursorLockMode.Locked;
+                // Hide pause screen
+                pauseCanvas.SetActive(false);
+
+                // Lock the mouse
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
     
@@ -234,6 +238,11 @@ public class PauseController : MonoBehaviour
     public void QuitToDesktop()
     {
         Application.Quit();
+    }
+
+    public void DisablePauseFunctionality(bool a_bool)
+    {
+        disablePauseFunctionality = a_bool;
     }
     #endregion
 }

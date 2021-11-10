@@ -8,6 +8,7 @@
 --------------------------------------------------------------*/
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RightHandBehaviour : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class RightHandBehaviour : MonoBehaviour
     // The main scale script
     ScaleBehaviour scaleBehaviour;
     public Transform stoneEntryPoint;
+    public UnityEvent onArrivalToEntryPoint;
     #endregion
 
     #region Functions
@@ -29,8 +31,6 @@ public class RightHandBehaviour : MonoBehaviour
         // If the rock has been placed on the right hand of the scale, add the weight to the right hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
-            //other.gameObject.transform.position = gameObject.transform.position;
-
             scaleBehaviour.rightWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 
             other.gameObject.transform.parent = transform;
@@ -73,7 +73,8 @@ public class RightHandBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
 
-        scaleBehaviour.UpdateScale();
+        onArrivalToEntryPoint.Invoke();
+        hand.GetComponent<Rigidbody>().useGravity = true;
     }
     #endregion
 }

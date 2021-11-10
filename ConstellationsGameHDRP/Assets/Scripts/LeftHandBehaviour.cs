@@ -8,6 +8,7 @@
 -------------------------------------------------------------------*/
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LeftHandBehaviour : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class LeftHandBehaviour : MonoBehaviour
     // The main scale script
     ScaleBehaviour scaleBehaviour;
     public Transform stoneEntryPoint;
+    public UnityEvent onArrivalToEntryPoint;
     #endregion
 
     #region Functions
@@ -72,7 +74,8 @@ public class LeftHandBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
 
-        scaleBehaviour.UpdateScale();
+        onArrivalToEntryPoint.Invoke();
+        hand.GetComponent<Rigidbody>().useGravity = true;
     }
     #endregion
 }

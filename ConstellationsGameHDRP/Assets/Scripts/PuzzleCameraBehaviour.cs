@@ -23,6 +23,8 @@ public class PuzzleCameraBehaviour : MonoBehaviour
     public DialogueManager dialogueManager; // Manager script for the dialogue in the camera
 
     public UnityEvent onReturnToPlayer;
+    public UnityEvent onArrivalToLibra;
+    public UnityEvent onArrivalToTaurus;
     #endregion
 
     #region Functions
@@ -38,7 +40,14 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         transform.position = mainCamera.transform.position;
         transform.rotation = mainCamera.transform.rotation;
 
-        StartCoroutine(LerpPositionAndRotation(puzzleTransform.position, puzzleTransform.rotation, 5, 0));
+        if (puzzleTransform.name == "ScaleCameraTransform")
+        {
+            StartCoroutine(LerpPositionAndRotation(puzzleTransform.position, puzzleTransform.rotation, 5, 0));
+        }
+        else if (puzzleTransform.name == "MazeCameraTransform")
+        {
+            StartCoroutine(LerpPositionAndRotation(puzzleTransform.position, puzzleTransform.rotation, 5, 2));
+        }
     }
 
     public void MoveToPlayerPosition()
@@ -95,6 +104,14 @@ public class PuzzleCameraBehaviour : MonoBehaviour
         if (puzzleCase == 1)
         {
             onReturnToPlayer.Invoke();
+        }
+        else if (puzzleCase == 0)
+        {
+            onArrivalToLibra.Invoke();
+        }
+        else if (puzzleCase == 2)
+        {
+            onArrivalToTaurus.Invoke();
         }
     }
     #endregion
