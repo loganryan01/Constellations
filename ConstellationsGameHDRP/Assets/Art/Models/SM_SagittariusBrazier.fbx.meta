@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: BurntWood
     second: {fileID: 2100000, guid: 37c2f26919078fa488972c53e58b4074, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SagittariusBrazier
+    second: {fileID: 2100000, guid: fecfe8542ccaa7c448b5a18628fc6e7e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
