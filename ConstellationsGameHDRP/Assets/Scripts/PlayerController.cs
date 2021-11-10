@@ -390,6 +390,10 @@ public class PlayerController : MonoBehaviour
             {
                 hitObject.GetComponent<PiscesBehaviour>().ResetChannels();
             }
+            else if (hitObject.GetComponent<StoneBehaviour>())
+            {
+                hitObject.GetComponent<StoneBehaviour>().onInteraction.Invoke();
+            }
         }
 
         interactTriggered = false;
@@ -465,6 +469,16 @@ public class PlayerController : MonoBehaviour
                 DisableOutlines(1, hitObject.transform);
             }
             else if (hitObject.GetComponent<PiscesBehaviour>() && !hitObject.GetComponent<PiscesBehaviour>().CheckPuzzleCompletion())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
+                DisableOutlines(1, hitObject.transform);
+            }
+            else if (hitObject.GetComponent<StoneBehaviour>() && !hitObject.GetComponent<StoneBehaviour>().IsStoneInCorrectPosition())
             {
                 lastSeenObject = hitObject;
 
