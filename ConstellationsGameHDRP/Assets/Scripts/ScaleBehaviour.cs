@@ -23,7 +23,8 @@ public class ScaleBehaviour : MonoBehaviour
     public enum Side
     {
         Left,
-        Right
+        Right,
+        None
     }
 
     #region Fields
@@ -135,10 +136,7 @@ public class ScaleBehaviour : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < rockGameObjects.Count; i++)
-        {
-            rockStartingPositions[i] = rockGameObjects[i].transform.position;
-        }
+        UpdateRockPositions();
     }
 
     // Update function - run every frame
@@ -170,14 +168,8 @@ public class ScaleBehaviour : MonoBehaviour
     // Update the scale positions and rotations
     public void UpdateScale()
     {
-        // Remove rock object from player's mouse
-        if (rockGameObject != null)
-        {
-            Debug.Log("Removing Rock");
-            rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
-            rockGameObject = null;
-        }
-
+        ReleaseRock(false);
+        
         // If the puzzle is not completed,
         if (!scalePuzzleCompleted)
         {
@@ -249,6 +241,25 @@ public class ScaleBehaviour : MonoBehaviour
     public void DisplayControls(GameObject controls)
     {
         controls.SetActive(!controls.activeInHierarchy);
+    }
+
+    public void ReleaseRock(bool enableKinematic)
+    {
+        // Remove rock object from player's mouse
+        if (rockGameObject != null)
+        {
+            Debug.Log("Removing Rock");
+            rockGameObject.GetComponent<Rigidbody>().isKinematic = enableKinematic;
+            rockGameObject = null;
+        }
+    }
+
+    public void UpdateRockPositions()
+    {
+        for (int i = 0; i < rockGameObjects.Count; i++)
+        {
+            rockStartingPositions[i] = rockGameObjects[i].transform.position;
+        }
     }
 
     // Outline the rock when the player hover the mouse over it

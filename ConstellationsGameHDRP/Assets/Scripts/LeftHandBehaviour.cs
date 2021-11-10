@@ -6,6 +6,7 @@
 ---------------------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 -------------------------------------------------------------------*/
+using System.Collections;
 using UnityEngine;
 
 public class LeftHandBehaviour : MonoBehaviour
@@ -13,6 +14,7 @@ public class LeftHandBehaviour : MonoBehaviour
     #region Fields
     // The main scale script
     ScaleBehaviour scaleBehaviour;
+    public Transform stoneEntryPoint;
     #endregion
 
     #region Functions
@@ -27,14 +29,13 @@ public class LeftHandBehaviour : MonoBehaviour
         // If the rock has been placed on the left hand of the scale, add the weight to the left hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
-            //other.gameObject.transform.position = gameObject.transform.position;
             Debug.Log("Rock Detected");
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 
             other.gameObject.transform.parent = transform;
-            other.gameObject.transform.localPosition = new Vector3(-6f, 138.5f, -0.1f);
+            scaleBehaviour.ReleaseRock(true);
 
-            scaleBehaviour.UpdateScale();
+            StartCoroutine(LerpPosition(stoneEntryPoint.position, 5, other.gameObject));
         }
     }
 
@@ -48,6 +49,30 @@ public class LeftHandBehaviour : MonoBehaviour
 
             other.gameObject.transform.parent = null;
         }
+    }
+
+    // Move to target position over a time period
+    IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
+    {
+        // Set timer to 0 and get starting position
+        float time = 0;
+        Vector3 startPosition = hand.transform.position;
+
+        // While timer is less than duration of movement
+        while (time < duration)
+        {
+            // Move hand a small distance to target location
+            hand.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+
+            // Increase time by delta time
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // When time is up, move hand to target position
+        hand.transform.position = targetPosition;
+
+        scaleBehaviour.UpdateScale();
     }
     #endregion
 }

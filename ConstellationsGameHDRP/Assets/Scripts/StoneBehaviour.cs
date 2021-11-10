@@ -82,9 +82,9 @@ public class StoneBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         stone.transform.position = targetPosition;
 
-        stoneRigidbody.isKinematic = false;
-
         onReturn.Invoke();
+
+        //stoneRigidbody.isKinematic = false;
     }
     #endregion
 }
