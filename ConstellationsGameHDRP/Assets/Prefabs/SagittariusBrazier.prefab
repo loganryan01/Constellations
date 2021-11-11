@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &7406160901676266541
 Transform:
@@ -452,7 +452,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4140380052518018013
 Transform:
@@ -667,7 +667,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5916967374234545507
 Transform:
@@ -753,6 +753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_SagittariusBrazier
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 365f2841650fcc14d99bede5031f1ffa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365f2841650fcc14d99bede5031f1ffa, type: 3}
 --- !u!4 &835604034585913487 stripped
@@ -818,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f00377c3fc6c4d34d979e07f1e30a7da, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f00377c3fc6c4d34d979e07f1e30a7da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00377c3fc6c4d34d979e07f1e30a7da, type: 3}
