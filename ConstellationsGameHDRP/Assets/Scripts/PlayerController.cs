@@ -233,7 +233,6 @@ public class PlayerController : MonoBehaviour
         // Gets called when a puzzle is completed
         // Increase number of puzzles solved by 1
         puzzlesCompleted++;
-        Debug.Log(puzzlesCompleted);
 
         // Check if the number of puzzles completed is equal to the number of puzzles in the game
         // If they are, then screen fades to black and load the ending scene
@@ -295,8 +294,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = transform.right * movementX + transform.forward * movementZ;
         controller.Move(move * moveSpeed * Time.deltaTime);
-
-        Debug.Log(move);
 
         velocity.y += gravity * Time.deltaTime;
 
