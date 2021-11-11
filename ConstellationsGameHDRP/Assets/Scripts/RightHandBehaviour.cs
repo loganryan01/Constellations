@@ -44,8 +44,9 @@ public class RightHandBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the rock has been remove from the right hand of the scale, remove the weight from the right hand
-        if (other.gameObject.CompareTag("Rock"))
+        if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent == transform)
         {
+            Debug.Log(other.name + " has been removed from the right hand");
             scaleBehaviour.rightWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 

@@ -43,7 +43,7 @@ public class StoneBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with: " + other.name);
+        //Debug.Log("Collided with: " + other.name);
 
         if (other.name == "Libra_Scales_Puzzle")
         {

@@ -15,6 +15,8 @@ public class LeftHandBehaviour : MonoBehaviour
     #region Fields
     // The main scale script
     ScaleBehaviour scaleBehaviour;
+    //bool coroutinePlaying = false;
+
     public Transform stoneEntryPoint;
     public UnityEvent onArrivalToEntryPoint;
     #endregion
@@ -31,7 +33,6 @@ public class LeftHandBehaviour : MonoBehaviour
         // If the rock has been placed on the left hand of the scale, add the weight to the left hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform)
         {
-            Debug.Log("Rock Detected");
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 
             other.gameObject.transform.parent = transform;
@@ -45,8 +46,9 @@ public class LeftHandBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the rock has been remove from the left hand of the scale, remove the weight from the left hand
-        if (other.gameObject.CompareTag("Rock"))
+        if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted/*!coroutinePlaying*/)
         {
+            Debug.Log(other.name + " has been removed from the left hand");
             scaleBehaviour.leftWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 
@@ -57,6 +59,8 @@ public class LeftHandBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
+        //coroutinePlaying = true;
+
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -76,7 +80,8 @@ public class LeftHandBehaviour : MonoBehaviour
         hand.transform.position = targetPosition;
 
         onArrivalToEntryPoint.Invoke();
-        
+
+        //coroutinePlaying = false;
     }
     #endregion
 }

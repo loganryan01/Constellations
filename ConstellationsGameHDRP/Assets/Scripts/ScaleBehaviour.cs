@@ -215,6 +215,8 @@ public class ScaleBehaviour : MonoBehaviour
     {
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
+        leftDoor.GetComponent<OcclusionPortal>().open = true;
+        rightDoor.GetComponentInChildren<OcclusionPortal>().open = true;
     }
 
     // Change the material from a statue to galaxy
@@ -248,7 +250,7 @@ public class ScaleBehaviour : MonoBehaviour
         // Remove rock object from player's mouse
         if (rockGameObject != null)
         {
-            Debug.Log("Removing Rock");
+            //Debug.Log("Removing Rock");
             rockGameObject.GetComponent<Rigidbody>().isKinematic = enableKinematic;
             rockGameObject.GetComponent<Rigidbody>().useGravity = !enableKinematic;
             rockGameObject = null;
