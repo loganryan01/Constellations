@@ -2,7 +2,7 @@
     Name: ScaleBehaviour
     Purpose: Controls the scale puzzle.
     Authour: Logan Ryan
-    Modified: 27 October 2021
+    Modified: 11 November 2021
 ---------------------------------------
     Copyright 2021 Bookshelf Studios
 -------------------------------------*/
