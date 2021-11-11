@@ -50,6 +50,8 @@ public class PauseController : MonoBehaviour
     // Start function
     private void Start()
     {
+        Time.timeScale = 1;
+        
         pauseCanvas.SetActive(false);
         gameIsPaused = false;
         blurEffect.customPasses[0].enabled = false;

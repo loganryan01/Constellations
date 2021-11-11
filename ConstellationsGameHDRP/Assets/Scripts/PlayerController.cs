@@ -295,6 +295,8 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * movementX + transform.forward * movementZ;
         controller.Move(move * moveSpeed * Time.deltaTime);
 
+        Debug.Log(move);
+
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
