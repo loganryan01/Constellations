@@ -354,6 +354,8 @@ public class PlayerController : MonoBehaviour
                     if (stoneBehaviour != null)
                     {
                         stoneBehaviour.InteractWithScale();
+
+                        stoneBehaviour = null;
                     }
                     else
                     {
