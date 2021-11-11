@@ -1,3 +1,11 @@
+/*----------------------------------------------------
+    Name: StoneBehaviour
+    Purpose: Controls the stones for the scale puzzle.
+    Authour: Logan Ryan
+    Modified: 11 November 2021
+------------------------------------------------------
+    Copyright 2021 Bookshelf Studios
+----------------------------------------------------*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

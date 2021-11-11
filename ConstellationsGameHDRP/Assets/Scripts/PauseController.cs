@@ -2,7 +2,7 @@
     Name: PauseController
     Purpose: Controls the pause menu of the game.
     Author: Logan Ryan and Mara Dusevic
-    Modified: 28 October 2021
+    Modified: 11 November 2021
 -------------------------------------------------
     Copyright 2021 Bookshelf Studios
 -----------------------------------------------*/

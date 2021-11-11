@@ -2,11 +2,12 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 4 November 2021
+    Modified: 11 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -525,7 +526,12 @@ public class PlayerController : MonoBehaviour
             else if (lastSeenObject.GetComponent<ChannelBehaviour>())
             {
                 Debug.Log("Disabling outlines for channel");
-                DisableOutlines(0, lastSeenObject.transform);
+                ChannelBehaviour[] channels = FindObjectsOfType<ChannelBehaviour>();
+
+                foreach (var channel in channels)
+                {
+                    DisableOutlines(0, channel.transform);
+                }
             }
             else
             {
