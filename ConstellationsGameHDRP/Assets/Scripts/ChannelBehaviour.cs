@@ -1,13 +1,33 @@
 /*------------------------------------------------
     Name: ChannelBehaviour
     Purpose: Control the rotation of the channels.
-    Authour: Mara Dusevic
-    Modified: 28 October 2021
+    Author: Mara Dusevic
+    Modified: 11 November 2021
 --------------------------------------------------
     Copyright 2021 Bookshelf Studios
 ------------------------------------------------*/
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class ConnectedChannel
+{
+    public GameObject channelObj; // Connected channels object
+    public float connectedRotAmount; // Amount to rotate the connected channel with the given channel
+
+    public ConnectedChannel(GameObject a_channelObj, float a_connectedRotAmount)
+    {
+        channelObj = a_channelObj;
+        connectedRotAmount = a_connectedRotAmount;
+    }
+
+    // Returns the channels behaviour script
+    public ChannelBehaviour GetBehaviour()
+    {
+        return channelObj.GetComponent<ChannelBehaviour>();
+    }
+}
 
 public class ChannelBehaviour : MonoBehaviour
 {
@@ -18,31 +38,31 @@ public class ChannelBehaviour : MonoBehaviour
     [SerializeField] private float rotateSpeed = 5.0f; // Speed of the channel's rotation
     [SerializeField] public int[] correctRotations = { 0 }; // Array of all the correct rotations
 
+    [Header("Connected Channels")]
+    [SerializeField] private List<ConnectedChannel> connectedChannels; // All channels connected to this channel
+
     [Header("Interact Text")]
     [SerializeField] public GameObject buttonText; // UI element to indicate how to interact
 
+    private ChannelHolder _channelHolder; // Object holding the channel
     private bool _playingRotation = false; // Whether rotation is playing currently
     private bool _isDone = false; // Whether the channel is in correct position
-    private float defaultRotation; // Default rotation for channels
+    private float _defaultRotation; // Default rotation for channels
 
     #endregion
 
     #region Functions
 
+    // Start function - runs at the beginning
     private void Start()
     {
-        defaultRotation = this.transform.localRotation.eulerAngles.y;
+        _channelHolder = this.transform.parent.gameObject.GetComponent<ChannelHolder>();
+        _defaultRotation = this.transform.localRotation.eulerAngles.y;
     }
 
     // Update function - runs every frame
     private void Update()
     {
-        // If the channel is in the correct position, return
-        if (_isDone)
-        {
-            return;
-        }
-        
         // Gets the local y rotation value of the channel
         float yRot = this.transform.localRotation.eulerAngles.y;
         
@@ -52,8 +72,13 @@ public class ChannelBehaviour : MonoBehaviour
             // If the channel's current y rot is the same as one of the given correct angle, set channel to completed
             if (Mathf.RoundToInt(yRot) == rot)
             {
+                // If finished, set to true and exit
                 _isDone = true;
+                return;
             }
+
+            // Otherwise set as false;
+            _isDone = false;
         }
     }
 
@@ -70,11 +95,17 @@ public class ChannelBehaviour : MonoBehaviour
         return false;
     }
 
+    // Returns a bool on channel sections' completion
+    private bool IsChannelSectionDone()
+    {
+        return _channelHolder.GetStatus();
+    }
+
     // Rotates the water channel when called
     public void RotateWaterChannel()
     {
-        // If the channel is in correct rotation, return.
-        if (this._isDone == true)
+        // If the channel section has been completed, return.
+        if (this.IsChannelSectionDone() == true)
         {
             return;
         }
@@ -87,21 +118,39 @@ public class ChannelBehaviour : MonoBehaviour
         {
             // Starts coroutine to rotate channel to target rotation at a given speed
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
+
+            // Loops through all the connected channels to rotate simultaneously.
+            foreach (ConnectedChannel channel in connectedChannels)
+            {
+                // If the channel's holder is set to completed, ignore channel from rotation.
+                if (channel.GetBehaviour().IsChannelSectionDone())
+                {
+                    return;
+                }
+                
+                // Creates a target rotation based off current rotation
+                Quaternion rot = Quaternion.Euler(0, channel.channelObj.transform.localRotation.eulerAngles.y + channel.connectedRotAmount, 0);
+
+                // If the rotation animation is not playing
+                if (channel.GetBehaviour()._playingRotation == false)
+                {
+                    // Starts coroutine to rotate connected channel to target rotation at a given speed
+                    channel.GetBehaviour().StartCoroutine(LerpRotation(rot, channel.GetBehaviour().rotateSpeed, channel.channelObj));
+                }
+            }
         }
     }
 
+    // Rotates the water channel to default position
     public void RotateToDefaultPosition()
     {
-        // If the channel is in correct rotation, return.
-        if (this._isDone == true)
-        {
-            return;
-        }
-
-        Quaternion newRot = Quaternion.Euler(0, defaultRotation, 0);
-
+        // Creates a target rotation based off default rotation
+        Quaternion newRot = Quaternion.Euler(0, _defaultRotation, 0);
+            
+        // If the rotation animation is not playing 
         if (_playingRotation == false)
         {
+            // Starts coroutine to rotate channel to default rotation at a given speed
             StartCoroutine(LerpRotation(newRot, rotateSpeed, gameObject));
         }
     }
