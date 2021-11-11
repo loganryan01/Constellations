@@ -34,7 +34,8 @@ public class RightHandBehaviour : MonoBehaviour
             scaleBehaviour.rightWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 
             other.gameObject.transform.parent = transform;
-            scaleBehaviour.ReleaseRock(true);
+            other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
             StartCoroutine(LerpPosition(stoneEntryPoint.position, 5, other.gameObject));
         }
@@ -74,7 +75,6 @@ public class RightHandBehaviour : MonoBehaviour
         hand.transform.position = targetPosition;
 
         onArrivalToEntryPoint.Invoke();
-        hand.GetComponent<Rigidbody>().useGravity = true;
     }
     #endregion
 }

@@ -250,6 +250,7 @@ public class ScaleBehaviour : MonoBehaviour
         {
             Debug.Log("Removing Rock");
             rockGameObject.GetComponent<Rigidbody>().isKinematic = enableKinematic;
+            rockGameObject.GetComponent<Rigidbody>().useGravity = !enableKinematic;
             rockGameObject = null;
         }
     }
@@ -400,6 +401,7 @@ public class ScaleBehaviour : MonoBehaviour
         {
             // Let go of the rock
             rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+            rockGameObject.GetComponent<Rigidbody>().useGravity = true;
             rockGameObject = null;
         }
     }
@@ -411,6 +413,8 @@ public class ScaleBehaviour : MonoBehaviour
         
         for (int i = 0; i < rockGameObjects.Count; i++)
         {
+            rockGameObjects[i].GetComponent<Rigidbody>().isKinematic = true;
+            rockGameObjects[i].GetComponent<Rigidbody>().useGravity = false;
             rockGameObjects[i].transform.position = rockStartingPositions[i];
         }
     }

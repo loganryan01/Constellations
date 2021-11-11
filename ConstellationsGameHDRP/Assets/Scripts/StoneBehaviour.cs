@@ -83,8 +83,6 @@ public class StoneBehaviour : MonoBehaviour
         stone.transform.position = targetPosition;
 
         onReturn.Invoke();
-
-        //stoneRigidbody.isKinematic = false;
     }
     #endregion
 }
