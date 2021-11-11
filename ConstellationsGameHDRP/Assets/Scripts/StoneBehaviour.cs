@@ -41,18 +41,25 @@ public class StoneBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //Debug.Log("Collided with: " + other.name);
+
+    //    if (other.name == "Libra_Scales_Puzzle")
+    //    {
+    //        Debug.Log(name + "collided with: " + other.name);
+
+            
+    //    }
+    //}
+
+    public void InteractWithScale()
     {
-        //Debug.Log("Collided with: " + other.name);
+        isPlayerHoldingRock = false;
 
-        if (other.name == "Libra_Scales_Puzzle")
-        {
-            isPlayerHoldingRock = false;
+        holdingPosition = null;
 
-            holdingPosition = null;
-
-            StartCoroutine(LerpPosition(rockPositionOnScale.position, 5, gameObject));
-        }
+        StartCoroutine(LerpPosition(rockPositionOnScale.position, 5, gameObject));
     }
 
     public bool IsStoneInCorrectPosition()
