@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     private int puzzlesCompleted = 0;
 
     PuzzleOutlineEvent puzzleOutline;
+    private StoneBehaviour stoneBehaviour;
     #endregion
 
     #region Functions
@@ -350,7 +351,16 @@ public class PlayerController : MonoBehaviour
                     puzzleOutline.AddListener(DisableOutlines);
                     puzzleOutline.Invoke(2, hitObject.transform);
 
-                    scaleBehaviour.onInteraction.Invoke();
+                    if (stoneBehaviour != null)
+                    {
+                        stoneBehaviour.InteractWithScale();
+
+                        stoneBehaviour = null;
+                    }
+                    else
+                    {
+                        scaleBehaviour.onInteraction.Invoke();
+                    }
 
                     puzzleOutline.RemoveAllListeners();
                 }
@@ -392,7 +402,9 @@ public class PlayerController : MonoBehaviour
             }
             else if (hitObject.GetComponent<StoneBehaviour>())
             {
-                hitObject.GetComponent<StoneBehaviour>().onInteraction.Invoke();
+                stoneBehaviour = hitObject.GetComponent<StoneBehaviour>();
+
+                stoneBehaviour.onInteraction.Invoke();
             }
         }
 

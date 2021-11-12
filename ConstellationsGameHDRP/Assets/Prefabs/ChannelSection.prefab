@@ -60,7 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateAmount: 45
   rotateSpeed: 0.5
-  correctRotations: 5a000000a6ffffff
+  correctRotations: 5a000000a6ffffff0e010000f2feffff
+  connectedChannels: []
   buttonText: {fileID: 0}
 --- !u!1 &8878603934444888785
 GameObject:
@@ -122,7 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateAmount: 45
   rotateSpeed: 0.5
-  correctRotations: 5a000000a6ffffff
+  correctRotations: 5a000000a6ffffff0e010000f2feffff
+  connectedChannels:
+  - channelObj: {fileID: 0}
+    connectedRotAmount: 0
   buttonText: {fileID: 0}
 --- !u!1 &8878603934676607548
 GameObject:
@@ -184,7 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateAmount: 45
   rotateSpeed: 0.5
-  correctRotations: 5a000000a6ffffff
+  correctRotations: 5a000000a6ffffff0e010000f2feffff
+  connectedChannels: []
   buttonText: {fileID: 0}
 --- !u!1 &8878603934894474298
 GameObject:
@@ -246,7 +251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateAmount: 45
   rotateSpeed: 0.5
-  correctRotations: 5a000000a6ffffff
+  correctRotations: 5a000000a6ffffff0e010000f2feffff
+  connectedChannels: []
   buttonText: {fileID: 0}
 --- !u!1 &8878603935121435282
 GameObject:

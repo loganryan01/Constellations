@@ -2,7 +2,7 @@
     Name: WaterPuzzle
     Purpose: Checks if the pisces puzzle is completed.
     Author: Mara Dusevic
-    Modified: 7 October 2021
+    Modified: 11 November 2021
 ------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------------------*/
@@ -15,17 +15,17 @@ public class WaterPuzzle : MonoBehaviour
     #region Fields
     
     [Header("Dialogue")]
-    [SerializeField] private DialogueTrigger dialogueTrigger;
-    public UnityEvent onComplete;
+    [SerializeField] private DialogueTrigger dialogueTrigger; // Trigger for dialogue events
+    public UnityEvent onComplete; // On completion event
 
-    private List<ChannelHolder> _channelSections = new List<ChannelHolder>();
-    private bool _hasWon = false;
+    private List<ChannelHolder> _channelSections = new List<ChannelHolder>(); // All channel sections in the puzzle
+    private bool _hasWon = false; // Boolean on the status of the puzzle
 
     #endregion
     
     #region Functions
     
-    // Start function 
+    // Start function - runs at the beginning
     private void Start()
     {
         _channelSections.AddRange(transform.gameObject.GetComponentsInChildren<ChannelHolder>());
@@ -34,6 +34,7 @@ public class WaterPuzzle : MonoBehaviour
     // Update function - run every frame
     private void Update()
     {
+        // If the player hasn't won, check status of puzzle.
         if (!_hasWon)
         {
             WinCheck();
