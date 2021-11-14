@@ -3,7 +3,12 @@ guid: 93f2366ee87ece24f84c78f50c023be0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MedusaStatue
+    second: {fileID: 2100000, guid: b8e8b437f5a194b42b39b843e918946e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
