@@ -375,7 +375,7 @@ MonoBehaviour:
       m_BoxSideFadePositive: {x: 1, y: 1, z: 1}
       m_BoxSideFadeNegative: {x: 1, y: 1, z: 1}
       m_SphereRadius: 37.1
-      m_SphereBlendDistance: 0
+      m_SphereBlendDistance: 2.88
       m_SphereBlendNormalDistance: 0
     proxy:
       m_CSVersion: 1
