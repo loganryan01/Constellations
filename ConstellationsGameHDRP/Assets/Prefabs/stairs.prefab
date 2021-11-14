@@ -1,5 +1,181 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1195381765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195381766}
+  - component: {fileID: 1195381767}
+  m_Layer: 0
+  m_Name: StairRailingCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195381766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195381765}
+  m_LocalRotation: {x: -0.3027419, y: 0.3503255, z: 0.12078374, w: 0.8780836}
+  m_LocalPosition: {x: 47.53, y: -79.17, z: -7.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6431897800696771026}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -38.046, y: 43.501, z: 0}
+--- !u!65 &1195381767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195381765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5326037, z: 25.155178}
+  m_Center: {x: 0.0000013984128, y: -0.32691085, z: 11.182757}
+--- !u!1 &1370056102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1370056103}
+  - component: {fileID: 1370056104}
+  m_Layer: 0
+  m_Name: StairRailingCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1370056103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370056102}
+  m_LocalRotation: {x: -0.3027419, y: 0.3503255, z: 0.12078374, w: 0.8780836}
+  m_LocalPosition: {x: 40.732, y: -79.169, z: -0.612}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6431897800696771026}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -38.046, y: 43.501, z: 0}
+--- !u!65 &1370056104
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370056102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5326037, z: 25.155178}
+  m_Center: {x: 0.0000013984128, y: -0.32691085, z: 11.182757}
+--- !u!1 &1743688312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743688313}
+  - component: {fileID: 1743688314}
+  m_Layer: 0
+  m_Name: StairRailingCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1743688313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743688312}
+  m_LocalRotation: {x: -0.3221973, y: -0.14300017, z: -0.049303122, w: 0.9345101}
+  m_LocalPosition: {x: 63.89, y: -64.2, z: 23.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2870356789495922755}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -38.046, y: -17.4, z: 0}
+--- !u!65 &1743688314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743688312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5326037, z: 25.155178}
+  m_Center: {x: 0.0000013984128, y: -0.32691085, z: 11.182757}
+--- !u!1 &2133034550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133034551}
+  - component: {fileID: 2133034552}
+  m_Layer: 0
+  m_Name: StairRailingCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133034551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133034550}
+  m_LocalRotation: {x: -0.3221973, y: -0.14300017, z: -0.049303122, w: 0.9345101}
+  m_LocalPosition: {x: 54.78, y: -64.2, z: 21.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2870356789495922755}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -38.046, y: -17.4, z: 0}
+--- !u!65 &2133034552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133034550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5326037, z: 25.155178}
+  m_Center: {x: 0.0000013984128, y: -0.32691085, z: 11.182757}
 --- !u!65 &7283285772802018503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,6 +459,8 @@ Transform:
   - {fileID: 8243427236665074316}
   - {fileID: 3351805509950123511}
   - {fileID: 7396736613773062827}
+  - {fileID: 2133034551}
+  - {fileID: 1743688313}
   m_Father: {fileID: 2017871621490719130}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -406,6 +584,8 @@ Transform:
   - {fileID: 4749478859530019111}
   - {fileID: 6013100271283559962}
   - {fileID: 3313074843410503865}
+  - {fileID: 1370056103}
+  - {fileID: 1195381766}
   m_Father: {fileID: 2017871621490719130}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1090,14 +1270,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
---- !u!4 &3351805509950123511 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
-  m_PrefabInstance: {fileID: 2958504483786279452}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2724627157605578573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
+  m_PrefabInstance: {fileID: 2958504483786279452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3351805509950123511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
   m_PrefabInstance: {fileID: 2958504483786279452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3263162879661360855
@@ -1433,14 +1613,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
---- !u!1 &5377959274686446493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
-  m_PrefabInstance: {fileID: 5071951097493374668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4749478859530019111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
+  m_PrefabInstance: {fileID: 5071951097493374668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5377959274686446493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
   m_PrefabInstance: {fileID: 5071951097493374668}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5371881462826872549
@@ -1504,14 +1684,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e159201d0790e84c990f977fd97d021, type: 3}
---- !u!4 &5550256390665160974 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e159201d0790e84c990f977fd97d021, type: 3}
-  m_PrefabInstance: {fileID: 5371881462826872549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5065890335444439988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e159201d0790e84c990f977fd97d021, type: 3}
+  m_PrefabInstance: {fileID: 5371881462826872549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5550256390665160974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e159201d0790e84c990f977fd97d021, type: 3}
   m_PrefabInstance: {fileID: 5371881462826872549}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6047197891989713135
@@ -2062,14 +2242,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
---- !u!1 &8731733976517179446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
-  m_PrefabInstance: {fileID: 8497219476906755431}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8243427236665074316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
+  m_PrefabInstance: {fileID: 8497219476906755431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8731733976517179446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b40f2ed0aea6a7b42976182f431da6fb, type: 3}
   m_PrefabInstance: {fileID: 8497219476906755431}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8768058513924804259
