@@ -107,11 +107,11 @@ public class LaserBehaviour : MonoBehaviour
                 }
 
                 // If the laser hits the object with the win tag, trigger event
-                if (hit.transform.gameObject.tag == winTag && !laserPuzzleCompleted)
+                if (hit.transform.gameObject.tag == winTag && !laserPuzzleCompleted && verti == 7)
                 {
                     laserPuzzleCompleted = true;
                     onComplete.Invoke();
-                }
+                }                
             }
             else
             {

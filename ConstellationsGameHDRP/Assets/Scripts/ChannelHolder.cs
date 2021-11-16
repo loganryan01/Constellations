@@ -2,7 +2,7 @@
     Name: ChannelHolder
     Purpose: Control the channels of the pisces puzzle.
     Author: Mara Dusevic
-    Modified: 7 October 2021
+    Modified: 11 November 2021
 -------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 -----------------------------------------------------*/
@@ -37,7 +37,7 @@ public class ChannelHolder : MonoBehaviour
     
     #region Functions
     
-    // Start function 
+    // Start function - runs at the beginning
     private void Start()
     {
         _scaleWaterTo = CalculateWaterScale(startPool, endPool);
@@ -76,6 +76,12 @@ public class ChannelHolder : MonoBehaviour
     public bool IsCompleted()
     {
         return _hasFishMoved;
+    }
+
+    // Returns the status of the channels attached to holder
+    public bool GetStatus()
+    {
+        return _allowWater;
     }
 
     // Checks each channel in section to determine whether to draw water 

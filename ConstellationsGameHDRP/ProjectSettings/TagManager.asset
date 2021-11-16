@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rock
+  - LightEnd
+  - Mirror
+  - Sagittarius
+  - Pisces
+  - EnvironmentExclusion
   layers:
   - Default
   - TransparentFX
@@ -16,7 +22,7 @@ TagManager:
   - PostProcessing
   - Not in Reflection
   - 
-  - 
+  - EnvironmentExclusion
   - 
   - 
   - 

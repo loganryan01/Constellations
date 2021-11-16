@@ -2,11 +2,12 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 7 October 2021
+    Modified: 11 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -22,13 +23,13 @@ public class PuzzleOutlineEvent : UnityEvent<int, Transform>
 public class PlayerController : MonoBehaviour
 {
     #region Fields
-    private Transform mainCam;
-    public PlayerInputActions playerInput;
-    private CharacterController controller;
+    private Transform mainCam; // The main camera position, rotation and scale
+    public PlayerInputActions playerInput; // The players actions
+    private CharacterController controller; // The controller that moves the player
 
     [Header("Movement")]
     [SerializeField]
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f; // The speed of the player
 
     private Vector3 rawInputMovement;
 
@@ -67,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
+    public GameObject sagittariusControls; // 
+    public GameObject piscesControls;
 
     [Header("Ending settings")]
     public int numberOfPuzzles = 4;
@@ -75,12 +78,22 @@ public class PlayerController : MonoBehaviour
     private int puzzlesCompleted = 0;
 
     PuzzleOutlineEvent puzzleOutline;
+    private StoneBehaviour stoneBehaviour;
     #endregion
 
     #region Functions
     // Start function
     private void Start()
     {
+        if (PlayerPrefs.HasKey("Look Sensitivity"))
+        {
+            lookSensitivity = PlayerPrefs.GetFloat("Look Sensitivity");
+        }
+        else
+        {
+            lookSensitivity = 15;
+        }
+        
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -125,6 +138,34 @@ public class PlayerController : MonoBehaviour
         if (enableOutline)
         {
             CanThePlayerInteract();
+        }
+        else
+        {
+            HideOutlines();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sagittarius") && !sagittariusControls.activeInHierarchy)
+        {
+            sagittariusControls.SetActive(true);
+        }
+        else if (other.CompareTag("Pisces") && !piscesControls.activeInHierarchy)
+        {
+            piscesControls.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Sagittarius") && sagittariusControls.activeInHierarchy)
+        {
+            sagittariusControls.SetActive(false);
+        }
+        else if (other.CompareTag("Pisces") && piscesControls.activeInHierarchy)
+        {
+            piscesControls.SetActive(false);
         }
     }
 
@@ -185,6 +226,11 @@ public class PlayerController : MonoBehaviour
     // Checks if player has completed all the puzzles
     public void EndGameCheck()
     {
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            puzzlesCompleted--;
+        }
+        
         // Gets called when a puzzle is completed
         // Increase number of puzzles solved by 1
         puzzlesCompleted++;
@@ -193,6 +239,7 @@ public class PlayerController : MonoBehaviour
         // If they are, then screen fades to black and load the ending scene
         if(puzzlesCompleted == numberOfPuzzles)
         {
+            Debug.Log("Ending Game");
             StartCoroutine(FadeToBlack(targetColour, 5));
         }
     }
@@ -232,6 +279,12 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    // Stop player from moving
+    public void LockMovement(float movementSpeed)
+    {
+        moveSpeed = movementSpeed;
     }
 
     // Move the player
@@ -298,17 +351,26 @@ public class PlayerController : MonoBehaviour
                     puzzleOutline.AddListener(DisableOutlines);
                     puzzleOutline.Invoke(2, hitObject.transform);
 
-                    scaleBehaviour.onInteraction.Invoke();
+                    if (stoneBehaviour != null)
+                    {
+                        stoneBehaviour.InteractWithScale();
+
+                        stoneBehaviour = null;
+                    }
+                    else
+                    {
+                        scaleBehaviour.onInteraction.Invoke();
+                    }
 
                     puzzleOutline.RemoveAllListeners();
                 }
             }
             // If it hits the maze, move the camera
-            else if (hitObject.GetComponent<MazeBehaviour>())
+            else if (hitObject.GetComponent<TaurusBehaviour>())
             {
-                MazeBehaviour mazeBehaviour = hitObject.GetComponent<MazeBehaviour>();
+                TaurusBehaviour taurusBehaviour = hitObject.GetComponent<TaurusBehaviour>();
 
-                if (!mazeBehaviour.mazeCompleted)
+                if (!taurusBehaviour.CheckPuzzleCompletion())
                 {
                     if (puzzleOutline == null)
                     {
@@ -318,7 +380,7 @@ public class PlayerController : MonoBehaviour
                     puzzleOutline.AddListener(DisableOutlines);
                     puzzleOutline.Invoke(2, hitObject.transform);
 
-                    mazeBehaviour.onInteraction.Invoke();
+                    taurusBehaviour.OnInteraction();
 
                     puzzleOutline.RemoveAllListeners();
                 }
@@ -327,6 +389,22 @@ public class PlayerController : MonoBehaviour
             else if (hitObject.GetComponent<ChannelBehaviour>())
             {
                 hitObject.GetComponent<ChannelBehaviour>().RotateWaterChannel();
+            }
+            // If the player selects the sagittarius puzzle, reset the mirrors to default position
+            else if (hitObject.GetComponent<SagittariusBehaviour>())
+            {
+                hitObject.GetComponent<SagittariusBehaviour>().ResetMirrors();
+            }
+            // If it selects the end pool, it will restart the pisces puzzle
+            else if (hitObject.GetComponent<PiscesBehaviour>())
+            {
+                hitObject.GetComponent<PiscesBehaviour>().ResetChannels();
+            }
+            else if (hitObject.GetComponent<StoneBehaviour>())
+            {
+                stoneBehaviour = hitObject.GetComponent<StoneBehaviour>();
+
+                stoneBehaviour.onInteraction.Invoke();
             }
         }
 
@@ -344,6 +422,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
+            //Debug.Log("The object we are looking at is: " + hitObject.name);
 
             // If the object is the scale or a channel, 
             if (hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
@@ -357,15 +436,17 @@ public class PlayerController : MonoBehaviour
                 DisableOutlines(1, hitObject.transform);
             }
             // If the object is a mirror
-            else if (hitObject.GetComponent<MazeBehaviour>() && !hitObject.GetComponent<MazeBehaviour>().mazeCompleted)
+            else if (hitObject.GetComponent<TaurusBehaviour>() && !hitObject.GetComponent<TaurusBehaviour>().CheckPuzzleCompletion())
             {
-                lastSeenObject = hitObject;
+                GameObject mazeObject = hitObject.GetComponent<TaurusBehaviour>().GetMazeObject();
+
+                lastSeenObject = mazeObject;
 
                 // Display button text
                 buttonText.SetActive(true);
 
                 // Draw outline for the object's grandchildren
-                DisableOutlines(1, hitObject.transform);
+                DisableOutlines(1, mazeObject.transform);
             }
             else if (hitObject.GetComponent<MirrorBehaviour>() && !hitObject.GetComponent<MirrorBehaviour>().laserBehaviour.laserPuzzleCompleted)
             {
@@ -389,71 +470,86 @@ public class PlayerController : MonoBehaviour
                 // Draw outline for the object's children
                 DisableOutlines(1, hitObject.transform);
             }
+            else if (hitObject.GetComponent<SagittariusBehaviour>() && !hitObject.GetComponent<SagittariusBehaviour>().CheckPuzzleCompletion())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
+                DisableOutlines(1, hitObject.transform);
+            }
+            else if (hitObject.GetComponent<PiscesBehaviour>() && !hitObject.GetComponent<PiscesBehaviour>().CheckPuzzleCompletion())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
+                DisableOutlines(1, hitObject.transform);
+            }
+            else if (hitObject.GetComponent<StoneBehaviour>() && !hitObject.GetComponent<StoneBehaviour>().IsStoneInCorrectPosition())
+            {
+                lastSeenObject = hitObject;
+
+                // Display button text
+                buttonText.SetActive(true);
+
+                // Draw outline for the object'
+                DisableOutlines(1, hitObject.transform);
+            }
             else
             {
-                // Hide Button's text
-                buttonText.SetActive(false);
-
-                // Hide outline for object
-                if (lastSeenObject != null)
-                {
-                    // Change layer of mirror children to 0
-                    if (lastSeenObject.GetComponent<MirrorBehaviour>())
-                    {
-                        DisableOutlines(9, lastSeenObject.transform);
-                        DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                        DisableOutlines(9, lastSeenObject.transform.GetChild(1));
-                    }
-                    else if (lastSeenObject.GetComponent<ScaleBehaviour>())
-                    {
-                        DisableOutlines(0, lastSeenObject.transform.GetChild(6));
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                    else if (lastSeenObject.GetComponent<ChannelBehaviour>())
-                    {
-                        Debug.Log("Disabling outlines for channel");
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                    else
-                    {
-                        DisableOutlines(0, lastSeenObject.transform);
-                    }
-                }
+                HideOutlines();
             }
         }
         else
         {
-            // Hide Button's text
-            buttonText.SetActive(false);
+            HideOutlines();
+        }
+    }
 
-            // Hide outline for object
-            if (lastSeenObject != null)
+    // Changes the layer of the object that was last seen to hide the outlines
+    private void HideOutlines()
+    {
+        // Hide Button's text
+        buttonText.SetActive(false);
+
+        // Hide outline for object
+        if (lastSeenObject != null)
+        {
+            // Change layer of mirror children to 0
+            if (lastSeenObject.GetComponent<MirrorBehaviour>())
             {
-                // Change layer of mirror children to 0
-                if (lastSeenObject.GetComponent<MirrorBehaviour>())
+                DisableOutlines(9, lastSeenObject.transform);
+                DisableOutlines(0, lastSeenObject.transform.GetChild(0));
+                DisableOutlines(9, lastSeenObject.transform.GetChild(1));
+            }
+            else if (lastSeenObject.GetComponent<ScaleBehaviour>())
+            {
+                DisableOutlines(0, lastSeenObject.transform.GetChild(6));
+                DisableOutlines(0, lastSeenObject.transform);
+            }
+            else if (lastSeenObject.GetComponent<ChannelBehaviour>())
+            {
+                Debug.Log("Disabling outlines for channel");
+                ChannelBehaviour[] channels = FindObjectsOfType<ChannelBehaviour>();
+
+                foreach (var channel in channels)
                 {
-                    DisableOutlines(9, lastSeenObject.transform);
-                    DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                    DisableOutlines(9, lastSeenObject.transform.GetChild(1));
+                    DisableOutlines(0, channel.transform);
                 }
-                else if (lastSeenObject.GetComponent<ScaleBehaviour>())
-                {
-                    DisableOutlines(0, lastSeenObject.transform.GetChild(6));
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
-                else if (lastSeenObject.GetComponent<ChannelBehaviour>())
-                {
-                    Debug.Log("Disabling outlines for channel");
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
-                else
-                {
-                    DisableOutlines(0, lastSeenObject.transform);
-                }
+            }
+            else
+            {
+                DisableOutlines(0, lastSeenObject.transform);
             }
         }
     }
 
+    // Coroutine to fade the screen to black
     IEnumerator FadeToBlack(Color endValue, float duration)
     {
         float time = 0;

@@ -169,6 +169,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""5360081f-d066-4e32-93ea-7ed1e083fa4c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -204,6 +212,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5511c92-9b58-4ba7-9197-0f6cc6c5c16a"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -216,6 +235,22 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""1f9bfcc4-e28c-4c2b-90d8-95bb1cafc6a6"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d9f4e20-5948-43ff-9b39-19f4dd4deccb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""47107b31-55f4-4edc-abda-b9adf8c0b175"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -275,6 +310,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7db0e1a-e812-4991-937f-dd10a7a450ef"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19455d59-8587-4999-a46f-d323e5366bc6"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -320,9 +377,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_ScalePuzzle_Select = m_ScalePuzzle.FindAction("Select", throwIfNotFound: true);
         m_ScalePuzzle_Deselect = m_ScalePuzzle.FindAction("Deselect", throwIfNotFound: true);
         m_ScalePuzzle_Reset = m_ScalePuzzle.FindAction("Reset", throwIfNotFound: true);
+        m_ScalePuzzle_Quit = m_ScalePuzzle.FindAction("Quit", throwIfNotFound: true);
         // MazePuzzle
         m_MazePuzzle = asset.FindActionMap("MazePuzzle", throwIfNotFound: true);
         m_MazePuzzle_Movement = m_MazePuzzle.FindAction("Movement", throwIfNotFound: true);
+        m_MazePuzzle_Reset = m_MazePuzzle.FindAction("Reset", throwIfNotFound: true);
+        m_MazePuzzle_Quit = m_MazePuzzle.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -432,6 +492,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_ScalePuzzle_Select;
     private readonly InputAction m_ScalePuzzle_Deselect;
     private readonly InputAction m_ScalePuzzle_Reset;
+    private readonly InputAction m_ScalePuzzle_Quit;
     public struct ScalePuzzleActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -439,6 +500,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_ScalePuzzle_Select;
         public InputAction @Deselect => m_Wrapper.m_ScalePuzzle_Deselect;
         public InputAction @Reset => m_Wrapper.m_ScalePuzzle_Reset;
+        public InputAction @Quit => m_Wrapper.m_ScalePuzzle_Quit;
         public InputActionMap Get() { return m_Wrapper.m_ScalePuzzle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -457,6 +519,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Reset.started -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnReset;
+                @Quit.started -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_ScalePuzzleActionsCallbackInterface.OnQuit;
             }
             m_Wrapper.m_ScalePuzzleActionsCallbackInterface = instance;
             if (instance != null)
@@ -470,6 +535,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
             }
         }
     }
@@ -479,11 +547,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_MazePuzzle;
     private IMazePuzzleActions m_MazePuzzleActionsCallbackInterface;
     private readonly InputAction m_MazePuzzle_Movement;
+    private readonly InputAction m_MazePuzzle_Reset;
+    private readonly InputAction m_MazePuzzle_Quit;
     public struct MazePuzzleActions
     {
         private @PlayerInputActions m_Wrapper;
         public MazePuzzleActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_MazePuzzle_Movement;
+        public InputAction @Reset => m_Wrapper.m_MazePuzzle_Reset;
+        public InputAction @Quit => m_Wrapper.m_MazePuzzle_Quit;
         public InputActionMap Get() { return m_Wrapper.m_MazePuzzle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -496,6 +568,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnMovement;
+                @Reset.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnReset;
+                @Quit.started -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_MazePuzzleActionsCallbackInterface.OnQuit;
             }
             m_Wrapper.m_MazePuzzleActionsCallbackInterface = instance;
             if (instance != null)
@@ -503,6 +581,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
             }
         }
     }
@@ -537,9 +621,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnDeselect(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
     public interface IMazePuzzleActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

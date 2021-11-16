@@ -2,7 +2,7 @@
     Name: ScaleBehaviour
     Purpose: Controls the scale puzzle.
     Authour: Logan Ryan
-    Modified: 7 October 2021
+    Modified: 11 November 2021
 ---------------------------------------
     Copyright 2021 Bookshelf Studios
 -------------------------------------*/
@@ -23,7 +23,8 @@ public class ScaleBehaviour : MonoBehaviour
     public enum Side
     {
         Left,
-        Right
+        Right,
+        None
     }
 
     #region Fields
@@ -59,11 +60,15 @@ public class ScaleBehaviour : MonoBehaviour
     [Header("Puzzle Completed Settings")]
     public UnityEvent onComplete;
 
+    [Header("Quit Settings")]
+    public UnityEvent onQuit;
+
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
     private GameObject rockGameObject; // The rock that the player is holding
     private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game object the player is holding
+    private GameObject lastTouchedRock; // The rock that was last touched
 
     private Vector3 heavyLeftPosition; // The position where the left hand is the heaviest
     private Vector3 heavyRightPosition; // The position where the right hand is the heaviest
@@ -73,6 +78,10 @@ public class ScaleBehaviour : MonoBehaviour
 
     private Vector3 lightLeftPosition; // The position where the left hand is the lightest
     private Vector3 lightRightPosition; // The position where the right hand is the lightest
+
+    private Vector3[] rockStartingPositions = new Vector3[3];
+    List<GameObject> rockGameObjects = new List<GameObject>();
+    GameObject[] rockArray = new GameObject[4];
     #endregion
 
     #region Functions
@@ -115,6 +124,19 @@ public class ScaleBehaviour : MonoBehaviour
             // Rotate fulcrum to the right
             arm.transform.rotation = Quaternion.Euler(armRotations[2]);
         }
+
+        // Setup rock default positions
+        rockArray = GameObject.FindGameObjectsWithTag("Rock");
+
+        for (int i = 0; i < rockArray.Length; i++)
+        {
+            if (rockArray[i].layer == 0)
+            {
+                rockGameObjects.Add(rockArray[i]);
+            }
+        }
+
+        UpdateRockPositions();
     }
 
     // Update function - run every frame
@@ -134,11 +156,20 @@ public class ScaleBehaviour : MonoBehaviour
 
             // Set the position of the rock to be the mouse position
             rockGameObject.transform.position = rockPosition;
+
+            rockGameObject.layer = 0;
+        }
+        else if (rockGameObject == null)
+        {
+            OutlineRock();
         }
     }
 
+    // Update the scale positions and rotations
     public void UpdateScale()
     {
+        ReleaseRock(false);
+        
         // If the puzzle is not completed,
         if (!scalePuzzleCompleted)
         {
@@ -153,16 +184,20 @@ public class ScaleBehaviour : MonoBehaviour
                 ChangeScale(middleLeftPosition, middleRightPosition, armRotations[1]);
 
                 // ===== Puzzle Complete Function =====
-                onComplete.Invoke();
-
-                // Lock the scale so the player can't interact with scale
-                scalePuzzleCompleted = true;
-
-                // Remove rock object from player's mouse
-                if (rockGameObject != null)
+                if (leftWeight + rightWeight > 0)
                 {
-                    rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
-                    rockGameObject = null;
+                    // Remove rock object from player's mouse
+                    if (rockGameObject != null)
+                    {
+                        Debug.Log("Removing Rock");
+                        rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                        rockGameObject = null;
+                    }
+
+                    onComplete.Invoke();
+
+                    // Lock the scale so the player can't interact with scale
+                    scalePuzzleCompleted = true;
                 }
             }
             // If the right side is the heaviest
@@ -170,15 +205,21 @@ public class ScaleBehaviour : MonoBehaviour
             {
                 ChangeScale(lightLeftPosition, heavyRightPosition, armRotations[2]);
             }
+
+            
         }
     }
 
+    // Open the doors when the puzzle is completed
     public void OpenDoors()
     {
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[0]), 5, leftDoor));
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
+        leftDoor.GetComponent<OcclusionPortal>().open = true;
+        rightDoor.GetComponentInChildren<OcclusionPortal>().open = true;
     }
 
+    // Change the material from a statue to galaxy
     public void IncreaseGalaxyIntensity(Transform gameObjectTransform)
     {
         // Get all the mesh renderers in the scale
@@ -195,6 +236,61 @@ public class ScaleBehaviour : MonoBehaviour
             if (gameObjectTransform.childCount > 0)
             {
                 IncreaseGalaxyIntensity(gameObjectTransform.GetChild(i));
+            }
+        }
+    }
+
+    public void DisplayControls(GameObject controls)
+    {
+        controls.SetActive(!controls.activeInHierarchy);
+    }
+
+    public void ReleaseRock(bool enableKinematic)
+    {
+        // Remove rock object from player's mouse
+        if (rockGameObject != null)
+        {
+            //Debug.Log("Removing Rock");
+            rockGameObject.GetComponent<Rigidbody>().isKinematic = enableKinematic;
+            rockGameObject.GetComponent<Rigidbody>().useGravity = !enableKinematic;
+            rockGameObject = null;
+        }
+    }
+
+    public void UpdateRockPositions()
+    {
+        for (int i = 0; i < rockGameObjects.Count; i++)
+        {
+            rockStartingPositions[i] = rockGameObjects[i].transform.position;
+        }
+    }
+
+    // Outline the rock when the player hover the mouse over it
+    private void OutlineRock()
+    {
+        // Get the mouse current position
+        Vector3 pos = Mouse.current.position.ReadValue();
+
+        // Shoot a ray
+        Ray ray = puzzleCamera.ScreenPointToRay(pos);
+
+        RaycastHit hit;
+
+        // If it hits a rock,
+        if (Physics.Raycast(ray, out hit, 27.5f))
+        {
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Rock") && rockGameObject == null)
+                {
+                    lastTouchedRock = hit.collider.gameObject;
+                    lastTouchedRock.layer = 1;
+                }
+                else if (lastTouchedRock != null)
+                {
+                    lastTouchedRock.layer = 0;
+                    lastTouchedRock = null;
+                }
             }
         }
     }
@@ -284,11 +380,11 @@ public class ScaleBehaviour : MonoBehaviour
         RaycastHit hit;
 
         // If it hits a rock,
-        if (Physics.Raycast(ray, out hit, 25))
+        if (Physics.Raycast(ray, out hit, 27.5f))
         {
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Rock"))
+                if (hit.collider.CompareTag("Rock") && rockGameObject == null)
                 {
                     // The rock then follows the player's cursor 
                     rockGameObject = hit.collider.gameObject;
@@ -307,8 +403,27 @@ public class ScaleBehaviour : MonoBehaviour
         {
             // Let go of the rock
             rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+            rockGameObject.GetComponent<Rigidbody>().useGravity = true;
             rockGameObject = null;
         }
+    }
+
+    // Action for when the player wants to reset the puzzle
+    public void ResetPuzzle(InputAction.CallbackContext value)
+    {
+        rockGameObject = null;
+        
+        for (int i = 0; i < rockGameObjects.Count; i++)
+        {
+            rockGameObjects[i].GetComponent<Rigidbody>().isKinematic = true;
+            rockGameObjects[i].GetComponent<Rigidbody>().useGravity = false;
+            rockGameObjects[i].transform.position = rockStartingPositions[i];
+        }
+    }
+
+    public void QuitPuzzle(InputAction.CallbackContext value)
+    {
+        onQuit.Invoke();
     }
     #endregion
 }

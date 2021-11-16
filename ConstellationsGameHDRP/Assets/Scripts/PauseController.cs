@@ -2,7 +2,7 @@
     Name: PauseController
     Purpose: Controls the pause menu of the game.
     Author: Logan Ryan and Mara Dusevic
-    Modified: 19 October 2021
+    Modified: 11 November 2021
 -------------------------------------------------
     Copyright 2021 Bookshelf Studios
 -----------------------------------------------*/
@@ -12,17 +12,35 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseController : MonoBehaviour
 {
     #region Fields
     public GameObject pauseCanvas; // Pause screen
     public CustomPassVolume blurEffect; // The blur effect for the camera
+    public PlayerController playerController;
 
     public static bool gameIsPaused = false; // Is the game paused
-    
+    public static bool disablePauseFunctionality = false;
+
     [Header("Audio controls")]
     public AudioMixer masterMixer; // Mixer that controls the audio for the game
+    public Slider audioValue;
+    public TextMeshProUGUI audioValueText;
+
+    [Header("Quality Settings")]
+    public TMP_Dropdown qualityDropdown;
+
+    [Header("Screen Resolution Settings")]
+    public TMP_Dropdown screenResolutionDropdown;
+
+    [Header("Fullscreen Settings")]
+    public Toggle fullscreenToggle;
+
+    [Header("Mouse Sensitivity Settings")]
+    public Slider mouseSensitivityValue;
+    public TextMeshProUGUI mouseSensitivityValueText;
 
     [SerializeField] private GameObject PauseMenu; // Object containing all pause menu UI
     [SerializeField] private GameObject OptionsMenu; // Object containing all options menu UI
@@ -32,45 +50,104 @@ public class PauseController : MonoBehaviour
     // Start function
     private void Start()
     {
+        Time.timeScale = 1;
+        
         pauseCanvas.SetActive(false);
         gameIsPaused = false;
         blurEffect.customPasses[0].enabled = false;
+
+        // Reading options from the main menu
+        // Audio
+        if (PlayerPrefs.HasKey("Audio"))
+        {
+            audioValue.value = PlayerPrefs.GetFloat("Audio");
+        }
+        else
+        {
+            audioValue.value = 80;
+        }
+
+        float audioVolume = 5 / 4 * audioValue.value + 80;
+        audioValueText.text = audioVolume.ToString();
+
+        // Quality
+        if (PlayerPrefs.HasKey("Quality"))
+        {
+            qualityDropdown.value = PlayerPrefs.GetInt("Quality");
+        }
+        else
+        {
+            qualityDropdown.value = 0;
+        }
+
+        // Resolution
+        if (PlayerPrefs.HasKey("Screen Resolution"))
+        {
+            screenResolutionDropdown.value = PlayerPrefs.GetInt("Screen Resolution");
+        }
+        else
+        {
+            screenResolutionDropdown.value = 5;
+        }
+
+        // Fullscreen
+        int fullscreenInt;
+        if (PlayerPrefs.HasKey("Fullscreen"))
+        {
+            fullscreenInt = PlayerPrefs.GetInt("Fullscreen");
+        }
+        else
+        {
+            fullscreenInt = 1;
+        }
+
+        switch (fullscreenInt)
+        {
+            case 0:
+                Screen.fullScreen = false;
+                fullscreenToggle.isOn = false;
+                break;
+            case 1:
+                Screen.fullScreen = true;
+                fullscreenToggle.isOn = true;
+                break;
+        }
+
+        // Look Sensitivity
+        mouseSensitivityValueText.text = playerController.lookSensitivity.ToString();
     }
 
     // Pause the game
     public void Pause()
     {
-        // The game is now paused
-        gameIsPaused = !gameIsPaused;
-
-        // If the game is paused
-        if (gameIsPaused)
+        if (!disablePauseFunctionality)
         {
-            // Set time scale to 0
-            Time.timeScale = 0;
+            // The game is now paused
+            gameIsPaused = !gameIsPaused;
 
-            // Display pause screen
-            pauseCanvas.SetActive(true);
+            // If the game is paused
+            if (gameIsPaused)
+            {
+                // Set time scale to 0
+                Time.timeScale = 0;
 
-            // Enable blur effect
-            //blurEffect.customPasses[0].enabled = true;
+                // Display pause screen
+                pauseCanvas.SetActive(true);
 
-            // Unlock the mouse
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            // Set time scale to 1
-            Time.timeScale = 1.0f;
+                // Unlock the mouse
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                // Set time scale to 1
+                Time.timeScale = 1.0f;
 
-            // Hide pause screen
-            pauseCanvas.SetActive(false);
+                // Hide pause screen
+                pauseCanvas.SetActive(false);
 
-            // Disable blur effect
-            //blurEffect.customPasses[0].enabled = false;
-
-            // Lock the mouse
-            Cursor.lockState = CursorLockMode.Locked;
+                // Lock the mouse
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
     
@@ -85,13 +162,14 @@ public class PauseController : MonoBehaviour
     public void SetSound(float soundLevel)
     {
         masterMixer.SetFloat("musicVol", soundLevel);
+
+        float audioVolume = 5 / 4 * soundLevel + 80;
+        audioValueText.text = audioVolume.ToString();
     }
 
     // Change the quality of the game
     public void SetQuality(TMP_Dropdown dropdown)
     {
-        Debug.Log(dropdown.options[dropdown.value].text);
-        
         switch (dropdown.value)
         {
             case 0:
@@ -138,6 +216,14 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    // Changes the look sensitivity of the player
+    public void SetLookSensitivity(float sensitivity)
+    {
+        playerController.lookSensitivity = sensitivity;
+
+        mouseSensitivityValueText.text = sensitivity.ToString();
+    }
+
     // Change from fullscreen to window and vice versa
     public void ToggleFullscreen()
     {
@@ -154,6 +240,11 @@ public class PauseController : MonoBehaviour
     public void QuitToDesktop()
     {
         Application.Quit();
+    }
+
+    public void DisablePauseFunctionality(bool a_bool)
+    {
+        disablePauseFunctionality = a_bool;
     }
     #endregion
 }
