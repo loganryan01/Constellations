@@ -227,8 +227,9 @@ public class ScaleBehaviour : MonoBehaviour
         {
             MeshRenderer meshRenderer = gameObjectTransform.GetChild(i).GetComponent<MeshRenderer>();
             
-            if (meshRenderer != null && meshRenderer.material.name == "M_Scales (Instance)")
+            if (meshRenderer != null && meshRenderer.materials.Length > 1)
             {
+                //Debug.Log("Increasing galaxy shader");
                 StartCoroutine(LerpFloat(2, 5, meshRenderer));
             }
 
@@ -355,17 +356,17 @@ public class ScaleBehaviour : MonoBehaviour
     IEnumerator LerpFloat(float endValue, float duration, MeshRenderer meshRenderer)
     {
         float time = 0;
-        float startValue = meshRenderer.material.GetFloat("_GalaxyIntensity");
+        float startValue = meshRenderer.materials[1].GetFloat("_GalaxyIntensity");
 
         while (time < duration)
         {
-            meshRenderer.material.SetFloat("_GalaxyIntensity", Mathf.Lerp(startValue, endValue, time / duration));
+            meshRenderer.materials[1].SetFloat("_GalaxyIntensity", Mathf.Lerp(startValue, endValue, time / duration));
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        meshRenderer.material.SetFloat("_GalaxyIntensity", endValue);
+        meshRenderer.materials[1].SetFloat("_GalaxyIntensity", endValue);
     }
 
     // Action for when the player left clicks
