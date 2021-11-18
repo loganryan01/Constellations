@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Gold
+    second: {fileID: 2100000, guid: 9335291cbb3615b45ae81a371da3921f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Marble
     second: {fileID: 2100000, guid: 34fb4d45a3a1800498a51e786569eff6, type: 2}
   - first:
