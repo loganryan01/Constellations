@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     PuzzleOutlineEvent puzzleOutline;
     private StoneBehaviour stoneBehaviour;
+    private int stonesOnScale = 0;
     #endregion
 
     #region Functions
@@ -355,8 +356,10 @@ public class PlayerController : MonoBehaviour
                         stoneBehaviour.InteractWithScale();
 
                         stoneBehaviour = null;
+
+                        stonesOnScale++;
                     }
-                    else
+                    else if (stonesOnScale == 3)
                     {
                         scaleBehaviour.onInteraction.Invoke();
                     }

@@ -65,7 +65,6 @@ public class ScaleBehaviour : MonoBehaviour
 
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
-    private bool coroutinesPlaying; // Is a coroutine playing
 
     private GameObject rockGameObject; // The rock that the player is holding
     private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game object the player is holding
@@ -308,8 +307,6 @@ public class ScaleBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
-        coroutinesPlaying = true;
-        
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -327,15 +324,11 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
-
-        coroutinesPlaying = false;
     }
 
     // Rotate to target rotation over a certain time period
     IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject arm)
     {
-        coroutinesPlaying = true;
-        
         // Set timer to 0 and get starting rotation
         float time = 0;
         Quaternion startValue = arm.transform.rotation;
@@ -353,8 +346,6 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, rotate arm to target rotation
         arm.transform.rotation = endValue;
-
-        coroutinesPlaying = false;
     }
 
     IEnumerator LerpFloat(float endValue, float duration, MeshRenderer meshRenderer)

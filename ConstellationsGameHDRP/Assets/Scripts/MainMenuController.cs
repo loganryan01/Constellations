@@ -21,42 +21,47 @@ public class MainMenuController : MonoBehaviour
     
     [Header("Audio controls")]
     public AudioMixer masterMixer; // Mixer that controls the audio for the game
-    public Slider audioValue;
-    public TextMeshProUGUI audioValueText;
+    public Slider audioValue; // Slider that controls the audio of the game
+    public TextMeshProUGUI audioValueText; // The text that displays volume of the game
 
     [Header("Screen Resolution Dropdown")]
     public TMP_Dropdown screenResolutionDropdown; // Dropdown that displays the screen resolutions for the game
 
     [Header("Mouse Sensitivity Settings")]
-    public Slider mouseSensitivityValue;
-    public TextMeshProUGUI mouseSensitivityValueText;
+    public Slider mouseSensitivityValue; // Slider that controls the sensitivity of the mouse
+    public TextMeshProUGUI mouseSensitivityValueText; // Text that displays the value of the sensitivity of the mouse
 
     [Header("Quality Settings")]
-    public TMP_Dropdown qualityDropdown;
+    public TMP_Dropdown qualityDropdown; // Dropdown that displays the qualities for the game
 
     [Header("Fullscreen Settings")]
-    public Toggle fullscreenToggle;
+    public Toggle fullscreenToggle; // Toggle that activates fullscreen mode
     #endregion
 
     #region Functions
     // Start function
     void Start()
     {
-        // Audio
+        // Check if the player has a chosen audio setting
         if (PlayerPrefs.HasKey("Audio"))
         {
+            // If it does set it to the chosen setting
             audioValue.value = PlayerPrefs.GetFloat("Audio");
         }
         else
         {
+            // Otherwise, set it to the default value of 20
             audioValue.value = 20;
         }
 
+        // Convert the volume to a number between 0 - 100, then to a text
         float audioVolume = 5 / 4 * audioValue.value + 80;
         audioValueText.text = audioVolume.ToString();
 
+        // Set the volume of the game
         masterMixer.SetFloat("musicVol", audioValue.value);
 
+        // Save the audio
         PlayerPrefs.SetFloat("Audio", audioValue.value);
 
         // Quality
