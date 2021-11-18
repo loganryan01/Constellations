@@ -55,13 +55,13 @@ public class ScaleBehaviour : MonoBehaviour
     public Side startingSide; // What side the scale is starting on
 
     [Header("Interaction Settings")]
-    public UnityEvent onInteraction;
+    public UnityEvent onInteraction; // Events for when the player interacts with the puzzle
 
     [Header("Puzzle Completed Settings")]
-    public UnityEvent onComplete;
+    public UnityEvent onComplete; // Events for when the player completes the puzzle
 
     [Header("Quit Settings")]
-    public UnityEvent onQuit;
+    public UnityEvent onQuit; // Events for when the player quits the puzzle
 
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
@@ -79,9 +79,9 @@ public class ScaleBehaviour : MonoBehaviour
     private Vector3 lightLeftPosition; // The position where the left hand is the lightest
     private Vector3 lightRightPosition; // The position where the right hand is the lightest
 
-    private Vector3[] rockStartingPositions = new Vector3[3];
-    List<GameObject> rockGameObjects = new List<GameObject>();
-    GameObject[] rockArray = new GameObject[4];
+    private Vector3[] rockStartingPositions = new Vector3[3]; // Starting positions for the rocks
+    List<GameObject> rockGameObjects = new List<GameObject>(); // Rocks in the game
+    GameObject[] rockArray = new GameObject[4]; // Rocks in the game
     #endregion
 
     #region Functions
@@ -238,11 +238,13 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Display controls for the puzzle
     public void DisplayControls(GameObject controls)
     {
         controls.SetActive(!controls.activeInHierarchy);
     }
 
+    // Release the rock from the player's grip
     public void ReleaseRock(bool enableKinematic)
     {
         // Remove rock object from player's mouse
@@ -253,6 +255,7 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Update the rocks starting position
     public void UpdateRockPositions()
     {
         for (int i = 0; i < rockGameObjects.Count; i++)
@@ -348,6 +351,7 @@ public class ScaleBehaviour : MonoBehaviour
         arm.transform.rotation = endValue;
     }
 
+    // Lerp the float for the galaxy shader
     IEnumerator LerpFloat(float endValue, float duration, MeshRenderer meshRenderer)
     {
         float time = 0;
@@ -417,6 +421,7 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Action for when the player quits the puzzle
     public void QuitPuzzle(InputAction.CallbackContext value)
     {
         onQuit.Invoke();

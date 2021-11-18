@@ -64,22 +64,27 @@ public class MainMenuController : MonoBehaviour
         // Save the audio
         PlayerPrefs.SetFloat("Audio", audioValue.value);
 
-        // Quality
+        // Check if the player has a chosen quality setting
         if (PlayerPrefs.HasKey("Quality"))
         {
+            // If it does set it to the chosen setting
             qualityDropdown.value = PlayerPrefs.GetInt("Quality");
         }
         else
         {
+            // Otherwise, set it to high
             qualityDropdown.value = 0;
         }
 
+        // Set the qulity of the game
         QualitySettings.SetQualityLevel(qualityDropdown.value);
 
+        // Save the quality
         PlayerPrefs.SetInt("Quality", qualityDropdown.value);
 
-        // Enable the fullscreen
         int fullscreenInt;
+
+        // Check if the player already has a saved fullscreen setting
         if (PlayerPrefs.HasKey("Fullscreen"))
         {
             fullscreenInt = PlayerPrefs.GetInt("Fullscreen");
@@ -89,6 +94,7 @@ public class MainMenuController : MonoBehaviour
             fullscreenInt = 1;
         }
 
+        // Enable/Disable fullscreen mode
         switch (fullscreenInt)
         {
             case 0:
@@ -101,9 +107,10 @@ public class MainMenuController : MonoBehaviour
                 break;
         }
 
-        // Change the resolution based on the users screen
+        // Check if the player already has a saved screen resolution setting
         if (PlayerPrefs.HasKey("Screen Resolution"))
         {
+            // If they do then, switch the screen resolution to the chosen setting
             screenResolutionDropdown.value = PlayerPrefs.GetInt("Screen Resolution");
 
             switch (screenResolutionDropdown.value)
@@ -136,6 +143,7 @@ public class MainMenuController : MonoBehaviour
         }
         else
         {
+            // If not then change the resolution based on the users screen
             if (Screen.width >= 1280 && Screen.width < 1920)
             {
                 Screen.SetResolution(1280, 720, Screen.fullScreen);
@@ -158,20 +166,25 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
+        // Save screen resolution
         PlayerPrefs.SetInt("Screen Resolution", screenResolutionDropdown.value);
 
-        // Mouse Sensitivity
+        // Check if the player already has a saved look sensitivity
         if (PlayerPrefs.HasKey("Look Sensitivity"))
         {
+            // If they do then update the look sensitivity to the chosen setting
             mouseSensitivityValue.value = PlayerPrefs.GetFloat("Look Sensitivity");
         }
         else
         {
+            // If not then set the look sensitivity to the default value
             mouseSensitivityValue.value = 15;
         }
 
+        // Update the text to display the look sensitivity value
         mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
 
+        // Save the look sensitivity
         PlayerPrefs.SetFloat("Look Sensitivity", mouseSensitivityValue.value);
     }
 
@@ -188,6 +201,7 @@ public class MainMenuController : MonoBehaviour
         mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
     }
 
+    // Change the look sensitivity of the player
     public void SetLookSensitivity(float sensitivity)
     {
         PlayerPrefs.SetFloat("Look Sensitivity", sensitivity);

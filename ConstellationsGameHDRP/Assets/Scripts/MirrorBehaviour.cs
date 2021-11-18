@@ -2,7 +2,7 @@
     Name: MirrorBehaviour
     Purpose: Rotates the mirror.
     Authour: Mara Dusevic / Logan Ryan
-    Modified: 28 October 2021
+    Modified: 18 November 2021
 --------------------------------------
     Copyright 2021 Bookshelf Studios
 ------------------------------------*/
@@ -15,21 +15,22 @@ public class MirrorBehaviour : MonoBehaviour
     [Header("Mirror Rotations")]
     [SerializeField] public float rotateAmount = 45.0f; // Amount to rotate object
     [SerializeField] public float rotateDuration = 2.0f; // How long the object should rotate
-    //public float correctRotation = 0;
 
-    public LaserBehaviour laserBehaviour;
+    public LaserBehaviour laserBehaviour; // Script for the laser
 
-    private float defaultRotation;
+    private float defaultRotation; // The default rotation of the mirror
 
     private bool _playingRotation = false; // Is the object rotating
     #endregion
 
     #region Functions
+    // Start function
     private void Start()
     {
         defaultRotation = transform.localRotation.eulerAngles.y;
     }
 
+    // Rotate mirror to the starting position
     public void RotateMirrorToDefaultPosition()
     {
         Quaternion newRot = Quaternion.Euler(0, defaultRotation, 0);
@@ -55,16 +56,6 @@ public class MirrorBehaviour : MonoBehaviour
             StartCoroutine(LerpRotation(newRot, rotateDuration, gameObject));
         }
     }
-
-    //private bool CheckCorrectRotation()
-    //{
-    //    if (transform.localRotation.eulerAngles.y == correctRotation)
-    //    {
-    //        return true;
-    //    }
-
-    //    return false;
-    //}
 
     // Rotate object over a duration of time
     private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)

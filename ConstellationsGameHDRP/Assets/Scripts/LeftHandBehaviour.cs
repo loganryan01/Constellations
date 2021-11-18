@@ -66,7 +66,7 @@ public class LeftHandBehaviour : MonoBehaviour
         while (time < duration)
         {
             // Move hand a small distance to target location
-            hand.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            hand.transform.position = Vector3.LerpUnclamped(startPosition, targetPosition, time / duration);
 
             // Increase time by delta time
             time += Time.deltaTime;

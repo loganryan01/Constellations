@@ -2,7 +2,7 @@
     Name: MazeBehaviour
     Purpose: Rotates the maze.
     Authour: Logan Ryan
-    Modified: 28 October 2021
+    Modified: 18 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -29,10 +29,10 @@ public class MazeBehaviour : MonoBehaviour
     public GameObject buttonText; // Text that displays what button to push to interact with the object
 
     [Header("Interaction Settings")]
-    public UnityEvent onInteraction;
+    public UnityEvent onInteraction; // Events to be triggered when the player interacts with the puzzle
 
     [Header("Quit Settings")]
-    public UnityEvent onQuit;
+    public UnityEvent onQuit; // Events to be triggered when the player quits the puzzle
 
     [HideInInspector]
     public bool mazeCompleted; // Is the maze puzzle completed
@@ -43,6 +43,7 @@ public class MazeBehaviour : MonoBehaviour
     #endregion
 
     #region Functions
+    // Start function
     private void Start()
     {
         startingRotation = transform.rotation.eulerAngles;
@@ -101,12 +102,14 @@ public class MazeBehaviour : MonoBehaviour
         rotationDirection = gameObject.transform.forward * (-inputVector.y)  + gameObject.transform.right * (-inputVector.x);
     }
 
+    // Reset the puzzle
     public void ResetPuzzle(InputAction.CallbackContext value)
     {
         transform.rotation = Quaternion.Euler(startingRotation);
         mazeBallBehaviour.gameObject.transform.position = ballStartingPosition;
     }
 
+    // Quit the puzzle
     public void QuitPuzzle(InputAction.CallbackContext value)
     {
         onQuit.Invoke();

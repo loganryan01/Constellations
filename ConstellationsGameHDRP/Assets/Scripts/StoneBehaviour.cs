@@ -15,14 +15,14 @@ public class StoneBehaviour : MonoBehaviour
 {
     #region Fields
     [Header("Interaction Settings")]
-    public Transform rockPositionOnScale;
-    public UnityEvent onInteraction;
-    public UnityEvent onReturn;
+    public Transform rockPositionOnScale; // The position of the rock on the scale
+    public UnityEvent onInteraction; // Events to be triggered when the player interacts with the stone
+    public UnityEvent onReturn; // Events to be triggered when the player returns the stone to the scale
 
-    private bool inCorrectPosition = false;
-    private bool isPlayerHoldingRock = false;
-    private Rigidbody stoneRigidbody;
-    private Transform holdingPosition;
+    private bool inCorrectPosition = false; // Is the stone in the correct position
+    private bool isPlayerHoldingRock = false; // Is the player currently holding the stone
+    private Rigidbody stoneRigidbody; // Rigidbody of the stone
+    private Transform holdingPosition; // The position where the player holds the stone
     #endregion
 
     #region Functions
@@ -32,17 +32,10 @@ public class StoneBehaviour : MonoBehaviour
         stoneRigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (isPlayerHoldingRock)
-        //{
-        //    gameObject.transform.position = holdingPosition.position;
-        //}
-    }
-
+    // When the player interacts with the scale while holding the stone
     public void InteractWithScale()
     {
+        // Move the stone from the player's hand to the position on the scale
         isPlayerHoldingRock = false;
 
         holdingPosition = null;
@@ -50,11 +43,13 @@ public class StoneBehaviour : MonoBehaviour
         StartCoroutine(LerpPosition(rockPositionOnScale.position, 5, gameObject));
     }
 
+    // Check if the stone is in the correct position
     public bool IsStoneInCorrectPosition()
     {
         return inCorrectPosition;
     }
 
+    // Move stone to the player's hand
     public void MoveStoneToCorrectPosition(Transform newTransform)
     {
         transform.position = newTransform.position;

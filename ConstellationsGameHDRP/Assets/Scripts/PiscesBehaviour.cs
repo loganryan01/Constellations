@@ -2,7 +2,7 @@
     Name: PiscesBehaviour
     Purpose: Resets Pisces puzzle
     Author: Logan Ryan
-    Modified: 28 October 2021
+    Modified: 18 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -12,20 +12,18 @@ using UnityEngine;
 
 public class PiscesBehaviour : MonoBehaviour
 {
-    ChannelBehaviour[] channelBehaviours = new ChannelBehaviour[8];
-    
+    #region Fields
+    ChannelBehaviour[] channelBehaviours = new ChannelBehaviour[8]; // Channels for the pisces puzzle
+    #endregion
+
+    #region Functions
     // Start is called before the first frame update
     void Start()
     {
         channelBehaviours = FindObjectsOfType<ChannelBehaviour>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Check if the puzzle is completed
     public bool CheckPuzzleCompletion()
     {
         foreach (var channelBehaviour in channelBehaviours)
@@ -39,6 +37,7 @@ public class PiscesBehaviour : MonoBehaviour
         return true;
     }
 
+    // Reset the channels
     public void ResetChannels()
     {
         foreach (var channelBehaviour in channelBehaviours)
@@ -49,4 +48,5 @@ public class PiscesBehaviour : MonoBehaviour
             }
         }
     }
+    #endregion
 }

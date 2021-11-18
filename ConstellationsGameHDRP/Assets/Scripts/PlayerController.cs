@@ -2,7 +2,7 @@
     Name: PlayerController
     Purpose: Controls the player.
     Authour: Mara Dusevic
-    Modified: 11 November 2021
+    Modified: 18 November 2021
 ------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------*/
@@ -35,66 +35,70 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gravity/Ground Settings")]
     [SerializeField]
-    public float gravity = -9.81f;
+    public float gravity = -9.81f; // Gravity of the player
     [SerializeField]
-    public Transform groundCheck;
+    public Transform groundCheck; // Where to check if the player is on the ground
     [SerializeField]
-    public LayerMask groundMask;
+    public LayerMask groundMask; // What layer is consider the ground
     [SerializeField]
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.4f; // How far should the player be from the ground
 
-    private Vector3 velocity;
-    private bool isGrounded = true;
+    private Vector3 velocity; // The velocity of the player
+    private bool isGrounded = true; // Is the player on the ground
 
     [Header("Looking Around")]
     [SerializeField]
-    public float lookSensitivity = 60.0f;
+    public float lookSensitivity = 60.0f; // Look sensitivity of the player
     [SerializeField]
-    public float minViewAngle = -40.0f;
+    public float minViewAngle = -40.0f; // Minimum view angle of the player
     [SerializeField]
-    public float maxViewAngle = 50.0f;
+    public float maxViewAngle = 50.0f; // Maximum view angle of the player
 
-    private Vector2 rawInputLook;
-    private float xRotation = 0.0f;
+    private Vector2 rawInputLook; // Player input from the mouse
+    private float xRotation = 0.0f; // The x rotation of the camera
 
     [Header("Interactions")]
     [SerializeField]
-    private float interactDist = 4.0f;
+    private float interactDist = 4.0f; // Distance for the player to interact with an object
 
-    private bool interactTriggered = false;
-    private bool enableOutline = true;
+    private bool interactTriggered = false; // Did the player press the trigger button
+    private bool enableOutline = true; // Should the outlines be enabled
 
-    private GameObject lastSeenObject;
+    private GameObject lastSeenObject; // What is the last object that the player has seen
 
     [Header("Interact Text")]
     public GameObject buttonText; // Text that displays button to press to interact with puzzle
-    public GameObject sagittariusControls; // 
-    public GameObject piscesControls;
+    public GameObject sagittariusControls; // The UI that displays the controls for the sagittarius puzzle
+    public GameObject piscesControls; // The UI that displays the controls for the pisces puzzle
 
     [Header("Ending settings")]
-    public int numberOfPuzzles = 4;
-    public Color targetColour = new Color(0,0,0,1);
-    public Image elementToFade;
-    private int puzzlesCompleted = 0;
+    public int numberOfPuzzles = 4; // Number of puzzles for the player to solve
+    public Color targetColour = new Color(0,0,0,1); // Colour for the fade element
+    public Image elementToFade; // Image to fade
+    private int puzzlesCompleted = 0; // Number of puzzles that the player has completed
 
-    PuzzleOutlineEvent puzzleOutline;
-    private StoneBehaviour stoneBehaviour;
-    private int stonesOnScale = 0;
+    PuzzleOutlineEvent puzzleOutline; // Event for the puzzle outline functionality
+    private StoneBehaviour stoneBehaviour; // Stone that the player is holding
+    private int stonesOnScale = 0; // Stones that are on the scale
     #endregion
 
     #region Functions
     // Start function
     private void Start()
     {
+        // Check if the player already has a saved look sensitivity
         if (PlayerPrefs.HasKey("Look Sensitivity"))
         {
+            // If they do then update the look sensitivity to the chosen setting
             lookSensitivity = PlayerPrefs.GetFloat("Look Sensitivity");
         }
         else
         {
+            // If not then set the look sensitivity to the default value
             lookSensitivity = 15;
         }
-        
+
+        // Get the main camera and lock the mouse
         mainCam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -146,26 +150,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // OnTriggerEnter is called when the Collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
+        // If the player enters the trigger box for sagittarius,
         if (other.CompareTag("Sagittarius") && !sagittariusControls.activeInHierarchy)
         {
+            // Display controls for sagittarius puzzle
             sagittariusControls.SetActive(true);
         }
+        // If the player enters the trigger box for pisces,
         else if (other.CompareTag("Pisces") && !piscesControls.activeInHierarchy)
         {
+            // Display controls for pisces puzzle
             piscesControls.SetActive(true);
         }
     }
 
+    // OnTriggerEnter is called when the Collider other has stopped touching the trigger
     private void OnTriggerExit(Collider other)
     {
+        // If the player was in the trigger box for sagittarius,
         if (other.CompareTag("Sagittarius") && sagittariusControls.activeInHierarchy)
         {
+            // Hide controls for sagittarius puzzle
             sagittariusControls.SetActive(false);
         }
+        // If the player was in the trigger box for pisces,
         else if (other.CompareTag("Pisces") && piscesControls.activeInHierarchy)
         {
+            // Hide controls for pisces puzzle
             piscesControls.SetActive(false);
         }
     }
@@ -336,7 +350,7 @@ public class PlayerController : MonoBehaviour
             {
                 hitObject.GetComponent<MirrorBehaviour>().RotateMirror();
             }
-            // If it hits the scale, move the camera
+            // If it hits the scale, move the camera if the player has all the rocks for the puzzle
             else if (hitObject.GetComponent<ScaleBehaviour>())
             {
                 ScaleBehaviour scaleBehaviour = hitObject.GetComponent<ScaleBehaviour>();
@@ -424,7 +438,6 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
-            //Debug.Log("The object we are looking at is: " + hitObject.name);
 
             // If the object is the scale or a channel, 
             if (hitObject.GetComponent<ChannelBehaviour>() && !hitObject.GetComponent<ChannelBehaviour>().CheckCorrectRotation())
@@ -440,7 +453,7 @@ public class PlayerController : MonoBehaviour
             // If the object is a mirror
             else if (hitObject.GetComponent<TaurusBehaviour>() && !hitObject.GetComponent<TaurusBehaviour>().CheckPuzzleCompletion())
             {
-                GameObject mazeObject = hitObject.GetComponent<TaurusBehaviour>().GetMazeObject();
+                GameObject mazeObject = hitObject.GetComponent<TaurusBehaviour>().GetOutlineObject();
 
                 lastSeenObject = mazeObject;
 
@@ -460,7 +473,6 @@ public class PlayerController : MonoBehaviour
                 // Draw outline for the object's children
                 DisableOutlines(1, hitObject.transform.GetChild(0));
                 DisableOutlines(1, hitObject.transform.GetChild(1));
-                //DisableOutlines(1, hitObject.transform.GetChild(2));
             }
             else if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted)
             {
