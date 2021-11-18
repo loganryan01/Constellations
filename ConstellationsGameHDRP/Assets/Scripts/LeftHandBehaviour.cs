@@ -2,7 +2,7 @@
     Name: LeftHandBehaviour
     Purpose: Checks how much weight is on the left hand of the scale.
     Authour: Logan Ryan
-    Modified: 7 October 2021
+    Modified: 18 November 2021
 ---------------------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 -------------------------------------------------------------------*/
@@ -15,7 +15,7 @@ public class LeftHandBehaviour : MonoBehaviour
     #region Fields
     // The main scale script
     ScaleBehaviour scaleBehaviour;
-    //bool coroutinePlaying = false;
+    //bool stoneMoving = false;
 
     public Transform stoneEntryPoint;
     public UnityEvent onArrivalToEntryPoint;
@@ -46,9 +46,10 @@ public class LeftHandBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the rock has been remove from the left hand of the scale, remove the weight from the left hand
-        if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted/*!coroutinePlaying*/)
+        if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted /*&& !stoneMoving*/)
         {
-            Debug.Log(other.name + " has been removed from the left hand");
+            Debug.Log("Stone has been removed from left hand");
+
             scaleBehaviour.leftWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 
@@ -59,8 +60,8 @@ public class LeftHandBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
-        //coroutinePlaying = true;
-
+        //stoneMoving = true;
+        
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -79,9 +80,11 @@ public class LeftHandBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
 
+        //stoneMoving = false;
+
         onArrivalToEntryPoint.Invoke();
 
-        //coroutinePlaying = false;
+        Debug.Log("Stone has arrived at left entry point");
     }
     #endregion
 }

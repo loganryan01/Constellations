@@ -2,7 +2,7 @@
     Name: MainMenuController
     Purpose: Controls the main menu scene.
     Author: Logan Ryan and Mara Dusevic
-    Modified: 28 October 2021
+    Modified: 18 November 2021
 ------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------*/
@@ -159,16 +159,13 @@ public class MainMenuController : MonoBehaviour
         if (PlayerPrefs.HasKey("Look Sensitivity"))
         {
             mouseSensitivityValue.value = PlayerPrefs.GetFloat("Look Sensitivity");
-            Debug.Log("Player Preferences has been found");
         }
         else
         {
             mouseSensitivityValue.value = 15;
-            Debug.Log("Player Preferences has not been found");
         }
 
         mouseSensitivityValueText.text = mouseSensitivityValue.value.ToString();
-        Debug.Log(mouseSensitivityValue.value);
 
         PlayerPrefs.SetFloat("Look Sensitivity", mouseSensitivityValue.value);
     }

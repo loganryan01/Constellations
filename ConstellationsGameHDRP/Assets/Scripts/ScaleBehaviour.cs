@@ -2,7 +2,7 @@
     Name: ScaleBehaviour
     Purpose: Controls the scale puzzle.
     Authour: Logan Ryan
-    Modified: 11 November 2021
+    Modified: 18 November 2021
 ---------------------------------------
     Copyright 2021 Bookshelf Studios
 -------------------------------------*/
@@ -65,6 +65,7 @@ public class ScaleBehaviour : MonoBehaviour
 
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
+    private bool coroutinesPlaying; // Is a coroutine playing
 
     private GameObject rockGameObject; // The rock that the player is holding
     private Rigidbody rockGameObjectRigidbody; // The rigidbody of the rock game object the player is holding
@@ -168,7 +169,7 @@ public class ScaleBehaviour : MonoBehaviour
     // Update the scale positions and rotations
     public void UpdateScale()
     {
-        ReleaseRock(false);
+        ReleaseRock(true);
         
         // If the puzzle is not completed,
         if (!scalePuzzleCompleted)
@@ -189,8 +190,7 @@ public class ScaleBehaviour : MonoBehaviour
                     // Remove rock object from player's mouse
                     if (rockGameObject != null)
                     {
-                        Debug.Log("Removing Rock");
-                        rockGameObject.GetComponent<Rigidbody>().isKinematic = false;
+                        rockGameObject.GetComponent<Rigidbody>().isKinematic = true;
                         rockGameObject = null;
                     }
 
@@ -205,8 +205,6 @@ public class ScaleBehaviour : MonoBehaviour
             {
                 ChangeScale(lightLeftPosition, heavyRightPosition, armRotations[2]);
             }
-
-            
         }
     }
 
@@ -251,9 +249,7 @@ public class ScaleBehaviour : MonoBehaviour
         // Remove rock object from player's mouse
         if (rockGameObject != null)
         {
-            //Debug.Log("Removing Rock");
             rockGameObject.GetComponent<Rigidbody>().isKinematic = enableKinematic;
-            rockGameObject.GetComponent<Rigidbody>().useGravity = !enableKinematic;
             rockGameObject = null;
         }
     }
@@ -312,6 +308,8 @@ public class ScaleBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
+        coroutinesPlaying = true;
+        
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -329,11 +327,15 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
+
+        coroutinesPlaying = false;
     }
 
     // Rotate to target rotation over a certain time period
     IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject arm)
     {
+        coroutinesPlaying = true;
+        
         // Set timer to 0 and get starting rotation
         float time = 0;
         Quaternion startValue = arm.transform.rotation;
@@ -351,6 +353,8 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, rotate arm to target rotation
         arm.transform.rotation = endValue;
+
+        coroutinesPlaying = false;
     }
 
     IEnumerator LerpFloat(float endValue, float duration, MeshRenderer meshRenderer)

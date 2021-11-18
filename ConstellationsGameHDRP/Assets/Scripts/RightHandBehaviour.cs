@@ -2,7 +2,7 @@
     Name: RightHandBehaviour
     Purpose: Measures the weight in the right hand of the scale.
     Authour: Logan Ryan
-    Modified: 11 November 2021
+    Modified: 18 November 2021
 ----------------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 --------------------------------------------------------------*/
@@ -15,6 +15,8 @@ public class RightHandBehaviour : MonoBehaviour
     #region Fields
     // The main scale script
     ScaleBehaviour scaleBehaviour;
+   //bool stoneMoving;
+
     public Transform stoneEntryPoint;
     public UnityEvent onArrivalToEntryPoint;
     #endregion
@@ -44,9 +46,10 @@ public class RightHandBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the rock has been remove from the right hand of the scale, remove the weight from the right hand
-        if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted)
+        if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted /*&& !stoneMoving*/)
         {
-            Debug.Log(other.name + " has been removed from the right hand");
+            Debug.Log("Stone has been removed from right hand");
+
             scaleBehaviour.rightWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 
@@ -57,6 +60,8 @@ public class RightHandBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
+        //stoneMoving = true;
+        
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -75,7 +80,11 @@ public class RightHandBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
 
+        //stoneMoving = false;
+
         onArrivalToEntryPoint.Invoke();
+
+        Debug.Log("Stone has arrived at right entry point");
     }
     #endregion
 }

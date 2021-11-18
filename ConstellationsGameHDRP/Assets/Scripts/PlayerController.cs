@@ -239,7 +239,6 @@ public class PlayerController : MonoBehaviour
         // If they are, then screen fades to black and load the ending scene
         if(puzzlesCompleted == numberOfPuzzles)
         {
-            Debug.Log("Ending Game");
             StartCoroutine(FadeToBlack(targetColour, 5));
         }
     }
@@ -534,7 +533,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (lastSeenObject.GetComponent<ChannelBehaviour>())
             {
-                Debug.Log("Disabling outlines for channel");
                 ChannelBehaviour[] channels = FindObjectsOfType<ChannelBehaviour>();
 
                 foreach (var channel in channels)

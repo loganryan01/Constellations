@@ -2,7 +2,7 @@
     Name: StoneBehaviour
     Purpose: Controls the stones for the scale puzzle.
     Authour: Logan Ryan
-    Modified: 11 November 2021
+    Modified: 18 November 2021
 ------------------------------------------------------
     Copyright 2021 Bookshelf Studios
 ----------------------------------------------------*/
@@ -35,23 +35,11 @@ public class StoneBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerHoldingRock)
-        {
-            gameObject.transform.position = holdingPosition.position;
-        }
+        //if (isPlayerHoldingRock)
+        //{
+        //    gameObject.transform.position = holdingPosition.position;
+        //}
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //Debug.Log("Collided with: " + other.name);
-
-    //    if (other.name == "Libra_Scales_Puzzle")
-    //    {
-    //        Debug.Log(name + "collided with: " + other.name);
-
-            
-    //    }
-    //}
 
     public void InteractWithScale()
     {
@@ -69,11 +57,8 @@ public class StoneBehaviour : MonoBehaviour
 
     public void MoveStoneToCorrectPosition(Transform newTransform)
     {
-        stoneRigidbody.isKinematic = true;
-
-        isPlayerHoldingRock = true;
-
-        holdingPosition = newTransform;
+        transform.position = newTransform.position;
+        transform.parent = newTransform;
     }
 
     // Move to target position over a time period
