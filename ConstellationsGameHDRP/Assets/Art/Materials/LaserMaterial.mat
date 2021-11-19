@@ -26,7 +26,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 3002
   stringTagMap:
     MotionVector: User
     RenderType: Transparent
@@ -61,8 +61,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_2c97d6e6880a48e0b4b56ec03f2c336e: 1
-    - Vector1_9c3cd859fee24ff68dda979b0e84547a: 0.7
-    - Vector1_ab2042dc35da459c8ac9f03348a56f8c: 0.1
+    - Vector1_9c3cd859fee24ff68dda979b0e84547a: 1
+    - Vector1_ab2042dc35da459c8ac9f03348a56f8c: 0.2
     - Vector1_d7ed6fd2260c4fdb88af78f58927be43: 32
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
@@ -103,18 +103,18 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
-    - _TransparentSortPriority: 0
+    - _TransparentSortPriority: 2
     - _TransparentWritingMotionVec: 0
-    - _TransparentZWrite: 0
+    - _TransparentZWrite: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - Color_754803b9be95467fbc98f0b5923be64e: {r: 16.94838, g: 16.94838, b: 16.94838, a: 1}
+    - Color_754803b9be95467fbc98f0b5923be64e: {r: 21.346619, g: 19.799904, b: 9.767086, a: 1}
     - Vector2_0d648fdbeb2f48fabf087af91403cc08: {r: -1, g: 0, b: 0, a: 0}
-    - Vector2_4b511761befe45cd926014ee15b343e2: {r: -0.5, g: 0, b: 0, a: 0}
+    - Vector2_4b511761befe45cd926014ee15b343e2: {r: -0.1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

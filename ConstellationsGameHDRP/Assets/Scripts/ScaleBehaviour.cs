@@ -264,6 +264,42 @@ public class ScaleBehaviour : MonoBehaviour
         }
     }
 
+    // Reset the chosen rock position
+    public void ResetRockPosition(GameObject rockObject)
+    {
+        int index = 0;
+        
+        if (rockGameObject != null)
+        {
+            rockGameObject = null;
+        }
+
+        switch (rockObject.name)
+        {
+            case "Stone (1)":
+                {
+                    index = 1;
+                }
+                break;
+
+            case "Stone (2)":
+                {
+                    index = 2;
+                }
+                break;
+
+            case "Stone (3)":
+                {
+                    index = 0;
+                }
+                break;
+        }
+
+        rockObject.GetComponent<Rigidbody>().isKinematic = true;
+        rockObject.GetComponent<Rigidbody>().useGravity = false;
+        rockObject.transform.position = rockStartingPositions[index];
+    }
+
     // Outline the rock when the player hover the mouse over it
     private void OutlineRock()
     {

@@ -21,6 +21,17 @@ public class StoneBehaviour : MonoBehaviour
 
     private bool inCorrectPosition = false; // Is the stone in the correct position
     private bool isPlayerHoldingRock = false; // Is the player currently holding the stone
+    public bool IsPlayerHoldingRock
+    {
+        get
+        {
+            return isPlayerHoldingRock;
+        }
+        set
+        {
+            isPlayerHoldingRock = value;
+        }
+    }
     private Rigidbody stoneRigidbody; // Rigidbody of the stone
     private Transform holdingPosition; // The position where the player holds the stone
     #endregion
@@ -56,6 +67,12 @@ public class StoneBehaviour : MonoBehaviour
         transform.parent = newTransform;
     }
 
+    // Detach gameobject from parent
+    public void DetachFromParent()
+    {
+        transform.parent = null;
+    }
+
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject stone)
     {
@@ -76,6 +93,8 @@ public class StoneBehaviour : MonoBehaviour
 
         // When time is up, move hand to target position
         stone.transform.position = targetPosition;
+
+        isPlayerHoldingRock = false;
 
         onReturn.Invoke();
     }
