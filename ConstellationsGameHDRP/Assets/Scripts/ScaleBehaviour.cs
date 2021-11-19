@@ -219,19 +219,19 @@ public class ScaleBehaviour : MonoBehaviour
     // Change the material from a statue to galaxy
     public void IncreaseGalaxyIntensity(Transform gameObjectTransform)
     {
-        // Get all the mesh renderers in the scale
-        for (int i = 0; i < gameObjectTransform.childCount; i++)
-        {
-            MeshRenderer meshRenderer = gameObjectTransform.GetChild(i).GetComponent<MeshRenderer>();
-            
-            if (meshRenderer != null && meshRenderer.materials.Length > 1)
-            {
-                //Debug.Log("Increasing galaxy shader");
-                StartCoroutine(LerpFloat(2, 5, meshRenderer));
-            }
+        // Get the mesh renderer of the current object
+        MeshRenderer meshRenderer = gameObjectTransform.GetComponent<MeshRenderer>();
 
-            // Check if the game object has a child object
-            if (gameObjectTransform.childCount > 0)
+        // If it does have a mesh renderer, check if it has the galaxy shader by checking if it has 2 materials
+        if (meshRenderer != null && meshRenderer.materials.Length > 1)
+        {
+            StartCoroutine(LerpFloat(2, 5, meshRenderer));
+        }
+
+        // Check if the object has children, if they do then repeat procedure
+        if (gameObjectTransform.childCount > 0)
+        {
+            for (int i = 0; i < gameObjectTransform.childCount; i++)
             {
                 IncreaseGalaxyIntensity(gameObjectTransform.GetChild(i));
             }
