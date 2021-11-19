@@ -418,9 +418,14 @@ public class PlayerController : MonoBehaviour
             }
             else if (hitObject.GetComponent<StoneBehaviour>())
             {
-                stoneBehaviour = hitObject.GetComponent<StoneBehaviour>();
+                if (stoneBehaviour == null)
+                {
+                    stoneBehaviour = hitObject.GetComponent<StoneBehaviour>();
 
-                stoneBehaviour.onInteraction.Invoke();
+                    stoneBehaviour.IsPlayerHoldingRock = true;
+
+                    stoneBehaviour.onInteraction.Invoke();
+                }
             }
         }
 
@@ -504,7 +509,7 @@ public class PlayerController : MonoBehaviour
                 // Draw outline for the object'
                 DisableOutlines(1, hitObject.transform);
             }
-            else if (hitObject.GetComponent<StoneBehaviour>() && !hitObject.GetComponent<StoneBehaviour>().IsStoneInCorrectPosition())
+            else if (hitObject.GetComponent<StoneBehaviour>() && stoneBehaviour == null)
             {
                 lastSeenObject = hitObject;
 
