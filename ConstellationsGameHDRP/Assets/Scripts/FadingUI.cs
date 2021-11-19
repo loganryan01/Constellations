@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 [System.Serializable]
@@ -24,19 +24,46 @@ public class UIFade
     public GameObject item;
     public UIType type;
     public FadeType fadeType;
-    public bool onStart;
     public float duration = 5.0f;
-    public float startAlpha;
+    public float startAlpha = 0;
     public float timeBefore = 0;
     public float timeAfter = 0;
+    public UnityEvent onFadeBefore;
+    public UnityEvent onFadeComplete;
 }
 
 public class FadingUI : MonoBehaviour
 {
     [Header("UI Element To Fade")]
-    [SerializeField] private List<UIFade> elements;
+    [SerializeField] private List<UIFade> UIElements;
+    [SerializeField] private bool allOnStart = false;
 
     private void Start()
+    {
+        if (!allOnStart)
+        {
+            return;
+        }
+
+        FadeElement(UIElements);
+    }
+
+    private bool IsFadeOut(UIFade element)
+    {
+        if (element.fadeType.ToString() == "FadeOut")
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public List<UIFade> GetFadeUI()
+    {
+        return UIElements;
+    }
+
+    public void FadeElement(List<UIFade> elements)
     {
         foreach (UIFade element in elements)
         {
@@ -57,18 +84,10 @@ public class FadingUI : MonoBehaviour
         }
     }
 
-    private bool IsFadeOut(UIFade element)
+    private IEnumerator Fade(bool fadeOut, UIFade element)
     {
-        if (element.fadeType.ToString() == "FadeOut")
-        {
-            return true;
-        }
+        element.onFadeBefore?.Invoke();
 
-        return false;
-    }
-
-    public IEnumerator Fade(bool fadeOut, UIFade element)
-    {
         yield return new WaitForSeconds(element.timeBefore);
 
         if (element.type.ToString() == "Image")
@@ -76,19 +95,21 @@ public class FadingUI : MonoBehaviour
             Image image = element.item.GetComponent<Image>();
             Color color = image.color;
 
-            StartCoroutine(FadeImage(IsFadeOut(element), image, color, element.duration));
+            StartCoroutine(FadeImage(fadeOut, image, color, element.duration));
         }
         else if (element.type.ToString() == "TextMeshProUGUI")
         {
             TextMeshProUGUI text = element.item.GetComponent<TextMeshProUGUI>();
             Color color = text.color;
 
-            StartCoroutine(FadeText(IsFadeOut(element), text, color, element.duration));
+            StartCoroutine(FadeText(fadeOut, text, color, element.duration));
         }
         else
         {
             yield return null;
         }
+
+        element.onFadeComplete?.Invoke();
 
         yield return new WaitForSeconds(element.timeAfter);
     }
@@ -123,10 +144,5 @@ public class FadingUI : MonoBehaviour
         }
 
         image.color = endColor;
-    }
-
-    private IEnumerator Wait(float time)
-    {
-        yield return new WaitForSeconds(time);
     }
 }

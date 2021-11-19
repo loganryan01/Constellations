@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ending settings")]
     public int numberOfPuzzles = 4; // Number of puzzles for the player to solve
-    public Color targetColour = new Color(0,0,0,1); // Colour for the fade element
+    public Color targetColour = new Color(0, 0, 0, 1); // Colour for the fade element
     public Image elementToFade; // Image to fade
     private int puzzlesCompleted = 0; // Number of puzzles that the player has completed
 
@@ -245,14 +245,14 @@ public class PlayerController : MonoBehaviour
         {
             puzzlesCompleted--;
         }
-        
+
         // Gets called when a puzzle is completed
         // Increase number of puzzles solved by 1
         puzzlesCompleted++;
 
         // Check if the number of puzzles completed is equal to the number of puzzles in the game
         // If they are, then screen fades to black and load the ending scene
-        if(puzzlesCompleted == numberOfPuzzles)
+        if (puzzlesCompleted == numberOfPuzzles)
         {
             StartCoroutine(FadeToBlack(targetColour, 5));
         }
