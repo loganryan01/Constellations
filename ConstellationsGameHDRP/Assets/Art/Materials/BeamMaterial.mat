@@ -105,12 +105,12 @@ Material:
     - _TransparentDepthPrepassEnable: 0
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
-    - _TransparentZWrite: 0
+    - _TransparentZWrite: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - Color_754803b9be95467fbc98f0b5923be64e: {r: 191.74902, g: 191.74902, b: 191.74902, a: 1}
     - Vector2_0d648fdbeb2f48fabf087af91403cc08: {r: -1, g: 0, b: 0, a: 0}
