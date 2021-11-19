@@ -206,7 +206,11 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _EnvironmentReflections: 1
+<<<<<<< HEAD
     - _GalaxyIntensity: -2
+=======
+    - _GalaxyIntensity: 0
+>>>>>>> Development
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
