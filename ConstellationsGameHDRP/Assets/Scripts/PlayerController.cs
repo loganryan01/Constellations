@@ -238,6 +238,17 @@ public class PlayerController : MonoBehaviour
         enableOutline = !enableOutline;
     }
 
+    public bool IsPlayerFinished()
+    {
+        // Check if the number of puzzles completed is equal to the number of puzzles in the game
+        if (puzzlesCompleted == numberOfPuzzles)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     // Checks if player has completed all the puzzles
     public void EndGameCheck()
     {
