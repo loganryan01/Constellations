@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Galaxy2
-  m_Shader: {fileID: -6465566751694194690, guid: 89efeba7351805449b3a4dfe80385dc2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: efc2a9daa69896e4ca28e11fe60792a5, type: 3}
   m_ShaderKeywords: _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -150,6 +150,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: b92a65a4a5994954fa29451c4b3d6eeb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c23130df740848629c56ebbda5d68ef0_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f19032e1aa6c8d5469ff3272ebc098dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -218,6 +222,7 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _EnvironmentReflections: 1
+    - _GalaxyIntensity: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
