@@ -559,7 +559,9 @@ public class PlayerController : MonoBehaviour
             {
                 DisableOutlines(9, lastSeenObject.transform);
                 DisableOutlines(0, lastSeenObject.transform.GetChild(0));
-                DisableOutlines(9, lastSeenObject.transform.GetChild(1));
+                DisableOutlines(0, lastSeenObject.transform.GetChild(1));
+                DisableOutlines(0, lastSeenObject.transform.GetChild(2));
+                DisableOutlines(0, lastSeenObject.transform.GetChild(3));
             }
             else if (lastSeenObject.GetComponent<ScaleBehaviour>())
             {
