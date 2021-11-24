@@ -494,6 +494,8 @@ public class PlayerController : MonoBehaviour
                 // Draw outline for the object's children
                 DisableOutlines(1, hitObject.transform.GetChild(0));
                 DisableOutlines(1, hitObject.transform.GetChild(1));
+                DisableOutlines(1, hitObject.transform.GetChild(2));
+                DisableOutlines(1, hitObject.transform.GetChild(3));
             }
             else if (hitObject.GetComponent<ScaleBehaviour>() && !hitObject.GetComponent<ScaleBehaviour>().scalePuzzleCompleted)
             {
@@ -604,8 +606,7 @@ public class PlayerController : MonoBehaviour
     // Set position and rotation of player
     public void SetPositionAndRotation(Transform chosenTransform)
     {
-        transform.position = chosenTransform.position;
-        transform.rotation = chosenTransform.rotation;
+        transform.SetPositionAndRotation(chosenTransform.position, chosenTransform.rotation);
     }
 
     // Set position and rotation for main camera
@@ -614,7 +615,10 @@ public class PlayerController : MonoBehaviour
         Camera main = Camera.main;
 
         //main.transform.position = chosenTransform.position;
-        main.transform.rotation = chosenTransform.rotation;
+        //main.transform.rotation.eulerAngles = chosenTransform.rotation;
+        //main.transform.Rotate(chosenTransform.rotation.eulerAngles);
+
+        main.transform.localRotation = chosenTransform.rotation;
     }
 
     // Load the next scene in the build order
