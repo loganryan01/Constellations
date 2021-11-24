@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_WaterOcean
   m_Shader: {fileID: -6465566751694194690, guid: 69724f132d9d7f04e8a47ac922303856, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _DEPTHOFFSET_ON _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT
+    _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -19,10 +20,9 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
-  - TransparentDepthPrepass
+  - RayTracingPrepass
   - TransparentDepthPostpass
   - TransparentBackface
-  - RayTracingPrepass
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -84,31 +84,43 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_05aecc23218d44ab9e4aac34c7136b4a: 0
+    - Vector1_088b2248bcfa49a78188087ac6760d00: 0.16
     - Vector1_106d6ffa46694ba489606763e567c8d6: 0.38
     - Vector1_23E7A0DD: 5
     - Vector1_291d871c56b448e99af0fa5f94e7505f: 0
+    - Vector1_35d56e1324cf4296a6ad93f65abf7f2b: 0.06
+    - Vector1_3bec3c85eb1247779017a3d1ad1b79d0: 17.16
     - Vector1_4201b9666b1a42978ac2b8cc6fb61c6e: 1
     - Vector1_44c3300fa2ee41288364b282754b6f94: 1
     - Vector1_4fc0412f219147bbb95badf15d832179: 1.75
     - Vector1_5f7b4a0a72ff4422b29f15c0af1cd0d1: 1.83
+    - Vector1_689d9a701c1e4505bbc5368ae4a4a657: -8.2
+    - Vector1_71596f0f03744efba96ecf386f5729a9: 0.82
     - Vector1_717ebbb8f3664887aab7cbf4396c5d2a: 1
     - Vector1_73415181: 0.12
-    - Vector1_7C83F85A: 10
+    - Vector1_776dcbb2afe84c03ba6fc96e0440a451: -1.86
+    - Vector1_7C83F85A: 5
+    - Vector1_7d464d0b888f4aceb6f6829bff827ae4: 9.72
     - Vector1_82EAB169: 50
     - Vector1_8578D847: 0.01
-    - Vector1_986DEC4C: -0.16
+    - Vector1_986DEC4C: -19.72
     - Vector1_E44E32BE: 5
     - Vector1_EA7FA48F: 1
-    - Vector1_EC7FE742: 0.24
+    - Vector1_EC7FE742: -3.07
     - Vector1_EEC26D1F: 40
     - Vector1_F6CB75DC: 2
-    - Vector1_FF745530: 11.1
+    - Vector1_FF745530: 0.3
+    - Vector1_a18ac145458f4957b57ee4e66eff050b: -0.5
     - Vector1_b4a56d233fbc475888ecf236484e471d: 10
+    - Vector1_b95ba2b12d6b4d9c91bbdf1199580263: -16.43
+    - Vector1_b9f06579ceae46cd896bb13292228627: -3.98
     - Vector1_bdac08ef72ec4cb19c7c8edf700ea7d7: 0.398
     - Vector1_c24d5e1c2c7941a9af527a70e2369d71: 0.1
     - Vector1_d20912da22784b30b3f208d9f98ffa02: 0.751
     - Vector1_da24e312ca81418e9843979394dd9106: 0.02
+    - Vector1_eb3fa4bac0964b27a261fad0e1da3196: 0.8
     - Vector1_f118f01be7f14b7aaef9eb158446e82d: 0
+    - Vector1_f1c86c75077242b4849e710ef35b992c: 0.58
     - Vector1_f647e4f2dcdf48ea848e1d5c13b6f869: 0.5
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
@@ -119,7 +131,7 @@ Material:
     - _BlendMode: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _DepthOffsetEnable: 0
+    - _DepthOffsetEnable: 1
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
@@ -148,27 +160,28 @@ Material:
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
-    - _TransparentDepthPrepassEnable: 0
+    - _TransparentDepthPrepassEnable: 1
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
-    - _TransparentZWrite: 0
+    - _TransparentZWrite: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - Color_1B430962: {r: 0, g: 0.8832197, b: 1, a: 0}
-    - Color_23ABD125: {r: 1, g: 1, b: 1, a: 0}
+    - Color_1B430962: {r: 0, g: 0.27469477, b: 0.31132078, a: 0}
+    - Color_23ABD125: {r: 0, g: 0.06361814, b: 0.1509434, a: 0}
     - Color_363ae1c54c8a484aa50651fad8252014: {r: 1, g: 1, b: 1, a: 0}
     - Color_785a37604dc142439b350af3728f245a: {r: 0, g: 0, b: 0, a: 0}
-    - Color_D86C660: {r: 0, g: 0.53106546, b: 1, a: 1}
+    - Color_86813458e9814d3d92412590c8774a28: {r: 0.6981132, g: 0.6552177, b: 0.5499288, a: 0}
+    - Color_D86C660: {r: 0, g: 0.053348344, b: 0.21698111, a: 1}
     - Color_a10231fd620245308e7444cc6a97b2cf: {r: 1, g: 1, b: 1, a: 0}
     - Color_a36f482a63d0425788d975498be6372b: {r: 0, g: 0.44664392, b: 0.7735849, a: 0}
     - Color_b3fdfa5b981b4dc68e0b29f306c862eb: {r: 0.0032484946, g: 0.3755792, b: 0.6886792, a: 0}
     - Color_d9e69647eb0441b6a7491ba87ad91058: {r: 1, g: 1, b: 1, a: 1}
     - Vector2_5d30d587622d4d73baf56daff2805aad: {r: 1, g: 1, b: 0, a: 0}
-    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3652552334022966650
