@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
     public int numberOfPuzzles = 4; // Number of puzzles for the player to solve
     public Color targetColour = new Color(0, 0, 0, 1); // Colour for the fade element
     public Image elementToFade; // Image to fade
+    public UnityEvent onPuzzlesCompleted; // Events to be triggered when player completes all puzzles
+    public UnityEvent onPlayerArrivalAtMedusa; // Events to be triggered when the player arrives at Medusa
     private int puzzlesCompleted = 0; // Number of puzzles that the player has completed
 
     PuzzleOutlineEvent puzzleOutline; // Event for the puzzle outline functionality
@@ -265,7 +267,7 @@ public class PlayerController : MonoBehaviour
         // If they are, then screen fades to black and load the ending scene
         if (puzzlesCompleted == numberOfPuzzles)
         {
-            StartCoroutine(FadeToBlack(targetColour, 5));
+            StartCoroutine(FadeToBlack(targetColour, 5, onPuzzlesCompleted));
         }
     }
 
@@ -584,8 +586,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Coroutine to fade the screen to black
-    IEnumerator FadeToBlack(Color endValue, float duration)
+    // Fade to a certain alpha
+    public void FadeToColour(float alpha)
+    {
+        Color endColour = new Color(0, 0, 0, alpha);
+        
+        StartCoroutine(FadeToBlack(endColour, 5, onPlayerArrivalAtMedusa));
+    }
+
+    // Fade to a certain alpha and load next scene
+    public void FadeToEnd(float alpha)
+    {
+        Color endColour = new Color(0, 0, 0, alpha);
+        UnityEvent unityEvent = new UnityEvent();
+
+        unityEvent.AddListener(LoadNextScene);
+
+        StartCoroutine(FadeToBlack(endColour, 5, unityEvent));
+    }
+
+    // Set position and rotation of player
+    public void SetPositionAndRotation(Transform chosenTransform)
+    {
+        transform.position = chosenTransform.position;
+        transform.rotation = chosenTransform.rotation;
+    }
+
+    // Set position and rotation for main camera
+    public void SetPositionAndRotationForCamera(Transform chosenTransform)
+    {
+        Camera main = Camera.main;
+
+        //main.transform.position = chosenTransform.position;
+        main.transform.rotation = chosenTransform.rotation;
+    }
+
+    // Load the next scene in the build order
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    // Coroutine to fade the screen to black when the player completes all the puzzle
+    IEnumerator FadeToBlack(Color endValue, float duration, UnityEvent unityEvent)
     {
         float time = 0;
         Color startValue = elementToFade.color;
@@ -600,7 +643,19 @@ public class PlayerController : MonoBehaviour
 
         elementToFade.color = endValue;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // End game events
+        /*
+         * Fade screen to black
+         * Move player to correct position for Medusa Dialogue
+         * Lock Player movement and rotation
+         * Unfade screen
+         * Play Medusa Dialogue
+         * When Medusa dialogue is completed, Fade Screen to black
+         * Go to Ending Scene
+         * 
+         * Disable pause functionality
+         */
+        unityEvent.Invoke();
     }
     #endregion
 }
