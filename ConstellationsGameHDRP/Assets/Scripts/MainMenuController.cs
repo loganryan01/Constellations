@@ -11,6 +11,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class MainMenuController : MonoBehaviour
     [Header("UI Screens")]
     public GameObject optionsCanvas; // Screen that displays the options for the game
     public GameObject mainMenuCanvas; // Screen that displays the start, options and quit button
+    public Image elementToFade; // Image to fade in and out
     
     [Header("Audio controls")]
     public AudioMixer masterMixer; // Mixer that controls the audio for the game
@@ -191,7 +193,7 @@ public class MainMenuController : MonoBehaviour
     // Load the next scene in the build order
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(FadeToBlack(new Color(0, 0, 0, 1), 5));
     }
 
     // Go to the options screen
@@ -292,6 +294,25 @@ public class MainMenuController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    // Coroutine to fade the screen to black when the player completes all the puzzle
+    IEnumerator FadeToBlack(Color endValue, float duration)
+    {
+        float time = 0;
+        Color startValue = elementToFade.color;
+
+        while (time < duration)
+        {
+            elementToFade.color = Color.Lerp(startValue, endValue, time / duration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        elementToFade.color = endValue;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
 }
