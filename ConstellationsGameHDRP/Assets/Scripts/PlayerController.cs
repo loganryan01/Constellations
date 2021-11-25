@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
         PlayerLook();
         PlayerInteract();
 
+        Debug.Log("Outlines are enabled: " + enableOutline);
         if (enableOutline)
         {
             CanThePlayerInteract();

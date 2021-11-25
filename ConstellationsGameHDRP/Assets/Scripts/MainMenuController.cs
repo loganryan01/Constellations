@@ -44,6 +44,8 @@ public class MainMenuController : MonoBehaviour
     // Start function
     void Start()
     {
+        Time.timeScale = 1;
+        
         // Check if the player has a chosen audio setting
         if (PlayerPrefs.HasKey("Audio"))
         {

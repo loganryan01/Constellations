@@ -14,6 +14,7 @@ public class LeftHandBehaviour : MonoBehaviour
 {
     #region Fields
     ScaleBehaviour scaleBehaviour; // The main scale script
+    private int numberOfRocks; // Number of rocks moving to this hand
 
     public Transform stoneEntryPoint; // The resting place for the stones
     public UnityEvent onArrivalToEntryPoint; // Events to trigger when the stone has arrived at the designated position
@@ -32,6 +33,10 @@ public class LeftHandBehaviour : MonoBehaviour
         // If the rock has been placed on the left hand of the scale, add the weight to the left hand
         if (other.gameObject.CompareTag("Rock") && other.gameObject.transform.parent != transform && !scaleBehaviour.mainCamera.enabled)
         {
+            numberOfRocks++;
+            
+            scaleBehaviour.StopAllCoroutines();
+            
             scaleBehaviour.leftWeight += other.gameObject.GetComponent<Rigidbody>().mass;
 
             other.gameObject.transform.parent = transform;
@@ -48,6 +53,8 @@ public class LeftHandBehaviour : MonoBehaviour
         // If the rock has been remove from the left hand of the scale, remove the weight from the left hand
         if (other.gameObject.CompareTag("Rock") && !scaleBehaviour.scalePuzzleCompleted && !scaleBehaviour.mainCamera.enabled)
         {
+            scaleBehaviour.StopAllCoroutines();
+
             scaleBehaviour.leftWeight -= other.gameObject.GetComponent<Rigidbody>().mass;
             scaleBehaviour.UpdateScale();
 
@@ -76,7 +83,13 @@ public class LeftHandBehaviour : MonoBehaviour
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
 
-        onArrivalToEntryPoint.Invoke();
+        numberOfRocks--;
+
+        if (numberOfRocks == 0)
+        {
+            onArrivalToEntryPoint.Invoke();
+        }
+        
     }
     #endregion
 }
