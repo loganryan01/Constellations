@@ -63,6 +63,11 @@ public class ScaleBehaviour : MonoBehaviour
     [Header("Quit Settings")]
     public UnityEvent onQuit; // Events for when the player quits the puzzle
 
+    [Header("Audio Settings")]
+    public AudioClip[] grindingSoundEffects; // Sound effects for when scale moves
+    public AudioClip doorSoundEffects; // Door sound effect
+    private AudioSource audioSource; // Audio source for libra puzzle
+
     [HideInInspector]
     public bool scalePuzzleCompleted = false; // Is the scale puzzle completed
 
@@ -137,6 +142,8 @@ public class ScaleBehaviour : MonoBehaviour
         }
 
         UpdateRockPositions();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update function - run every frame
@@ -168,6 +175,8 @@ public class ScaleBehaviour : MonoBehaviour
     // Update the scale positions and rotations
     public void UpdateScale()
     {
+        
+
         ReleaseRock(true);
         
         // If the puzzle is not completed,
@@ -214,6 +223,9 @@ public class ScaleBehaviour : MonoBehaviour
         StartCoroutine(LerpRotation(Quaternion.Euler(doorRotations[1]), 5, rightDoor));
         leftDoor.GetComponent<OcclusionPortal>().open = true;
         rightDoor.GetComponentInChildren<OcclusionPortal>().open = true;
+
+        audioSource.clip = doorSoundEffects;
+        audioSource.Play();
     }
 
     // Change the material from a statue to galaxy
@@ -346,6 +358,11 @@ public class ScaleBehaviour : MonoBehaviour
     // Move to target position over a time period
     IEnumerator LerpPosition(Vector3 targetPosition, float duration, GameObject hand)
     {
+        int sfxIndex = Random.Range(0, 2);
+
+        audioSource.clip = grindingSoundEffects[sfxIndex];
+        audioSource.Play();
+
         // Set timer to 0 and get starting position
         float time = 0;
         Vector3 startPosition = hand.transform.position;
@@ -363,6 +380,8 @@ public class ScaleBehaviour : MonoBehaviour
 
         // When time is up, move hand to target position
         hand.transform.position = targetPosition;
+
+        audioSource.Stop();
     }
 
     // Rotate to target rotation over a certain time period

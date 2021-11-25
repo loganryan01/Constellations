@@ -18,6 +18,10 @@ public class MirrorBehaviour : MonoBehaviour
 
     public LaserBehaviour laserBehaviour; // Script for the laser
 
+    [Header("Audio Settings")]
+    public AudioClip[] grindingSoundEffects; // Grinding sound effects for interaction
+    public AudioSource audioSource; // Audio source for mirror
+
     private float defaultRotation; // The default rotation of the mirror
 
     private bool _playingRotation = false; // Is the object rotating
@@ -60,6 +64,11 @@ public class MirrorBehaviour : MonoBehaviour
     // Rotate object over a duration of time
     private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject mirror)
     {
+        int sfxIndex = Random.Range(0, 2);
+
+        audioSource.clip = grindingSoundEffects[sfxIndex];
+        audioSource.Play();
+
         // The coroutine is now playing 
         _playingRotation = true;
         
@@ -85,6 +94,8 @@ public class MirrorBehaviour : MonoBehaviour
 
         // The coroutine is completed
         _playingRotation = false;
+
+        audioSource.Stop();
     }
     #endregion
 }
