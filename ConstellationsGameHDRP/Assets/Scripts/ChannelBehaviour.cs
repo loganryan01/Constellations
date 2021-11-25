@@ -44,6 +44,10 @@ public class ChannelBehaviour : MonoBehaviour
     [Header("Interact Text")]
     [SerializeField] public GameObject buttonText; // UI element to indicate how to interact
 
+    [Header("Audio Settings")]
+    public AudioClip[] grindingSoundEffects; // Grinding sound effects for interaction
+    public AudioSource audioSource; // Audio source for channel
+
     private ChannelHolder _channelHolder; // Object holding the channel
     private bool _playingRotation = false; // Whether rotation is playing currently
     private bool _isDone = false; // Whether the channel is in correct position
@@ -158,6 +162,11 @@ public class ChannelBehaviour : MonoBehaviour
     // Rotates the channel over a set duration to a given rotation
     private IEnumerator LerpRotation(Quaternion endValue, float duration, GameObject channel)
     {
+        int sfxIndex = Random.Range(0, 2);
+
+        audioSource.clip = grindingSoundEffects[sfxIndex];
+        audioSource.Play();
+
         // Sets the channel as playing rotation animation
         _playingRotation = true;
 
@@ -181,6 +190,8 @@ public class ChannelBehaviour : MonoBehaviour
 
         // Sets the channel as not playing rotation animation
         _playingRotation = false;
+
+        audioSource.Stop();
     }
     
     #endregion
