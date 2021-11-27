@@ -18,7 +18,6 @@ public class PauseController : MonoBehaviour
 {
     #region Fields
     public GameObject pauseCanvas; // Pause screen
-    public CustomPassVolume blurEffect; // The blur effect for the camera
     public PlayerController playerController; // The script for the player
 
     public static bool gameIsPaused = false; // Is the game paused
@@ -56,7 +55,6 @@ public class PauseController : MonoBehaviour
         // Hide the pause menu
         pauseCanvas.SetActive(false);
         gameIsPaused = false;
-        blurEffect.customPasses[0].enabled = false;
 
         // Reading options from the main menu
         // Check if the player has a chosen audio setting
